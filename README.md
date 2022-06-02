@@ -26,9 +26,9 @@
 ## Roadmap
    Over time, the application will continue to be improved as far as both function and style. Some future goals and ideas are:
 
-   -update app state on list changes instead of pulling lists from api each time
-   -seek user confirmation before deleting lists to avoid accidents
-   -implement frontend caching of lists in browser storage to reduce api calls
-   -allow users to update list names
-   -sort lists upon loading or have users sort/ filter lists
-   -include authentication and authorization to allow for multiple users
+   -update app state on list changes instead of pulling lists from api each time  
+   -seek user confirmation before deleting lists to avoid accidents  
+   -implement frontend caching of lists in browser storage to reduce api calls  
+   -allow users to update list names  
+   -sort lists upon loading or have users sort/ filter lists  
+   -include authentication and authorization to allow for multiple users  
