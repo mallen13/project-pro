@@ -1,0 +1,27 @@
+.listContainer {
+    width: 100%;
+    max-width: 500px;
+}
+
+.iconBtn {
+    height: 20px;
+    outline: none;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+}
+
+.listTitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.listItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    background-color: white;
+}
