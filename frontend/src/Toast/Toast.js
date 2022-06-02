@@ -1,6 +1,6 @@
 import styles from './Toast.module.css'
 
-const Toast = ({display,setDisplay,message,duration = 5000}) => (
+const Toast = ({display,setDisplay,message}) => (
     <>
     <div className={styles.toastOverlay}>
       <div className={styles.toast} style={{display: display}}>

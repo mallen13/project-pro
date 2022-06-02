@@ -3,12 +3,10 @@ export const getData = async url => {
     try {
         const resp = await fetch(url);
         const data = await resp.json();
-        console.log(data);
-        return data;
+        return (url,data)
     } catch (err) {
         return 'error'
     }
-    
 }
 
 export const postData = async (body,url) => {

@@ -1,36 +1,77 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { mockFetch } from '../functions/testHelpers';
 import userEvent from '@testing-library/user-event';
 import NewListInput from './NewListInput';
 
-it('does not submit without input', ()=> {
-    //arrange
-    render(<NewListInput />);
+describe('new list input', ()=> {
+    //get fetch before mock
+    const unmockedFetch = global.fetch;
 
-    //act
-    const submitBtn = screen.getByText('Create List');
-    userEvent.click(submitBtn)
+    //reset fetch after each
+    afterAll(()=> global.fetch = unmockedFetch);
 
-    //assert
-    expect(submitBtn).not.toBeDisabled();
-});
+    it('does not submit without input', () => {
+        //arrange
+        render(<NewListInput />);
 
-it('submits with valid input', async () => {
+        //act
+        const submitBtn = screen.getByText('Create List');
+        userEvent.click(submitBtn)
 
-    //render
-    jest.useFakeTimers();
-    render(<NewListInput />);
+        //assert
+        expect(submitBtn).not.toBeDisabled();
+    });
 
-    //input/submit
-    const submitBtn = screen.getByText('Create List');
-    const input = screen.getByLabelText('New List');
-    userEvent.type(input,'list title');
-    userEvent.click(submitBtn);
+    it('does not allow duplicate lists to be added', async () => {
+        //arrange
+            const lists = [
+                {
+                title: 'to-do list', 
+                items: ['item1','item2']
+                }
+            ]
+        render(<NewListInput lists={lists} setLists={jest.fn()}/>);
+        
+        //act
+        const input = screen.getByLabelText('New List');
+        const submitBtn = screen.getByText('Create List');
+        userEvent.type(input,'to-do list');
+        userEvent.click(submitBtn);
 
-    //mock fetch
-    const successMsg = await screen.findAllByText('List Added');
-    screen.debug(successMsg);
+        //expect
+        const errMsg = await screen.findByText(/list already exists/i);
+        expect(errMsg).toBeInTheDocument();
+    });
 
-    //clear timers
-    jest.runOnlyPendingTimers();
-    jest.useRealTimers();
-});
+    it('shows an error when bad api response', async () => {
+        //arrange
+    render(<NewListInput lists={[]} setLists={jest.fn()}/>);
+    mockFetch('error');
+
+        //act
+        const input = screen.getByLabelText('New List');
+        const submitBtn = screen.getByText('Create List');
+        userEvent.type(input,'to-do list');
+        userEvent.click(submitBtn);
+
+        //expect
+        const errMsg = await screen.findByText(/system error/i);
+        expect(errMsg).toBeInTheDocument();
+    });
+
+    it('successfully submits with valid input', async () => {
+        //arrange
+    render(<NewListInput lists={[]} setLists={jest.fn()}/>);
+    mockFetch('success');
+
+        //act
+        const input = screen.getByLabelText('New List');
+        const submitBtn = screen.getByText('Create List');
+        userEvent.type(input,'to-do list');
+        userEvent.click(submitBtn);
+
+        //assert
+        const successMsg = await screen.findByText(/list added/i);
+        expect(successMsg).toBeInTheDocument();
+    });
+})

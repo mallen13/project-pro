@@ -36,7 +36,8 @@ const NewListInput = ({lists,setLists}) => {
         }
 
         //post to server
-        const url = 'http://localhost:8080/api/create-list';
+        //const url = 'https://mattallen.tech/list-app/api/create-list';
+        const url = 'http://localhost:8080/list-app/api/create-list';
         let post = await postData({listTitle: input}, url);
 
         //after post

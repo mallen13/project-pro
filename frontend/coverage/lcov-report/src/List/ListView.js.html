@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/12</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -118,7 +118,12 @@
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
 <a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -132,7 +137,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">46x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -148,21 +153,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">92x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -195,9 +205,9 @@ const ListView = ({
                 aria-label='delete list'
                 className={styles.iconBtn} 
                 onClick={deleteList}
-                disabled={isRemovingList ? <span class="branch-0 cbranch-no" title="branch not covered" >true </span>: false}
+                disabled={isRemovingList ? true : false}
             &gt;
-                {!isRemovingList ? 'x' : <span class="branch-1 cbranch-no" title="branch not covered" >'Removing...'}</span>
+                {isRemovingList ? 'Removing...' : 'x'}
             &lt;/button&gt;
         &lt;/div&gt;
 &nbsp;
@@ -206,22 +216,27 @@ const ListView = ({
             &lt;div className={styles.listItem} key={index} &gt;
                 &lt;p&gt;{listItem}&lt;/p&gt;
                 &lt;button 
+                    aria-label='delete list item'
                     className={styles.iconBtn} 
-                    onClick={ <span class="fstat-no" title="function not covered" >()</span>=&gt; <span class="cstat-no" title="statement not covered" >deleteListItem(listItem,index)}</span>
-                    disabled={isRemovingListItems.includes(index)  ? <span class="branch-0 cbranch-no" title="branch not covered" >true </span>: false}
+                    onClick={ ()=&gt; deleteListItem(listItem,index)}
+                    disabled={isRemovingListItems.includes(index)  ? true : false}
                 &gt;
-                    {isRemovingListItems.includes(index) ? <span class="branch-0 cbranch-no" title="branch not covered" >'Removing...' </span>: 'x'}
+                    {isRemovingListItems.includes(index) ? 'Removing...' : 'x'}
                 &lt;/button&gt;
             &lt;/div&gt;
         ))}
 &nbsp;
         {/* Add Item */}
         &lt;div&gt;
-            &lt;input ref={inputRef} placeholder='List Item' onChange={<span class="fstat-no" title="function not covered" >e </span>=&gt; <span class="cstat-no" title="statement not covered" >setInputVal(e.target.value)}</span>/&gt;
-            &lt;button onClick={addItem} disabled={isAdding ? <span class="branch-0 cbranch-no" title="branch not covered" >true </span>: false}&gt;
+            &lt;input 
+                aria-label='new list item input'
+                ref={inputRef} 
+                placeholder='List Item' 
+                onChange={e =&gt; setInputVal(e.target.value)}/&gt;
+            &lt;button onClick={addItem} disabled={isAdding ? true : false}&gt;
                 {!isAdding
                     ? 'Add'
-                    : <span class="branch-1 cbranch-no" title="branch not covered" >'Adding Item'</span>
+                    : 'Adding Item'
                 }               
             &lt;/button&gt;
         &lt;/div&gt;
@@ -235,7 +250,7 @@ export default ListView</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon May 30 2022 23:37:50 GMT-0400 (Eastern Daylight Time)
+                at Thu Jun 02 2022 18:19:12 GMT-0400 (Eastern Daylight Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>

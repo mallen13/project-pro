@@ -11,7 +11,9 @@ function App() {
 
   useEffect( ()=> {
     const fetchData = async () => {
-      const fetch = await getData('http://localhost:8080/api/get-lists');
+      //const url = 'https://mattallen.tech/list-app/api/get-lists';
+      const url = 'http://localhost:8080/list-app/api/get-lists';
+      const fetch = await getData(url);
 
       if (!fetch.lists) {
         setLists('error');
@@ -19,7 +21,6 @@ function App() {
       }
       if (fetch.lists.length > 0) setLists(fetch.lists);
       if (fetch.lists.length === 0) setLists('no lists');
-      if (fetch === 'error') setLists('error');
     }
 
     if (lists === 'fetching') fetchData();

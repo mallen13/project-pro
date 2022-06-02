@@ -1,9 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import { render,screen } from '@testing-library/react';
+import { mockFetch } from '../functions/testHelpers';
 import ListGrid from './ListGrid';
 
 describe('list grid', ()=> {
 
-    it('renders lists', () => {
+    it('renders lists', async () => {
         const listArr =  [
             {
             title: 'to-do list',
@@ -21,11 +22,15 @@ describe('list grid', ()=> {
             }
         ]
 
+        //mock fetch
+        mockFetch({lists: listArr});
+
+        //render
         render(<ListGrid lists={listArr} />);
 
-        const listGrid = document.querySelector('.listGrid');
-
-        expect(listGrid).toBeInTheDocument();
+        //expect
+        const todoList = await screen.findByText('to-do list');
+        expect(todoList).toBeInTheDocument();
     });
 })
 
