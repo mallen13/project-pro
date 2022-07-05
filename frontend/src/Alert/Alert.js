@@ -12,12 +12,12 @@ const Alert = ({display,setDisplay,message,focusRef}) => {
       <div className={styles.alert}>
         {/* Head */}
         <div className={styles.alertHead}>
-            Alert
+            <h3>Alert</h3>
             <button aria-label='exit button' onClick={handleClick}>x</button>
         </div>
 
         {/* Body */}
-        {message}
+        <p>{message}</p>
         
         {/* Footer/ Close Button */}
         <div className={styles.alertFooter}>

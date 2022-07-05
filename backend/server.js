@@ -15,20 +15,19 @@ app.use(cors());
 app.use(express.json());
 
 //setup DB
-const pool = mysql.createPool({
-  host : '127.0.0.1',
-  user : 'root',
-  password: 'Drummer90!',
-  database: 'list_app'
-});
-
 // const pool = mysql.createPool({
 //   host : '127.0.0.1',
-//   user : process.env.DB_USER,
-//   //port: 3306,
-//   password: process.env.DB_PW,
-//   database: 'mattallen_list_app'
+//   user : 'root',
+//   password: 'Drummer90!',
+//   database: 'list_app'
 // });
+
+const pool = mysql.createPool({
+  host : '127.0.0.1',
+  user : process.env.DB_USER,
+  password: process.env.DB_PW,
+  database: 'mattallen_list_app'
+});
 
 const promisePool = pool.promise();
 
@@ -60,9 +59,6 @@ app.post('/list-app/create-list', async (req, res) => {
      try {
       await createList(promisePool,listTitle);
       res.status(201).json('success');
-      setTimeout( ()=> {
-        res.status(200).json('success');
-      },3000)
     } catch (err) {
       console.error(err.message)
       res.status(500).json({status: err.message});

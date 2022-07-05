@@ -58,7 +58,6 @@ const deleteList = async (promisePool,listID, hasItems) => {
 //add list item
 const addListItem = async (promisePool,listID,listItem) => {
     const sql = "INSERT INTO list_items (list_id, item_name) VALUES (" + listID + ", '" + listItem + "')";
-    console.log(sql);
     await promisePool.query(sql);
 }
 

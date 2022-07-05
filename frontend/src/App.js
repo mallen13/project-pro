@@ -11,8 +11,8 @@ function App() {
 
   useEffect( ()=> {
     const fetchData = async () => {
-      //const url = 'https://mattallen.tech/list-app/get-lists';
-      const url = 'http://localhost:8080/list-app/get-lists';
+      const url = 'https://mattallen.tech/list-app/get-lists';
+      //const url = 'http://localhost:8080/list-app/get-lists';
       const data = await getData(url);
 
       if (!data.lists) {

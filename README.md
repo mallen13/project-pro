@@ -19,7 +19,7 @@
 ## Technologies
    Due to the small nature of the app, technologies were carefully considered to avoid over-engineering. 
 
-   React was used to allow for easy and reusable frontend components. Due to minimal stying, css modules were used. A library or framework was not necessarty. CSS was imported as modules instead of regular CSS to avoid namespace collisions. 
+   React was used to allow for easy and reusable frontend components. Due to minimal stying, css modules were used. A library or framework was not necessary. CSS was imported as modules instead of regular CSS to avoid namespace collisions. 
 
    The backend as build using Node and Express for the API routes. MySQL was used as the database for persistent data. MySQL was chosen over PostgreSQL due to the simplicity of backend operations. The current backend host does not support no-SQL databases. 
 
@@ -27,9 +27,9 @@
    Over time, the application will continue to be improved as far as both function and style. Some future goals and ideas are:
 
    -update app state on list changes instead of pulling lists from api each time  
+   -include icons for the buttons
    -seek user confirmation before deleting lists to avoid accidents  
    -implement frontend caching of lists in browser storage to reduce api calls  
    -allow users to update list names  
-   -sort lists upon loading or have users sort/ filter lists  
-   -include authentication and authorization to allow for multiple users  
-   -better error handling on server
+   -allow users sort/ filter lists  
+   -add PWA features

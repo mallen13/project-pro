@@ -14,19 +14,26 @@
     width: 90%;
     max-width: 300px;
     height: 100px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     background-color: lightgreen;
+    border-radius: 5px;
     box-shadow: 2px 2px 10px gray;
+    padding: 10px;
+}
+
+.toast h3 {
+    margin: 0;
 }
 
 .toastHead{
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    margin-bottom: 10px;
 }
 
 .toast button {
     outline: none;
-    border: none;
-    background-color: transparent;
     width: 30px;
+    font-size: 1.2rem;
 }
