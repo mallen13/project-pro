@@ -1,6 +1,30 @@
 .newListInputContainer {
+    width: 95%;
+    max-width: 300px;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin: 20px 0 50px 0;
+}
+
+.newListInputContainer label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.newListInputContainer button {
+    width: 150px;
+}
+
+@media screen and (max-width: 300px) {
+    .newListInputContainer input {
+        max-width: 55%;
+    }
+}
+
+.subContainer {
+    width: 100%;
+    display: flex;
+    background-color: white;
 }

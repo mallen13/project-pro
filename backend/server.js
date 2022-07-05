@@ -1,103 +1,114 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const mysql = require('mysql2');
+const { 
+  getLists, 
+  createList, 
+  deleteList,
+  addListItem,
+  deleteListItem
+} = require('./controller');
 const port = 8080;
 
 app.use(cors());
 app.use(express.json());
 
-let lists = [
-    {
-    title: 'to-do list',
-    items: [
-      'go to store',
-      'watch tv'
-    ]
-    },
-    {
-    title: 'another list',
-    items: [
-      'do something',
-      'do something else'
-    ]
-    }
-]
+//setup DB
+const pool = mysql.createPool({
+  host : '127.0.0.1',
+  user : 'root',
+  password: 'Drummer90!',
+  database: 'list_app'
+});
+
+// const pool = mysql.createPool({
+//   host : '127.0.0.1',
+//   user : process.env.DB_USER,
+//   //port: 3306,
+//   password: process.env.DB_PW,
+//   database: 'mattallen_list_app'
+// });
+
+const promisePool = pool.promise();
+
+// const client = new Client({
+//   user: process.env.DB_Uname, 
+//   host: '127.0.0.1',
+//   port: 5432,
+//   database: 'mattallen_favs', 
+//   password: process.env.DB_PW
+// });
 
 //api status
-app.get('/list-app/api/status', (req,res) => res.json('API is working! :)') )
+app.get('/list-app/status', (req,res) => res.json('API is working! :)') )
 
 //get lists
-app.get('/list-app/api/get-lists', (req, res) => {
-    //if not lists
-    res.status(200).json({lists: lists})
-    console.log('lists sent');
+app.get('/list-app/get-lists', async (req,res) => {
+    try {
+      res.status(200).json({lists: await getLists(promisePool)});
+    } catch (err) {
+      console.error(err.message)
+      res.status(500).json({status: err.message});
+    }  
 })
 
 //create list
-app.post('/list-app/api/create-list', (req, res) => {
+app.post('/list-app/create-list', async (req, res) => {
     const { listTitle } = req.body;
 
-    //post to dv
-    if (lists.map( list => list.title).includes(listTitle)) {
-      res.status(409).json('list already exists');
-      return;
-    }
-    lists.push({
-      title: listTitle,
-      items: []
-    })
-
-    res.status(200).json('success');
-    console.log(`"${listTitle}" created`);
+     try {
+      await createList(promisePool,listTitle);
+      res.status(201).json('success');
+      setTimeout( ()=> {
+        res.status(200).json('success');
+      },3000)
+    } catch (err) {
+      console.error(err.message)
+      res.status(500).json({status: err.message});
+    }  
 })
 
 //delete list
-app.post('/list-app/api/delete-list', (req,res) => {
-  const { listTitle } = req.body;
-  
-  //if list doesn't exist
+app.post('/list-app/delete-list', async (req,res) => {
+  const { listID, hasItems } = req.body;
 
-  //remove from db
-  const index = lists.map(obj => obj.title).indexOf(listTitle); 
-  if (index === -1) lists = [];
-  else lists.splice(index,1);
+  try {
+   await deleteList(promisePool,listID,hasItems);
+   res.status(200).json('success');
+  } catch (err) {
+    console.error(err.message)
+    res.status(500).json({status: err.message});
+  }  
 
-  //send response
-  console.log(`"${listTitle}" deleted`);
-  res.status(200).json('success');
 })
 
 //add list item
-app.post('/list-app/api/add-list-item', (req,res) => {
-  const { listTitle,listItem } = req.body;
-
-  //post to db
-  const index = lists.map(obj => obj.title).indexOf(listTitle); 
-  if (lists[index].items.includes(listItem)) {
-    res.status(409).json('list item already exists');
-    return;
-  }
-  lists[index].items.push(listItem);
-
-  res.status(200).json('success');
-  console.log(`"${listItem}" added to list "${listTitle}"`);
+app.post('/list-app/add-list-item', async (req,res) => {
+  const { listID,listItem } = req.body;
+  
+    try {
+      await addListItem(promisePool,listID,listItem);
+      res.status(200).json('success');
+    } catch (err) {
+      console.error(err.message)
+      res.status(500).json({status: err.message});
+    }
 })
 
 //delete list items
-app.post('/list-app/api/delete-list-item', (req,res) => {
-  const { listTitle,listItem } = req.body;
+app.post('/list-app/delete-list-item', async (req,res) => {
+  const { listID,listItem } = req.body;
 
-  //if item doesn't exists
+  try {
+    await deleteListItem(promisePool,listID,listItem);
+    res.status(200).json('success');
+  } catch (err) {
+    console.error(err.message)
+    res.status(500).json({status: err.message});
+  }
 
-  //remove from db
-  const listIndex = lists.map(obj => obj.title).indexOf(listTitle); 
-  const itemIndex = lists[listIndex].items.indexOf(listItem);
-  lists[listIndex].items.splice(itemIndex,1);
-  res.status(200).json('success');
-  console.log(`list item "${listItem}" removed from list "${listTitle}"`);
 })
 
 //listen
-app.listen(port, () => {
-  console.log(`List App backend listening on port ${port}`)
-})
+app.listen( port, ()=> console.log('App is listening...'));

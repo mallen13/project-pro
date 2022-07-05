@@ -1,5 +1,49 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #E1E8ED;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+    margin: 0;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color: black;
+    font-size: 1.1rem;
+    padding-bottom: 3px;
+}
+
+button:hover {
+    background-color: rgb(219, 216, 216);
+}
+
+button:disabled {
+    background-color: rgb(219, 216, 216);
+    color: gray;
+    cursor: not-allowed;
+}
+
+p {
+    margin: 0;
+}
+
+input {
+    width: stretch;
+    height: 35px;
+    border: none;
+    margin: 0 3px 0 0;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+@media only screen and (max-width: 300px) {
+    input {
+        max-width: 70%;
+    }
 }
 
 .gridContainer {

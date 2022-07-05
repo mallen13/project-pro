@@ -18,7 +18,6 @@ const ListView = ({
             <h3>{list.title}</h3>
             <button 
                 aria-label='delete list'
-                className={styles.iconBtn} 
                 onClick={deleteList}
                 disabled={isRemovingList ? true : false}
             >
@@ -32,26 +31,25 @@ const ListView = ({
                 <p>{listItem}</p>
                 <button 
                     aria-label='delete list item'
-                    className={styles.iconBtn} 
                     onClick={ ()=> deleteListItem(listItem,index)}
                     disabled={isRemovingListItems.includes(index)  ? true : false}
                 >
-                    {isRemovingListItems.includes(index) ? 'Removing...' : 'x'}
+                    {isRemovingListItems.includes(index) ? 'Removing' : 'x'}
                 </button>
             </div>
         ))}
 
         {/* Add Item */}
-        <div>
+        <div className={styles.newItemContainer}>
             <input 
                 aria-label='new list item input'
                 ref={inputRef} 
-                placeholder='List Item' 
+                placeholder='Add an Item' 
                 onChange={e => setInputVal(e.target.value)}/>
             <button onClick={addItem} disabled={isAdding ? true : false}>
                 {!isAdding
                     ? 'Add'
-                    : 'Adding Item'
+                    : 'Adding'
                 }               
             </button>
         </div>

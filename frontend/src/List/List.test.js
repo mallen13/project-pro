@@ -6,6 +6,7 @@ import List from './List';
 describe('list', ()=> {
 
   const list = {
+    id: 1,
     title: 'to-do list',
     items: [
       'go to store',

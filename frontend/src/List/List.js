@@ -22,9 +22,12 @@ const List = ({list,setLists,setToast}) => {
         setIsRemovingList(true);
 
         //post to server
-        //const url = 'https://mattallen.tech/list-app/api/delete-list';
-        const url = 'http://localhost:8080/list-app/api/delete-list';
-        const post = await postData({listTitle: list.title},url)
+        //const url = 'https://mattallen.tech/list-app/delete-list';
+        const url = 'http://localhost:8080/list-app/delete-list';
+        const post = await postData({
+            listID: list.id, 
+            hasItems: list.items.length > 0 ? true : false
+        },url)
 
         //after post request 
         if (post === 'success') {
@@ -45,9 +48,9 @@ const List = ({list,setLists,setToast}) => {
         setIsRemovingListItems( oldArr => [...oldArr,index] );
 
         //post to server
-        //const url = 'https://mattallen.tech/list-app/api/delete-list-item';
-        const url = 'http://localhost:8080/list-app/api/delete-list-item';
-        const post = await postData({listTitle: list.title,listItem: item},url);
+        //const url = 'https://mattallen.tech/list-app/delete-list-item';
+        const url = 'http://localhost:8080/list-app/delete-list-item';
+        const post = await postData({listID: list.id,listItem: item},url);
 
         //after post request 
         if (post === 'success') {
@@ -83,9 +86,9 @@ const List = ({list,setLists,setToast}) => {
     setIsAdding(true);
 
     //post to server
-    //const url = 'https://mattallen.tech/list-app/api/add-list-item';
-    const url = 'http://localhost:8080/list-app/api/add-list-item';
-    const post = await postData({listTitle: list.title,listItem: inputVal},url);
+    //const url = 'https://mattallen.tech/list-app/add-list-item';
+    const url = 'http://localhost:8080/list-app/add-list-item';
+    const post = await postData({listID: list.id,listItem: inputVal},url);
 
     //after post request 
     if (post === 'success') {

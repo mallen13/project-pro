@@ -11,16 +11,16 @@ function App() {
 
   useEffect( ()=> {
     const fetchData = async () => {
-      //const url = 'https://mattallen.tech/list-app/api/get-lists';
-      const url = 'http://localhost:8080/list-app/api/get-lists';
-      const fetch = await getData(url);
+      //const url = 'https://mattallen.tech/list-app/get-lists';
+      const url = 'http://localhost:8080/list-app/get-lists';
+      const data = await getData(url);
 
-      if (!fetch.lists) {
+      if (!data.lists) {
         setLists('error');
         return
       }
-      if (fetch.lists.length > 0) setLists(fetch.lists);
-      if (fetch.lists.length === 0) setLists('no lists');
+      if (data.lists.length > 0) setLists(data.lists);
+      if (data.lists.length === 0) setLists('no lists');
     }
 
     if (lists === 'fetching') fetchData();
@@ -30,7 +30,7 @@ function App() {
   //return
   return (
     <div className={styles.gridContainer}>
-      <h1>MyLists</h1>
+      <h1 style={{marginBottom: '10px'}}>List App</h1>
       <NewListInput lists={lists} setLists={setLists} />
       <ListGrid lists={lists} setLists={setLists} />
     </div>

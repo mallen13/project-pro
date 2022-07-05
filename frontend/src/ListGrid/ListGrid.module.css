@@ -1,18 +1,17 @@
 .listGrid {
-    width: 80%;
-    max-width: 1800px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.noGrid {
-    width: 80%;
-    max-width: 1800px;
+    width: 100%;
+    max-width: 2000px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 20px;
 }
+
+.placeholderDiv {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin: 10px;
+    background-color: transparent;
+}
+

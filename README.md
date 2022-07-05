@@ -1,4 +1,4 @@
-# MyLists
+# Lists App
 
 ## About
    Fullstack CRUD web application built for creating and saving multiple lists of items. The lists can be deleted, and list items can be created or removed as needed. The frontend was created with React and the backend was build using Node/Express and MySQL. 
@@ -32,3 +32,4 @@
    -allow users to update list names  
    -sort lists upon loading or have users sort/ filter lists  
    -include authentication and authorization to allow for multiple users  
+   -better error handling on server

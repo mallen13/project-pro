@@ -7,8 +7,7 @@ const NewListInputView = ({
     setInput,
 }) => (
     <div className={styles.newListInputContainer}>
-        <label htmlFor='listInput'>New List</label>
-        <div>
+        <div className={styles.subContainer}>
             <input 
                 ref={inputRef}
                 id='listInput'
@@ -18,7 +17,7 @@ const NewListInputView = ({
                 onClick={addList}
                 disabled={isLoading ? true : false}
             >
-                {!isLoading ? 'Create List' : 'Creating...' }
+                {!isLoading ? 'Create List' : 'Creating' }
             </button>
         </div>
     </div>
