@@ -11,10 +11,16 @@ button {
     margin: 0;
     cursor: pointer;
     border: none;
-    background-color: transparent;
     color: black;
+    background-color: transparent;
     font-size: 1.1rem;
     padding-bottom: 3px;
+}
+
+@media screen and (max-width: 300px) {
+    button {
+        width: 105px;
+    }
 }
 
 button:hover {
@@ -38,12 +44,6 @@ input {
     margin: 0 3px 0 0;
     padding: 10px;
     font-size: 1rem;
-}
-
-@media only screen and (max-width: 300px) {
-    input {
-        max-width: 70%;
-    }
 }
 
 .gridContainer {

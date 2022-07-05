@@ -21,7 +21,7 @@ const ListView = ({
                 onClick={deleteList}
                 disabled={isRemovingList ? true : false}
             >
-                {isRemovingList ? 'Removing...' : 'x'}
+                {isRemovingList ? 'Removing' : 'x'}
             </button>
         </div>
 

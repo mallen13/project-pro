@@ -3,6 +3,8 @@
 ## About
    Fullstack CRUD web application built for creating and saving multiple lists of items. The lists can be deleted, and list items can be created or removed as needed. The frontend was created with React and the backend was build using Node/Express and MySQL. 
 
+   The app can also be added to homescreen to be used as online-only PWA.
+
    View the live application here: https://mallen13.github.io/list-app/
 
 ## Development
@@ -32,4 +34,4 @@
    -implement frontend caching of lists in browser storage to reduce api calls  
    -allow users to update list names  
    -allow users sort/ filter lists  
-   -add PWA features
+   -add additional PWA features

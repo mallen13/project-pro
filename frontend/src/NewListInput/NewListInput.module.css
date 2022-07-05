@@ -7,7 +7,7 @@
     margin: 20px 0 50px 0;
 }
 
-@media screen and (min-width: 667px) {
+@media screen and (min-width: 768px) {
     .newListInputContainer {
         max-width: 300px;
     }
@@ -20,13 +20,7 @@
 }
 
 .newListInputContainer button {
-    width: 150px;
-}
-
-@media screen and (max-width: 300px) {
-    .newListInputContainer input {
-        max-width: 55%;
-    }
+    width: 175px;
 }
 
 .subContainer {

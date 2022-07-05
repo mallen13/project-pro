@@ -3,17 +3,17 @@
   "name": "List App",
   "icons": [
     {
-      "src": "list192.png",
+      "src": "icon192.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/png"
     },
     {
-      "src": "list192.png",
+      "src": "icon192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "list512.png",
+      "src": "icon512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
