@@ -17,13 +17,8 @@ button {
     padding-bottom: 3px;
 }
 
-@media screen and (max-width: 300px) {
-    button {
-        width: 105px;
-    }
-}
-
-button:hover {
+button:hover, button:focus {
+    outline: none;
     background-color: rgb(219, 216, 216);
 }
 
@@ -44,6 +39,10 @@ input {
     margin: 0 3px 0 0;
     padding: 10px;
     font-size: 1rem;
+}
+
+input:focus {
+    outline: none;
 }
 
 .gridContainer {

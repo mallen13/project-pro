@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom'
 import { mockFetch } from '../functions/testHelpers';
 import userEvent from '@testing-library/user-event';
 import NewListInput from './NewListInput';
@@ -30,10 +31,11 @@ describe('new list input', ()=> {
                 items: ['item1','item2']
                 }
             ]
+
         render(<NewListInput lists={lists} setLists={jest.fn()}/>);
         
         //act
-        const input = screen.getByLabelText('New List');
+        const input = screen.getByPlaceholderText('List Title');
         const submitBtn = screen.getByText('Create List');
         userEvent.type(input,'to-do list');
         userEvent.click(submitBtn);
@@ -49,7 +51,7 @@ describe('new list input', ()=> {
     mockFetch('error');
 
         //act
-        const input = screen.getByLabelText('New List');
+        const input = screen.getByPlaceholderText('List Title');
         const submitBtn = screen.getByText('Create List');
         userEvent.type(input,'to-do list');
         userEvent.click(submitBtn);
@@ -65,7 +67,7 @@ describe('new list input', ()=> {
     mockFetch('success');
 
         //act
-        const input = screen.getByLabelText('New List');
+        const input = screen.getByPlaceholderText('List Title');
         const submitBtn = screen.getByText('Create List');
         userEvent.type(input,'to-do list');
         userEvent.click(submitBtn);

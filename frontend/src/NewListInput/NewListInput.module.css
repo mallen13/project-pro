@@ -19,8 +19,18 @@
     margin-bottom: 20px;
 }
 
-.newListInputContainer button {
-    width: 175px;
+.newListInputContainer input {
+    max-width: 50%;
+}
+
+@media screen and (min-width: 768px ) {
+    .newListInputContainer input {
+        max-width: 65%;
+    }
+}
+
+.newListInputContainer:focus-within {
+    outline: 2px solid blue;
 }
 
 .subContainer {

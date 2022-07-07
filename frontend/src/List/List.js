@@ -24,10 +24,7 @@ const List = ({list,setLists,setToast}) => {
         //post to server
         const url = 'https://mattallen.tech/list-app/delete-list';
         //const url = 'http://localhost:8080/list-app/delete-list';
-        const post = await postData({
-            listID: list.id, 
-            hasItems: list.items.length > 0 ? true : false
-        },url)
+        const post = await postData({listID: list.id},url)
 
         //after post request 
         if (post === 'success') {

@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { mockFetch } from './functions/testHelpers';
+import '@testing-library/jest-dom';
 import App from './App';
 
 
@@ -44,7 +45,7 @@ describe('app', ()=> {
     render(<App />);
 
     //expect
-    const noListMsg = await screen.findByText(/no lists/i);
+    const noListMsg = await screen.findByText(/create a list/i);
     expect(noListMsg).toBeInTheDocument();
   });
 

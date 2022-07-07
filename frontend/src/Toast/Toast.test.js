@@ -1,12 +1,15 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import '@testing-library/jest-dom';
 import Toast from './Toast';
 
 describe('toast', ()=> {
 
     it('renders toast', async () => {
         render(<Toast display='flex' message='' setDisplay={null}/>);
-        expect(screen.getByText('Success')).toBeInTheDocument();
+
+        const toast = screen.getByText('Success');
+        expect(toast).toBeInTheDocument();
     });
 
     it('closes toast after hitting x button', () => {
