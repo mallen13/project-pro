@@ -4,7 +4,7 @@ const getLists = async promisePool => {
 
     //create lists
     const lists = [];
-
+ 
     //query database
     const sql = ' \
         SELECT list_names.list_id, list_names.list_name, list_items.item_name \
@@ -25,8 +25,9 @@ const getLists = async promisePool => {
             title: listItem.list_name,
             items: listItem.item_name ? [listItem.item_name] : []
         }) 
+        
         //if list is in array
-        else if (hasList) {
+        if (hasList) {
             const index = lists.findIndex( list => list.id === listItem.list_id );
             lists[index].items.push(listItem.item_name);
         }
@@ -42,17 +43,16 @@ const createList = async (promisePool,listTitle) => {
 }
 
 //delete list
-const deleteList = async (promisePool,listID, hasItems) => {
-    let sql; 
+const deleteList = async (promisePool,list) => {
 
-    hasItems 
-        ? sql = ' \
+    const sql = list.items.length > 0
+        ?' \
         DELETE list_items,list_names FROM list_items \
         LEFT OUTER JOIN list_names ON list_names.list_id = list_items.list_id \
-        WHERE list_items.list_id = ' + listID
-        : sql = 'DELETE FROM list_names WHERE list_id = ' + listID;
+        WHERE list_items.list_id = ' + list.id
+        : 'DELETE FROM list_names WHERE list_id = ' + list.id;
 
-        await promisePool.query(sql);
+    await promisePool.query(sql);
 }
 
 //add list item
@@ -65,7 +65,7 @@ const addListItem = async (promisePool,listID,listItem) => {
 const deleteListItem = async (promisePool,listID, listItem) => {
     const sql= "DELETE FROM list_items WHERE list_id = " 
     + listID + " AND item_name = '" + listItem + "'"; 
-    promisePool.query(sql);
+    await promisePool.query(sql);
 }
 
 module.exports = { 

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1657771250942" clover="3.2.0">
+  <project timestamp="1657771250942" name="All files">
+    <metrics statements="69" coveredstatements="67" conditionals="8" coveredconditionals="8" methods="14" coveredmethods="14" elements="91" coveredelements="89" complexity="0" loc="69" ncloc="69" packages="1" files="2" classes="2"/>
+    <file name="controller.js" path="/Users/mattallen/Development/list-app/backend/controller.js">
+      <metrics statements="24" coveredstatements="24" conditionals="8" coveredconditionals="8" methods="8" coveredmethods="8"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="6" count="2" type="stmt"/>
+      <line num="9" count="2" type="stmt"/>
+      <line num="16" count="2" type="stmt"/>
+      <line num="19" count="2" type="stmt"/>
+      <line num="20" count="3" type="stmt"/>
+      <line num="23" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="30" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="31" count="1" type="stmt"/>
+      <line num="32" count="1" type="stmt"/>
+      <line num="36" count="2" type="stmt"/>
+      <line num="40" count="1" type="stmt"/>
+      <line num="41" count="14" type="stmt"/>
+      <line num="42" count="14" type="stmt"/>
+      <line num="46" count="1" type="stmt"/>
+      <line num="48" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="55" count="2" type="stmt"/>
+      <line num="59" count="1" type="stmt"/>
+      <line num="60" count="2" type="stmt"/>
+      <line num="61" count="2" type="stmt"/>
+      <line num="65" count="1" type="stmt"/>
+      <line num="66" count="2" type="stmt"/>
+      <line num="68" count="2" type="stmt"/>
+      <line num="71" count="1" type="stmt"/>
+    </file>
+    <file name="server.js" path="/Users/mattallen/Development/list-app/backend/server.js">
+      <metrics statements="45" coveredstatements="43" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="4" count="1" type="stmt"/>
+      <line num="5" count="1" type="stmt"/>
+      <line num="12" count="1" type="stmt"/>
+      <line num="14" count="1" type="stmt"/>
+      <line num="15" count="1" type="stmt"/>
+      <line num="18" count="1" type="stmt"/>
+      <line num="25" count="1" type="stmt"/>
+      <line num="28" count="1" type="stmt"/>
+      <line num="31" count="1" type="stmt"/>
+      <line num="32" count="2" type="stmt"/>
+      <line num="33" count="2" type="stmt"/>
+      <line num="35" count="0" type="stmt"/>
+      <line num="36" count="0" type="stmt"/>
+      <line num="41" count="1" type="stmt"/>
+      <line num="42" count="14" type="stmt"/>
+      <line num="44" count="14" type="stmt"/>
+      <line num="45" count="14" type="stmt"/>
+      <line num="46" count="13" type="stmt"/>
+      <line num="48" count="1" type="stmt"/>
+      <line num="49" count="1" type="stmt"/>
+      <line num="54" count="1" type="stmt"/>
+      <line num="55" count="3" type="stmt"/>
+      <line num="57" count="3" type="stmt"/>
+      <line num="58" count="3" type="stmt"/>
+      <line num="59" count="2" type="stmt"/>
+      <line num="61" count="1" type="stmt"/>
+      <line num="62" count="1" type="stmt"/>
+      <line num="68" count="1" type="stmt"/>
+      <line num="69" count="2" type="stmt"/>
+      <line num="71" count="2" type="stmt"/>
+      <line num="72" count="2" type="stmt"/>
+      <line num="73" count="1" type="stmt"/>
+      <line num="75" count="1" type="stmt"/>
+      <line num="76" count="1" type="stmt"/>
+      <line num="81" count="1" type="stmt"/>
+      <line num="82" count="2" type="stmt"/>
+      <line num="84" count="2" type="stmt"/>
+      <line num="85" count="2" type="stmt"/>
+      <line num="86" count="1" type="stmt"/>
+      <line num="88" count="1" type="stmt"/>
+      <line num="89" count="1" type="stmt"/>
+      <line num="95" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
