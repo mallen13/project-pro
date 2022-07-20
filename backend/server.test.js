@@ -68,6 +68,16 @@ describe('GET /list-app/get-lists', ()=> {
         expect(resp.type).toBe('application/json');
         expect(resp.body).toHaveProperty('lists');
     })
+
+    it('responds w/ error msg and JSON w/ mysql query err', async ()=> {
+
+        const resp = await request(server)
+        .get('/list-app/get-lists');
+
+        expect(resp.status).toBe(500);
+        expect(resp.type).toBe('application/json');
+        expect(resp.body).toHaveProperty('status');
+    })
 })
 
 describe('POST /list-app/create-list', ()=> {
@@ -98,7 +108,7 @@ describe('POST /list-app/create-list', ()=> {
 
 describe('POST /list-app/delete-list', ()=> {
 
-    it('responds with status 200 and a success JSON message', async ()=> {
+    it('w/ list items, responds with status 200 and a success JSON message', async ()=> {
         //delete list
         const resp = await request(server)
             .post('/list-app/delete-list')
@@ -112,7 +122,7 @@ describe('POST /list-app/delete-list', ()=> {
         expect(resp.body).toBe('success');
     })
 
-    it('responds with status 200 and a success JSON message', async ()=> {
+    it('w/o responds with status 200 and a success JSON message', async ()=> {
         //delete list
         const resp = await request(server)
             .post('/list-app/delete-list')
