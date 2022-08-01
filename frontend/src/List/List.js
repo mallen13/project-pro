@@ -3,7 +3,7 @@ import { postData } from '../functions/functions.js';
 import ListView from './ListView';
 import Alert from '../Alert/Alert';
 
-const List = ({list,setLists,setToast}) => {
+const List = ({list,lists,setLists,setToast}) => {
 
   //ref
   const inputRef = useRef();
@@ -14,21 +14,29 @@ const List = ({list,setLists,setToast}) => {
   const [isRemovingList,setIsRemovingList] = useState(false);
   const [isRemovingListItems,setIsRemovingListItems] = useState([]);
   const [alert,setAlert] = useState({display: 'none', message: ''});
-  
 
    //delete list
    const deleteList = async () => {
-        //set loading
-        setIsRemovingList(true);
-
+       
         //post to server
-        const url = 'https://mattallen.tech/list-app/delete-list';
-        //const url = 'http://localhost:8080/list-app/delete-list';
-        const post = await postData({list: list},url)
+        //const url = 'https://mattallen.tech/list-app/delete-list';
+        const url = 'http://localhost:8080/list-app/delete-list';
+        let post;
+
+         //set loading after 1 second
+        const timer = setTimeout( ()=> setIsRemovingList(true),1000);
+        post = await postData({list: list},url);
 
         //after post request 
         if (post === 'success') {
-            setLists('fetching');
+            clearTimeout(timer);
+            const listsClone = JSON.parse(JSON.stringify(lists));
+
+            listsClone.forEach( (delList,i) => {
+                if (delList.id === list.id) listsClone.splice(i,1);
+            })
+
+            setLists(listsClone);
             setToast({display: 'flex', message: `Deleted List: ${list.title}`});
         } else {
             setAlert({display: 'flex', message: 'System error. Please try again later.'})
@@ -42,16 +50,29 @@ const List = ({list,setLists,setToast}) => {
    //delete list item
    const deleteListItem = async (item,index) => {
         //set loading
-        setIsRemovingListItems( oldArr => [...oldArr,index] );
+       const timer = setTimeout( ()=> 
+        setIsRemovingListItems( itemIndexes => [...itemIndexes,index])
+        ,1000);
 
         //post to server
-        const url = 'https://mattallen.tech/list-app/delete-list-item';
-        //const url = 'http://localhost:8080/list-app/delete-list-item';
+        //const url = 'https://mattallen.tech/list-app/delete-list-item';
+        const url = 'http://localhost:8080/list-app/delete-list-item';
         const post = await postData({listID: list.id,listItem: item},url);
 
         //after post request 
         if (post === 'success') {
-            setLists('fetching');
+            clearTimeout(timer);
+
+            const deepClone = JSON.parse(JSON.stringify(lists));
+
+            //remove item from list
+            deepClone.forEach( listClone => {
+                if (listClone.id === list.id) {
+                    listClone.items.splice(index,1)
+                }
+            })
+            setLists(deepClone);
+
             setToast({display: 'flex', message: `Removed item "${item}" from ${list.title}`});
         } else {
             setAlert({display: 'flex', message: 'System error. Please try again later.'});
@@ -60,37 +81,38 @@ const List = ({list,setLists,setToast}) => {
         
         //remove completed item from array
         setIsRemovingListItems( listItems => listItems.filter((_, index) => index !== 0));
-
    }
 
   //add item
   const addItem = async () => {
 
-    //validate input
+    //if blank
     if (inputVal === '') {
         setAlert({display: 'flex', message: 'Item cannot be blank.'})
         inputRef.current.focus();
         return null;
     }
 
-    //if list title already exists
-    if (list.items.includes(inputVal)) {
-        setAlert({display: true, message: 'List item already exists'});
-        return;
-    }
-
     //set loading
-    setIsAdding(true);
+    const timer = setTimeout( ()=> setIsAdding(true), 1000);
 
     //post to server
-    const url = 'https://mattallen.tech/list-app/add-list-item';
-    //const url = 'http://localhost:8080/list-app/add-list-item';
+    //const url = 'https://mattallen.tech/list-app/add-list-item';
+    const url = 'http://localhost:8080/list-app/add-list-item';
     const post = await postData({listID: list.id,listItem: inputVal},url);
 
     //after post request 
     if (post === 'success') {
+        clearTimeout(timer);
         setToast({display: 'flex', message: `Added item "${inputVal}" to ${list.title}`});
-        setLists('fetching');
+
+        //modify list item
+        const deepClone = JSON.parse(JSON.stringify(lists));
+        deepClone.forEach( listClone => {
+            if (listClone.id === list.id) listClone.items.push(inputVal);
+        })
+        setLists(deepClone);
+
         inputRef.current.value = '';
     } else {
         setAlert({display: 'flex', message: 'System error. Please try again later.'})

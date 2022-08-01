@@ -17,7 +17,6 @@ const NewListInput = ({lists,setLists}) => {
 
     //add new list
     const addList = async () => {
-
         setIsLoading(true);
 
         //validation
@@ -36,14 +35,22 @@ const NewListInput = ({lists,setLists}) => {
         }
 
         //post to server
-        const url = 'https://mattallen.tech/list-app/create-list';
-        //const url = 'http://localhost:8080/list-app/create-list';
-        let post = await postData({listTitle: input}, url);
+        //const url = 'https://mattallen.tech/list-app/create-list';
+        const url = 'http://localhost:8080/list-app/create-list';
 
+        let { listId } = await postData({listTitle: input}, url);
+         
         //after post
-        if (post === 'success') {
+        if (listId) {
             setToast({display: 'flex', message: 'List Added'});
-            setLists('fetching');
+
+            const newList = {id: listId, title: input, items: []};
+            setLists( prevState => 
+                Array.isArray(prevState) 
+                    ? [...prevState,newList] 
+                    : [newList]
+            );
+
             inputRef.current.value = '';
             setInput('');
         } else {

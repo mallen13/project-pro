@@ -39,7 +39,8 @@ const getLists = async promisePool => {
 //create new list
 const createList = async (promisePool,listTitle) => {
     const sql = "INSERT INTO list_names (list_name) VALUES ('" + listTitle + "')";
-    await promisePool.query(sql);
+    const [ resp ] = await promisePool.query(sql);
+    return {listId: resp.insertId};
 }
 
 //delete list

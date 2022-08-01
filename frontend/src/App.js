@@ -7,23 +7,28 @@ import NewListInput from './NewListInput/NewListInput';
 function App() {
 
   //state
-  const [lists,setLists] = useState('fetching');
+  const [lists,setLists] = useState([]);
 
   useEffect( ()=> {
     const fetchData = async () => {
-      const url = 'https://mattallen.tech/list-app/get-lists';
-      //const url = 'http://localhost:8080/list-app/get-lists';
-      const data = await getData(url);
+      //const url = 'https://mattallen.tech/list-app/get-lists';
+      const url = 'http://localhost:8080/list-app/get-lists';
+      let data;
+
+      //show loading after 1 second
+      setTimeout( ()=> !data  ? setLists('fetching') : null ,1000);
+
+      data = await getData(url);
 
       if (!data.lists) {
         setLists('error');
-        return
+        return;
       }
       if (data.lists.length > 0) setLists(data.lists);
       if (data.lists.length === 0) setLists('no lists');
     }
 
-    if (lists === 'fetching') fetchData();
+    if (lists === 'fetching' || lists.length === 0) fetchData();
   
   },[lists])
 

@@ -3,7 +3,7 @@ export const getData = async url => {
     try {
         const resp = await fetch(url);
         const data = await resp.json();
-        return (url,data)
+        return data
     } catch (err) {
         return 'error'
     }

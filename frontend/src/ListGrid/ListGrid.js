@@ -13,6 +13,7 @@ const ListGrid = ({lists,setLists}) => {
         lists.map( (list,i) => (
             <List 
                 list={list}
+                lists={lists}
                 setLists={setLists}
                 key={i}
                 setToast={setToast}

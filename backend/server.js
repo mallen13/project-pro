@@ -40,10 +40,9 @@ app.get('/list-app/get-lists', async (req,res) => {
 //create list
 app.post('/list-app/create-list', async (req, res) => {
     const { listTitle } = req.body;
-
      try {
-      await createList(promisePool,listTitle);
-      res.status(201).json('success');
+      const { listId }  = await createList(promisePool,listTitle);
+      res.status(201).json({listId: listId});
     } catch (err) {
       console.error(err.message)
       res.status(500).json({status: err.message});
@@ -72,7 +71,7 @@ app.post('/list-app/add-list-item', async (req,res) => {
       await addListItem(promisePool,listID,listItem);
       res.status(200).json('success');
     } catch (err) {
-      console.error(err.message)
+      console.error(err.message);
       res.status(500).json({status: err.message});
     }
 })
