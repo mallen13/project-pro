@@ -1,3 +1,15 @@
+//create user
+const createUser = async (promisePool,user) => {
+    const sql = "INSERT INTO users (name,email,password) VALUES (?,?,?) ";
+    await promisePool.query(sql,[user.name,user.email,user.password]);
+}
+
+//authenticate user
+const authenticate = async(promisePool,username) => {
+    const sql = 'SELECT name,email,user_id,password FROM users WHERE email = ?' ;
+    const [ user ] = await promisePool.query(sql,[username]);
+    return user;
+}
 
 //get all lists
 const getLists = async promisePool => {
@@ -37,9 +49,9 @@ const getLists = async promisePool => {
 }
 
 //create new list
-const createList = async (promisePool,listTitle) => {
-    const sql = "INSERT INTO list_names (list_name) VALUES ('" + listTitle + "')";
-    const [ resp ] = await promisePool.query(sql);
+const createList = async (promisePool,listTitle,userID) => {
+    const sql = "INSERT INTO list_names (list_name,user_id) VALUES (?,?)";
+    const [ resp ] = await promisePool.query(sql,[listTitle,userID]);
     return {listId: resp.insertId};
 }
 
@@ -50,26 +62,27 @@ const deleteList = async (promisePool,list) => {
         ?' \
         DELETE list_items,list_names FROM list_items \
         LEFT OUTER JOIN list_names ON list_names.list_id = list_items.list_id \
-        WHERE list_items.list_id = ' + list.id
-        : 'DELETE FROM list_names WHERE list_id = ' + list.id;
+        WHERE list_items.list_id = ?'
+        : 'DELETE FROM list_names WHERE list_id = ?';
 
-    await promisePool.query(sql);
+    await promisePool.query(sql,[list.id,list.id]);
 }
 
 //add list item
 const addListItem = async (promisePool,listID,listItem) => {
-    const sql = "INSERT INTO list_items (list_id, item_name) VALUES (" + listID + ", '" + listItem + "')";
-    await promisePool.query(sql);
+    const sql = "INSERT INTO list_items (list_id, item_name) VALUES (?,?)";
+    await promisePool.query(sql,[listID,listItem]);
 }
 
 //delete list item
 const deleteListItem = async (promisePool,listID, listItem) => {
-    const sql= "DELETE FROM list_items WHERE list_id = " 
-    + listID + " AND item_name = '" + listItem + "'"; 
-    await promisePool.query(sql);
+    const sql= "DELETE FROM list_items WHERE list_id = ? AND item_name = ?"; 
+    await promisePool.query(sql,[listID,listItem]);
 }
 
 module.exports = { 
+    createUser,
+    authenticate,
     getLists, 
     createList,
     deleteList,

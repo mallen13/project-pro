@@ -1,0 +1,26 @@
+# POST http://localhost:8080/list-app/register HTTP/1.1
+# content-type: application/json
+
+# {
+#     "user": {
+#         "name": "john smith",
+#         "email": "test@gmail.com",
+#         "password": "test12345"
+#     }
+# }
+
+# POST http://localhost:8080/list-app/create-list HTTP/1.1
+# content-type: application/json
+
+# {
+#     "listTitle": "new list",
+#     "userID": 5
+# }
+
+POST http://localhost:8080/list-app/login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "test@gmail.com",
+    "password": "test12345"
+}

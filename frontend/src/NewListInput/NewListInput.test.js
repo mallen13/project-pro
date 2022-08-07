@@ -63,8 +63,25 @@ describe('new list input', ()=> {
 
     it('successfully submits with valid input', async () => {
         //arrange
-    render(<NewListInput lists={[]} setLists={jest.fn()}/>);
-    mockFetch('success');
+        render(<NewListInput lists={null} setLists={jest.fn()}/>);
+        mockFetch({listId: 1});
+
+        //act
+        const input = screen.getByPlaceholderText('List Title');
+        const submitBtn = screen.getByText('Create List');
+        userEvent.type(input,'to-do list');
+        userEvent.click(submitBtn);
+
+        //assert
+        const successMsg = await screen.findByText(/list added/i);
+        expect(successMsg).toBeInTheDocument();
+    });
+
+    it('successfully submits with valid input, no current lists', async () => {
+
+        //arrange
+        render(<NewListInput lists={[{title: 'test', items: []}]} setLists={jest.fn()}/>);
+        mockFetch({listId: 1});
 
         //act
         const input = screen.getByPlaceholderText('List Title');

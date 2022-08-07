@@ -44,13 +44,12 @@ const NewListInput = ({lists,setLists}) => {
         if (listId) {
             setToast({display: 'flex', message: 'List Added'});
 
+            //set lists
             const newList = {id: listId, title: input, items: []};
-            setLists( prevState => 
-                Array.isArray(prevState) 
-                    ? [...prevState,newList] 
-                    : [newList]
-            );
+            const newListArr = Array.isArray(lists) ? [...lists,newList] : [newList];
+            setLists(newListArr);
 
+            //clear input
             inputRef.current.value = '';
             setInput('');
         } else {

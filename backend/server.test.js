@@ -69,10 +69,10 @@ describe('GET /list-app/get-lists', ()=> {
         expect(resp.body).toHaveProperty('lists');
     })
 
-    it('responds w/ error msg and JSON w/ mysql query err', async ()=> {
+    it.skip('responds w/ error msg and JSON w/ mysql query err', async ()=> {
 
         const resp = await request(server)
-        .get('/list-app/get-lists');
+            .get('/list-app/get-lists');
 
         expect(resp.status).toBe(500);
         expect(resp.type).toBe('application/json');
@@ -89,7 +89,7 @@ describe('POST /list-app/create-list', ()=> {
 
         expect(resp.status).toBe(201);
         expect(resp.type).toBe('application/json');
-        expect(resp.body).toBe('success');
+        expect(resp.body).toHaveProperty('listId')
 
     })
 

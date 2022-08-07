@@ -33,7 +33,7 @@ const List = ({list,lists,setLists,setToast}) => {
             const listsClone = JSON.parse(JSON.stringify(lists));
 
             listsClone.forEach( (delList,i) => {
-                if (delList.id === list.id) listsClone.splice(i,1);
+                delList.id === list.id ? listsClone.splice(i,1) : null
             })
 
             setLists(listsClone);
@@ -50,9 +50,9 @@ const List = ({list,lists,setLists,setToast}) => {
    //delete list item
    const deleteListItem = async (item,index) => {
         //set loading
-       const timer = setTimeout( ()=> 
-        setIsRemovingListItems( itemIndexes => [...itemIndexes,index])
-        ,1000);
+       const timer = setTimeout( ()=> {
+            setIsRemovingListItems( itemIndexes => [...itemIndexes,index]) 
+        },1000);
 
         //post to server
         //const url = 'https://mattallen.tech/list-app/delete-list-item';
@@ -113,6 +113,8 @@ const List = ({list,lists,setLists,setToast}) => {
         })
         setLists(deepClone);
 
+        //reset input
+        setInputVal('');
         inputRef.current.value = '';
     } else {
         setAlert({display: 'flex', message: 'System error. Please try again later.'})
