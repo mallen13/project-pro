@@ -3,8 +3,11 @@ require('dotenv').config();
 const app = express();
 const cors = require('cors');
 const mysql = require('mysql2');
-const {isValidEmail} = require('./helpers');
+const {
+  authenticateToken,
+  isValidEmail} = require('./helpers');
 const bcrypt  = require("bcrypt");
+const jwt = require('jsonwebtoken');
 const { 
   createUser,
   authenticate,
@@ -35,33 +38,25 @@ app.get('/list-app/status', (req,res) => res.json('API is working! :)') )
 app.post('/list-app/register', async (req,res) => {
   const { user } = req.body;
 
-  //validate user
-  if (!isValidEmail(user.email)) {
-    console.log(user.email)
-    res.status(400).json({status: 'invalid email'});
-    return;
-  }
+  //validate email
+  if (!isValidEmail(user.email)) return res.status(400).json({status: 'invalid email'});
 
-  //validate pw (salt & hash)
-  if (!user.password) {
-    res.status(400).json({status: 'invalid password'});
-    return;
-  }
+  //validate pw
+  if (!user.password) return res.status(400).json({status: 'invalid password'});
 
-  //hash password
+  //salt && hash password
   bcrypt.hash(user.password,10, async (err,hash) => {
-    //post to DB
+    //if error
     if (err) {
       console.error(err);
-      res.status(500).json({status: 'error hashing password'});
-      return;
+      return res.status(500).json({status: 'error hashing password'});
     }
 
-    user.password = hash;
-
+    //else, post to DB
     try {
+      user.password = hash;
       await createUser(promisePool,user);
-      res.status(200).json('success');
+      return res.status(201).json('success');
     } catch(err) {
       console.error(err.message);
       res.status(500).json({status: err.message});
@@ -77,19 +72,29 @@ app.post('/list-app/login', async (req,res) => {
   try {
     const user = await authenticate(promisePool,username);
 
-    let isErr = false;
-    let errMsg;
-
     //if user exists
     if (user.length === 1) {
 
       //compare password input to hash
       bcrypt.compare(password, user[0].password, (err,isValid) => {
-        if (err) res.status(500).json({status: 'hash process error'});
+        if (err) return res.status(500).json({status: 'hash process error'});
 
-        if (isValid) res.status(200).json('success')
+        //return token if valid
+        if (isValid) {
+          const userPayload = {
+            id: user[0].user_id,
+            name: user[0].name,
+            email: user[0].email
+          }
+          const token = jwt.sign(
+            userPayload,
+            process.env.ACCESS_TOKEN_SECRET,
+            {expiresIn: 10000}
+          );
+          return res.status(200).json({accessToken: token});
+        }
         
-        if (!isValid) res.status(500).json({status: 'invalid username or password'});
+        if (!isValid) return res.status(500).json({status: 'invalid username or password'});
 
       })
 
@@ -102,20 +107,24 @@ app.post('/list-app/login', async (req,res) => {
 })
 
 //get lists
-app.get('/list-app/get-lists', async (req,res) => {
+app.get('/list-app/get-lists', authenticateToken, async (req,res) => {
+
     try {
-      res.status(200).json({lists: await getLists(promisePool)});
+      const fetchLists = await getLists(promisePool,req.user.id);
+      console.log(req.user)
+      res.status(200).json({lists: fetchLists});
     } catch (err) {
-      console.error(err.message);
+      console.error('message',err.message);
       res.status(500).json({status: err.message});
     }  
 })
 
 //create list
-app.post('/list-app/create-list', async (req, res) => {
-    const { listTitle,userID } = req.body;
+app.post('/list-app/create-list', authenticateToken, async (req, res) => {
+    const { listTitle } = req.body;
+    console.log(req.body)
      try {
-      const { listId }  = await createList(promisePool,listTitle,userID);
+      const { listId }  = await createList(promisePool,listTitle,req.user.id);
       res.status(201).json({listId: listId});
     } catch (err) {
       console.error(err.message)
@@ -124,11 +133,11 @@ app.post('/list-app/create-list', async (req, res) => {
 })
 
 //delete list
-app.post('/list-app/delete-list', async (req,res) => {
+app.post('/list-app/delete-list', authenticateToken, async (req,res) => {
   const { list } = req.body;
 
   try {
-   await deleteList(promisePool,list);
+   await deleteList(promisePool,list,req.user.id);
    res.status(200).json('success');
   } catch (err) {
     console.error(err.message)
@@ -138,7 +147,7 @@ app.post('/list-app/delete-list', async (req,res) => {
 })
 
 //add list item
-app.post('/list-app/add-list-item', async (req,res) => {
+app.post('/list-app/add-list-item', authenticateToken, async (req,res) => {
   const { listID,listItem } = req.body;
   
     try {
@@ -151,7 +160,7 @@ app.post('/list-app/add-list-item', async (req,res) => {
 })
 
 //delete list items
-app.post('/list-app/delete-list-item', async (req,res) => {
+app.post('/list-app/delete-list-item', authenticateToken, async (req,res) => {
   const { listID,listItem } = req.body;
 
   try {

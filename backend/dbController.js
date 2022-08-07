@@ -7,12 +7,12 @@ const createUser = async (promisePool,user) => {
 //authenticate user
 const authenticate = async(promisePool,username) => {
     const sql = 'SELECT name,email,user_id,password FROM users WHERE email = ?' ;
-    const [ user ] = await promisePool.query(sql,[username]);
+    const [ user ] = await promisePool.query(sql,[username]); 
     return user;
 }
 
 //get all lists
-const getLists = async promisePool => {
+const getLists = async (promisePool,userId) => {
 
     //create lists
     const lists = [];
@@ -23,9 +23,10 @@ const getLists = async promisePool => {
         FROM list_names \
         LEFT JOIN list_items \
         ON list_names.list_id = list_items.list_id \
+        WHERE list_names.user_id = ?\
         ORDER BY list_names.list_id \
     ';
-    const [ listsQuery ] = await promisePool.query(sql);
+    const [ listsQuery ] = await promisePool.query(sql,[userId]);
 
     //push list to lists array
     listsQuery.forEach( listItem => {
@@ -49,23 +50,23 @@ const getLists = async promisePool => {
 }
 
 //create new list
-const createList = async (promisePool,listTitle,userID) => {
+const createList = async (promisePool,listTitle,userId) => {
     const sql = "INSERT INTO list_names (list_name,user_id) VALUES (?,?)";
-    const [ resp ] = await promisePool.query(sql,[listTitle,userID]);
+    const [ resp ] = await promisePool.query(sql,[listTitle,userId]);
     return {listId: resp.insertId};
 }
 
 //delete list
-const deleteList = async (promisePool,list) => {
+const deleteList = async (promisePool,list,userId) => {
 
     const sql = list.items.length > 0
         ?' \
         DELETE list_items,list_names FROM list_items \
         LEFT OUTER JOIN list_names ON list_names.list_id = list_items.list_id \
-        WHERE list_items.list_id = ?'
+        WHERE list_items.list_id = ? AND user_id = ?'
         : 'DELETE FROM list_names WHERE list_id = ?';
 
-    await promisePool.query(sql,[list.id,list.id]);
+    await promisePool.query(sql,[list.id,userId,list.id]);
 }
 
 //add list item
@@ -75,7 +76,7 @@ const addListItem = async (promisePool,listID,listItem) => {
 }
 
 //delete list item
-const deleteListItem = async (promisePool,listID, listItem) => {
+const deleteListItem = async (promisePool,listID,listItem) => {
     const sql= "DELETE FROM list_items WHERE list_id = ? AND item_name = ?"; 
     await promisePool.query(sql,[listID,listItem]);
 }

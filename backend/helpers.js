@@ -1,3 +1,20 @@
+const jwt = require('jsonwebtoken');
+
+const authenticateToken = (req,res,next) => {
+    //get token from header
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    //handle token
+    if (token === null) return res.sendStatus(401);
+
+    jwt.verify(token,process.env.ACCESS_TOKEN_SECRET,(err,user)=>{
+        if (err) return res.sendStatus(403);
+        req.user = user;
+        next();
+    });
+}
+
 const isValidEmail = email => {
     if (!email) return false 
     if (email.length > 64) return false;
@@ -5,7 +22,7 @@ const isValidEmail = email => {
     return pattern.test(email);
 }
 
-
 module.exports ={
-    isValidEmail
+    authenticateToken,
+    isValidEmail,
 }
