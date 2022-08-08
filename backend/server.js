@@ -10,7 +10,7 @@ const bcrypt  = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const { 
   createUser,
-  authenticate,
+  findUser,
   getLists, 
   createList, 
   deleteList,
@@ -38,11 +38,18 @@ app.get('/list-app/status', (req,res) => res.json('API is working! :)') )
 app.post('/list-app/register', async (req,res) => {
   const { user } = req.body;
 
+  if (!user) return res.sendStatus((400))
+
+  if (!user.email) 
+    return res.status(400).json({status: 'invalid email'});
+
   //validate email
-  if (!isValidEmail(user.email)) return res.status(400).json({status: 'invalid email'});
+  if (!user.email || !isValidEmail(user.email)) 
+    return res.status(400).json({status: 'invalid email'});
 
   //validate pw
-  if (!user.password) return res.status(400).json({status: 'invalid password'});
+  if (!user.password || user.password === '') 
+    return res.status(400).json({status: 'invalid password'});
 
   //salt && hash password
   bcrypt.hash(user.password,10, async (err,hash) => {
@@ -66,12 +73,11 @@ app.post('/list-app/register', async (req,res) => {
 
 //authenticate user
 app.post('/list-app/login', async (req,res) => {
-  const { username,password } = req.body;
+  const { email,password } = req.body;
 
   //search for user
   try {
-    const user = await authenticate(promisePool,username);
-
+    const user = await findUser(promisePool,email);
     //if user exists
     if (user.length === 1) {
 
@@ -111,7 +117,6 @@ app.get('/list-app/get-lists', authenticateToken, async (req,res) => {
 
     try {
       const fetchLists = await getLists(promisePool,req.user.id);
-      console.log(req.user)
       res.status(200).json({lists: fetchLists});
     } catch (err) {
       console.error('message',err.message);
@@ -122,7 +127,6 @@ app.get('/list-app/get-lists', authenticateToken, async (req,res) => {
 //create list
 app.post('/list-app/create-list', authenticateToken, async (req, res) => {
     const { listTitle } = req.body;
-    console.log(req.body)
      try {
       const { listId }  = await createList(promisePool,listTitle,req.user.id);
       res.status(201).json({listId: listId});
@@ -135,12 +139,11 @@ app.post('/list-app/create-list', authenticateToken, async (req, res) => {
 //delete list
 app.post('/list-app/delete-list', authenticateToken, async (req,res) => {
   const { list } = req.body;
-
   try {
    await deleteList(promisePool,list,req.user.id);
    res.status(200).json('success');
   } catch (err) {
-    console.error(err.message)
+    console.error(err.message);
     res.status(500).json({status: err.message});
   }  
 

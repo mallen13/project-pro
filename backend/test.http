@@ -1,4 +1,5 @@
 # POST http://localhost:8080/list-app/register HTTP/1.1
+# POST https://mattallen.tech/list-app/register HTTP/1.1
 # content-type: application/json
 
 # {
@@ -9,7 +10,8 @@
 #     }
 # }
 
-# POST http://localhost:8080/list-app/login HTTP/1.1
+# # POST http://localhost:8080/list-app/login HTTP/1.1
+# POST https://mattallen.tech/list-app/login HTTP/1.1
 # content-type: application/json
 
 # {
@@ -18,42 +20,52 @@
 # }
 
 # POST http://localhost:8080/list-app/create-list HTTP/1.1
+# POST https://mattallen.tech/list-app/create-list HTTP/1.1
 # content-type: application/json
-# Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsIm5hbWUiOiJtYXR0IiwiZW1haWwiOiJtYXR0QGdtYWlsLmNvbSIsImlhdCI6MTY1OTgzODk2NCwiZXhwIjoxNjU5ODQ4OTY0fQ.gCiX1m0xUrVih7kCO0nYzmaC9-LXGVeB7PzpcqrI50s
+# Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksIm5hbWUiOiJtYXR0IiwiZW1haWwiOiJtYXR0QGdtYWlsLmNvbSIsImlhdCI6MTY1OTg5MDg2MiwiZXhwIjoxNjU5OTAwODYyfQ.TedPI2ekHHitOboNH-Zmka7n4k6AyjNxvkjKgGzDbbU
 
 # {
-#     "listTitle": "Matt's list 3"
-# }
-
-# POST http://localhost:8080/list-app/delete-list HTTP/1.1
-# content-type: application/json
-# Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsIm5hbWUiOiJtYXR0IiwiZW1haWwiOiJtYXR0QGdtYWlsLmNvbSIsImlhdCI6MTY1OTgzODk2NCwiZXhwIjoxNjU5ODQ4OTY0fQ.gCiX1m0xUrVih7kCO0nYzmaC9-LXGVeB7PzpcqrI50s
-
-# {
-#     "list": {
-#         "id": "43",
-#         "items": ["do something"]
-#     }
-# }
-
-# POST http://localhost:8080/list-app/add-List-item HTTP/1.1
-# content-type: application/json
-# Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsIm5hbWUiOiJtYXR0IiwiZW1haWwiOiJtYXR0QGdtYWlsLmNvbSIsImlhdCI6MTY1OTgzODk2NCwiZXhwIjoxNjU5ODQ4OTY0fQ.gCiX1m0xUrVih7kCO0nYzmaC9-LXGVeB7PzpcqrI50s
-
-# {
-#     "listID": "43",
-#     "listItem": "go shopping"
-# }
-
- POST http://localhost:8080/list-app/delete-List-item HTTP/1.1
-# content-type: application/json
-# Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsIm5hbWUiOiJtYXR0IiwiZW1haWwiOiJtYXR0QGdtYWlsLmNvbSIsImlhdCI6MTY1OTgzODk2NCwiZXhwIjoxNjU5ODQ4OTY0fQ.gCiX1m0xUrVih7kCO0nYzmaC9-LXGVeB7PzpcqrI50s
-
-# {
-#     "listID": "43",
-#     "listItem": "go shopping"
+#     "listTitle": "Matt's list"
 # }
 
 # GET http://localhost:8080/list-app/get-lists HTTP/1.1
+# # GET https://mattallen.tech/list-app/get-lists HTTP/1.1
 # content-type: application/json
-# Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsIm5hbWUiOiJtYXR0IiwiZW1haWwiOiJtYXR0QGdtYWlsLmNvbSIsImlhdCI6MTY1OTgzODk2NCwiZXhwIjoxNjU5ODQ4OTY0fQ.gCiX1m0xUrVih7kCO0nYzmaC9-LXGVeB7PzpcqrI50s
+# Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksIm5hbWUiOiJtYXR0IiwiZW1haWwiOiJtYXR0QGdtYWlsLmNvbSIsImlhdCI6MTY1OTg5MDg2MiwiZXhwIjoxNjU5OTAwODYyfQ.TedPI2ekHHitOboNH-Zmka7n4k6AyjNxvkjKgGzDbbU
+
+
+# POST http://localhost:8080/list-app/add-List-item HTTP/1.1
+# POST https://mattallen.tech/list-app/add-List-item HTTP/1.1
+# content-type: application/json
+# Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6Im1hdHQiLCJlbWFpbCI6Im1hdHRAZ21haWwuY29tIiwiaWF0IjoxNjU5ODg5OTA0LCJleHAiOjE2NTk4OTk5MDR9.Q714honuV66lbo-tUjtiWvAzr_Z4Z7LoOR2n-ooSgTI
+
+# {
+#     "listID": "1",
+#     "listItem": "go shopping"
+# }
+
+#  POST http://localhost:8080/list-app/delete-List-item HTTP/1.1
+#  POST https://mattallen.tech/list-app/delete-List-item HTTP/1.1
+# content-type: application/json
+# Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6Im1hdHQiLCJlbWFpbCI6Im1hdHRAZ21haWwuY29tIiwiaWF0IjoxNjU5ODg5OTA0LCJleHAiOjE2NTk4OTk5MDR9.Q714honuV66lbo-tUjtiWvAzr_Z4Z7LoOR2n-ooSgTI
+
+# {
+#     "listID": "46",
+#     "listItem": "go shopping"
+# }
+
+# POST http://localhost:8080/list-app/delete-list HTTP/1.1
+# POST https://mattallen.tech/list-app/delete-list HTTP/1.1
+# content-type: application/json
+# Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6Im1hdHQiLCJlbWFpbCI6Im1hdHRAZ21haWwuY29tIiwiaWF0IjoxNjU5ODkxMjg2LCJleHAiOjE2NTk5MDEyODZ9.6q38PhQexyTvXqgs4Gdgrm__X-jYJZdxqS1aE3SiAtk
+
+# {
+#     "list": {
+#         "id": "46",
+#         "items": []
+#     }
+# }
+
+# GET https://mattallen.tech/list-app/get-lists HTTP/1.1
+# content-type: application/json
+# Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6Im1hdHQiLCJlbWFpbCI6Im1hdHRAZ21haWwuY29tIiwiaWF0IjoxNjU5ODkxMjg2LCJleHAiOjE2NTk5MDEyODZ9.6q38PhQexyTvXqgs4Gdgrm__X-jYJZdxqS1aE3SiAtk

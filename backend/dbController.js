@@ -5,18 +5,17 @@ const createUser = async (promisePool,user) => {
 }
 
 //authenticate user
-const authenticate = async(promisePool,username) => {
+const findUser = async(promisePool,email) => {
     const sql = 'SELECT name,email,user_id,password FROM users WHERE email = ?' ;
-    const [ user ] = await promisePool.query(sql,[username]); 
+    const [ user ] = await promisePool.query(sql,[email]); 
     return user;
 }
 
 //get all lists
 const getLists = async (promisePool,userId) => {
-
     //create lists
     const lists = [];
- 
+
     //query database
     const sql = ' \
         SELECT list_names.list_id, list_names.list_name, list_items.item_name \
@@ -31,13 +30,13 @@ const getLists = async (promisePool,userId) => {
     //push list to lists array
     listsQuery.forEach( listItem => {
         const hasList = lists.some( list => list.id === listItem.list_id);
-
+        
         //if list isn't in array 
         if (!hasList) lists.push({
             id: listItem.list_id,
             title: listItem.list_name,
             items: listItem.item_name ? [listItem.item_name] : []
-        }) 
+        })
         
         //if list is in array
         if (hasList) {
@@ -51,6 +50,7 @@ const getLists = async (promisePool,userId) => {
 
 //create new list
 const createList = async (promisePool,listTitle,userId) => {
+
     const sql = "INSERT INTO list_names (list_name,user_id) VALUES (?,?)";
     const [ resp ] = await promisePool.query(sql,[listTitle,userId]);
     return {listId: resp.insertId};
@@ -64,9 +64,9 @@ const deleteList = async (promisePool,list,userId) => {
         DELETE list_items,list_names FROM list_items \
         LEFT OUTER JOIN list_names ON list_names.list_id = list_items.list_id \
         WHERE list_items.list_id = ? AND user_id = ?'
-        : 'DELETE FROM list_names WHERE list_id = ?';
+        : 'DELETE FROM list_names WHERE list_id = ? AND user_id = ?';
 
-    await promisePool.query(sql,[list.id,userId,list.id]);
+    await promisePool.query(sql,[list.id,userId,list.id,userId]);
 }
 
 //add list item
@@ -83,7 +83,7 @@ const deleteListItem = async (promisePool,listID,listItem) => {
 
 module.exports = { 
     createUser,
-    authenticate,
+    findUser,
     getLists, 
     createList,
     deleteList,

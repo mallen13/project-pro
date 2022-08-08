@@ -6,7 +6,7 @@ const authenticateToken = (req,res,next) => {
     const token = authHeader && authHeader.split(' ')[1];
 
     //handle token
-    if (token === null) return res.sendStatus(401);
+    if (!token) return res.sendStatus(401);
 
     jwt.verify(token,process.env.ACCESS_TOKEN_SECRET,(err,user)=>{
         if (err) return res.sendStatus(403);
@@ -16,8 +16,6 @@ const authenticateToken = (req,res,next) => {
 }
 
 const isValidEmail = email => {
-    if (!email) return false 
-    if (email.length > 64) return false;
     const pattern = /^[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
     return pattern.test(email);
 }
