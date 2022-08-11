@@ -1,10 +1,10 @@
 import { useRef,useState } from 'react';
-import { postData } from '../functions/functions';
+import { postData } from '../../functions/functions';
 import NewListInputView from './newListinputView';
-import Alert from '../Alert/Alert';
-import Toast from '../Toast/Toast';
+import Alert from '../../Alert/Alert';
+import Toast from '../../Toast/Toast';
 
-const NewListInput = ({lists,setLists}) => {
+const NewListInput = ({lists,setLists,token}) => {
 
     //ref
     const inputRef = useRef();
@@ -38,7 +38,7 @@ const NewListInput = ({lists,setLists}) => {
         //const url = 'https://mattallen.tech/list-app/create-list';
         const url = 'http://localhost:8080/list-app/create-list';
 
-        let { listId } = await postData({listTitle: input}, url);
+        let { listId } = await postData({listTitle: input}, url,token);
          
         //after post
         if (listId) {

@@ -1,32 +1,32 @@
-# POST http://localhost:8080/list-app/register HTTP/1.1
 # POST https://mattallen.tech/list-app/register HTTP/1.1
+# POST http://localhost:8080/list-app/register HTTP/1.1
 # content-type: application/json
 
 # {
 #     "user": {
-#         "name": "matt",
-#         "email": "matt@gmail.com",
-#         "password": "test12345"
+#         "name": "Demo User",
+#         "email": "demo@demo.com",
+#         "password": "Test12345!"
 #     }
 # }
 
-# # POST http://localhost:8080/list-app/login HTTP/1.1
-# POST https://mattallen.tech/list-app/login HTTP/1.1
+# POST http://localhost:8080/list-app/login HTTP/1.1
+# # POST https://mattallen.tech/list-app/login HTTP/1.1
 # content-type: application/json
 
 # {
-#     "username": "matt@gmail.com",
-#     "password": "test12345"
+#     "email": "demo@demo.com",
+#     "password": "Test12345!"
 # }
 
-# POST http://localhost:8080/list-app/create-list HTTP/1.1
-# POST https://mattallen.tech/list-app/create-list HTTP/1.1
-# content-type: application/json
-# Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksIm5hbWUiOiJtYXR0IiwiZW1haWwiOiJtYXR0QGdtYWlsLmNvbSIsImlhdCI6MTY1OTg5MDg2MiwiZXhwIjoxNjU5OTAwODYyfQ.TedPI2ekHHitOboNH-Zmka7n4k6AyjNxvkjKgGzDbbU
+POST http://localhost:8080/list-app/create-list HTTP/1.1
+//POST https://mattallen.tech/list-app/create-list HTTP/1.1
+content-type: application/json
+Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkRlbW8gVXNlciIsImVtYWlsIjoiZGVtb0BkZW1vLmNvbSIsImlhdCI6MTY2MDIyNzE0MywiZXhwIjoxNjYwMjM3MTQzfQ.qp-2ZPekmeLiRALmWw9ZOZclRJpYKvY8RqssmYucYyI
 
-# {
-#     "listTitle": "Matt's list"
-# }
+{
+    "listTitle": "Matt's list"
+}
 
 # GET http://localhost:8080/list-app/get-lists HTTP/1.1
 # # GET https://mattallen.tech/list-app/get-lists HTTP/1.1

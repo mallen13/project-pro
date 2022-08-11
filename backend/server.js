@@ -92,12 +92,16 @@ app.post('/list-app/login', async (req,res) => {
             name: user[0].name,
             email: user[0].email
           }
+
           const token = jwt.sign(
             userPayload,
             process.env.ACCESS_TOKEN_SECRET,
             {expiresIn: 10000}
           );
-          return res.status(200).json({accessToken: token});
+          return res.status(200).json({
+            user: {name: user[0].name, email: user[0].email},
+            accessToken: token
+          }),3000;
         }
         
         if (!isValid) return res.status(500).json({status: 'invalid username or password'});

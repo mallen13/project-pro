@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import styles from './ListGrid.module.css';
 import List from '../List/List';
-import Toast from '../Toast/Toast';
+import Toast from '../../Toast/Toast';
 
-const ListGrid = ({lists,setLists}) => {
+const ListGrid = ({lists,setLists,token}) => {
 
     //state
     const [toast,setToast] = useState({display: 'none', message: ''});
@@ -15,6 +15,7 @@ const ListGrid = ({lists,setLists}) => {
                 list={list}
                 lists={lists}
                 setLists={setLists}
+                token={token}
                 key={i}
                 setToast={setToast}
             />

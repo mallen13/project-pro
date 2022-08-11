@@ -1,9 +1,9 @@
 import React, { useRef,useState } from 'react';
-import { postData } from '../functions/functions.js';
+import { postData } from '../../functions/functions';
 import ListView from './ListView';
-import Alert from '../Alert/Alert';
+import Alert from '../../Alert/Alert';
 
-const List = ({list,lists,setLists,setToast}) => {
+const List = ({list,lists,setLists,setToast,token}) => {
 
   //ref
   const inputRef = useRef();
@@ -25,7 +25,7 @@ const List = ({list,lists,setLists,setToast}) => {
 
          //set loading after 1 second
         const timer = setTimeout( ()=> setIsRemovingList(true),1000);
-        post = await postData({list: list},url);
+        post = await postData({list: list},url,token);
 
         //after post request 
         if (post === 'success') {
@@ -33,7 +33,7 @@ const List = ({list,lists,setLists,setToast}) => {
             const listsClone = JSON.parse(JSON.stringify(lists));
 
             listsClone.forEach( (delList,i) => {
-                delList.id === list.id ? listsClone.splice(i,1) : null
+                //delList.id === list.id ? listsClone.splice(i,1) : null
             })
 
             setLists(listsClone);
@@ -57,7 +57,7 @@ const List = ({list,lists,setLists,setToast}) => {
         //post to server
         //const url = 'https://mattallen.tech/list-app/delete-list-item';
         const url = 'http://localhost:8080/list-app/delete-list-item';
-        const post = await postData({listID: list.id,listItem: item},url);
+        const post = await postData({listID: list.id,listItem: item},url,token);
 
         //after post request 
         if (post === 'success') {
@@ -99,7 +99,7 @@ const List = ({list,lists,setLists,setToast}) => {
     //post to server
     //const url = 'https://mattallen.tech/list-app/add-list-item';
     const url = 'http://localhost:8080/list-app/add-list-item';
-    const post = await postData({listID: list.id,listItem: inputVal},url);
+    const post = await postData({listID: list.id,listItem: inputVal},url,token);
 
     //after post request 
     if (post === 'success') {
