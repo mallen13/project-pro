@@ -1,7 +1,7 @@
 import { render,screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import { mockFetch } from '../functions/testHelpers';
+import { mockFetch } from '../../functions/testHelpers';
 import ListGrid from './ListGrid';
 
 const listArr =  [

@@ -74,7 +74,6 @@ app.post('/list-app/register', async (req,res) => {
 //authenticate user
 app.post('/list-app/login', async (req,res) => {
   const { email,password } = req.body;
-
   //search for user
   try {
     const user = await findUser(promisePool,email);

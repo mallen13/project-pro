@@ -32,13 +32,17 @@ const LoginPage = ({setUser}) => {
 
       const url = 'http://localhost:8080/list-app/login';
       //const url = 'https://mattallen.tech/list-app/login';
-      const user= await postData({email: 'demo@demo.com', password: 'Test12345!'},url);
+      const data = await postData({email: 'demo@demo.com', password: 'Test12345!'},url);
       clearTimeout(timer);
 
       //success
-      if (user.accessToken) {
+      if (data.accessToken) {
         setDemoLoggingIn(false);
-        setUser(user);
+        setUser({
+          token: data.accessToken,
+          email: data.user.email,
+          name: data.user.name
+        });
         return;
      }
 
@@ -51,7 +55,7 @@ const LoginPage = ({setUser}) => {
     //login
     const login = async () => {
 
-      //validate (skip if demo)
+      //validate
       if (loginCreds.email === '') {
         setInputRefState(loginEmailRef);
         return setAlert({display: 'flex', message: 'Email Address is required'});
@@ -66,13 +70,13 @@ const LoginPage = ({setUser}) => {
      const timer = setTimeout( ()=> setIsLoggingIn(true),1000);
      const url = 'http://localhost:8080/list-app/login';
      //const url = 'https://mattallen.tech/list-app/login';
-     const user = await postData(loginCreds,url);
 
+     const data = await postData(loginCreds,url);
      clearTimeout(timer);
      setIsLoggingIn(false);
 
      //successful login
-     if (user.accessToken) {
+     if (data.accessToken) {
         loginEmailRef.current.value = '';
         loginPasswordRef.current.value = '';
         setLoginCreds({email: '', password: ''});
@@ -80,12 +84,16 @@ const LoginPage = ({setUser}) => {
         //store jwt
 
         setToast({display: 'none', message: ''});
-        setUser(user);
+        setUser({
+          token: data.accessToken,
+          email: data.user.email,
+          name: data.user.name
+        });
         return;
      }
 
      //invalid
-     if (user.status === 'invalid username or password') {
+     if (data.status === 'invalid username or password') {
       setAlert({display: 'flex', message: 'Invalid Username or Password'})
       setInputRefState(loginEmailRef);
       return
@@ -145,15 +153,12 @@ const LoginPage = ({setUser}) => {
      }
 
      //post err
-     if (registerStatus.status) {
-      if (registerStatus.status.includes('Duplicate')) {
+     if (registerStatus.status && registerStatus.status.includes('Duplicate')) {
         setInputRefState(registerEmailRef);
         setAlert({display: 'flex',message:'Account already exists.'});
-        return;
-       }
+     } else {
+      setAlert({display: 'flex', message:'System Error. Please try again later.'})
      }
-
-     setAlert({display: 'flex', message:'System Error. Please try again later.'})
     }
 
   return (

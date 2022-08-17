@@ -2,6 +2,7 @@ import { useEffect,useState } from 'react';
 import { getData } from './functions/functions';
 import styles from './App.module.css';
 import LoginPage from './Public/LoginPage';
+import Header from './Private/Header/Header';
 import ListGrid from './Private/ListGrid/ListGrid';
 import NewListInput from './Private/NewListInput/NewListInput';
 
@@ -17,7 +18,8 @@ function App() {
 
 
   useEffect( ()=> {
-    //if no token return to login
+    //check for token
+
     //fetch lists
     const fetchData = async () => {
       //const url = 'https://mattallen.tech/list-app/get-lists';
@@ -27,7 +29,7 @@ function App() {
       //show loading after 1 second
       setTimeout( ()=> !data  ? setLists('fetching') : null ,1000);
 
-      data = await getData(url,user.accessToken);
+      data = await getData(url,user.token);
 
       //if bad token, remove user
       if (data === 'invalid token') setUser(null);
@@ -50,11 +52,14 @@ function App() {
   return (
     !user
       ? <LoginPage setUser={setUser} />
-      : <div className={styles.gridContainer}>
-          <h1 style={{marginBottom: '10px'}}>List App</h1>
-          <NewListInput lists={lists} token={user.accessToken} setLists={setLists} />
-          <ListGrid lists={lists} setLists={setLists} token={user.accessToken} />
-        </div>
+      : <>
+          <Header user={user} setUser={setUser} setLists={setLists} />
+          <div className={styles.gridContainer}>
+            <h1 style={{marginBottom: '10px'}}>List App</h1>
+            <NewListInput lists={lists} token={user.token} setLists={setLists} />
+            <ListGrid lists={lists} setLists={setLists} token={user.token} />
+          </div>
+        </>
     );
 }
 

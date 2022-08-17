@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom'
-import { mockFetch } from '../functions/testHelpers';
+import { mockFetch } from '../../functions/testHelpers';
 import userEvent from '@testing-library/user-event';
 import NewListInput from './NewListInput';
 

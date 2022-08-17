@@ -1,0 +1,15 @@
+header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.menuContainer {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}

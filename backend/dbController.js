@@ -63,7 +63,7 @@ const deleteList = async (promisePool,list,userId) => {
         ?' \
         DELETE list_items,list_names FROM list_items \
         LEFT OUTER JOIN list_names ON list_names.list_id = list_items.list_id \
-        WHERE list_items.list_id = ? AND user_id = ?'
+        WHERE list_items.list_id = ? AND list_names.user_id = ?'
         : 'DELETE FROM list_names WHERE list_id = ? AND user_id = ?';
 
     await promisePool.query(sql,[list.id,userId,list.id,userId]);

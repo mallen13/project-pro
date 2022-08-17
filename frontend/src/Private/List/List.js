@@ -32,9 +32,9 @@ const List = ({list,lists,setLists,setToast,token}) => {
             clearTimeout(timer);
             const listsClone = JSON.parse(JSON.stringify(lists));
 
-            listsClone.forEach( (delList,i) => {
-                //delList.id === list.id ? listsClone.splice(i,1) : null
-            })
+            listsClone.forEach( (delList,i) => 
+                delList.id === list.id ? listsClone.splice(i,1) : null
+            )
 
             setLists(listsClone);
             setToast({display: 'flex', message: `Deleted List: ${list.title}`});
