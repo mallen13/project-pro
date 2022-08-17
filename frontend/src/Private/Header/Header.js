@@ -10,7 +10,7 @@ const Header = ({user,setLists,setUser}) => {
 
   return (
     <header>
-      <button onClick={toggleMenu}>Menu</button>
+      <button onClick={toggleMenu} aria-label='menu button'>Menu</button>
       <div className={styles.menuContainer} style={{display: menuIsOpen ? 'flex' : 'none'}}>
         <p>{user.name}</p>
         <p>{user.email}</p>

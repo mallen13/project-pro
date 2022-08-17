@@ -3,7 +3,13 @@ import styles from './ListGrid.module.css';
 import List from '../List/List';
 import Toast from '../../Toast/Toast';
 
-const ListGrid = ({lists,setLists,token}) => {
+const ListGrid = ({
+    lists,
+    setLists,
+    token,
+    setUser,
+    setParentAlert
+}) => {
 
     //state
     const [toast,setToast] = useState({display: 'none', message: ''});
@@ -18,6 +24,8 @@ const ListGrid = ({lists,setLists,token}) => {
                 token={token}
                 key={i}
                 setToast={setToast}
+                setUser={setUser}
+                setParentAlert={setParentAlert}
             />
         ))
     )

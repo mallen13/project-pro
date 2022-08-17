@@ -3,7 +3,15 @@ import { postData } from '../../functions/functions';
 import ListView from './ListView';
 import Alert from '../../Alert/Alert';
 
-const List = ({list,lists,setLists,setToast,token}) => {
+const List = ({
+    list,
+    lists,
+    setLists,
+    setToast,
+    token,
+    setUser,
+    setParentAlert
+}) => {
 
   //ref
   const inputRef = useRef();
@@ -38,6 +46,9 @@ const List = ({list,lists,setLists,setToast,token}) => {
 
             setLists(listsClone);
             setToast({display: 'flex', message: `Deleted List: ${list.title}`});
+        } else if (post === 'invalid token') {
+            setUser(null);
+            setParentAlert({display: true, message: 'Login Expired. Please Sign In again.'});
         } else {
             setAlert({display: 'flex', message: 'System error. Please try again later.'})
         }   
@@ -74,6 +85,9 @@ const List = ({list,lists,setLists,setToast,token}) => {
             setLists(deepClone);
 
             setToast({display: 'flex', message: `Removed item "${item}" from ${list.title}`});
+        } else if (post === 'invalid token') {
+            setUser(null);
+            setParentAlert({display: true, message: 'Login Expired. Please Sign In again.'});
         } else {
             setAlert({display: 'flex', message: 'System error. Please try again later.'});
             inputRef.current.focus();
@@ -116,6 +130,9 @@ const List = ({list,lists,setLists,setToast,token}) => {
         //reset input
         setInputVal('');
         inputRef.current.value = '';
+    } else if (post === 'invalid token') {
+        setUser(null);
+        setParentAlert({display: true, message: 'Login Expired. Please Sign In again.'});
     } else {
         setAlert({display: 'flex', message: 'System error. Please try again later.'})
         inputRef.current.focus();

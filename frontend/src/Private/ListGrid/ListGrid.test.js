@@ -72,7 +72,7 @@ describe('list grid', ()=> {
 })
 
 describe('list', ()=> {
-  it('deletes list', async () => {
+  it('deletes a list', async () => {
    const listArr = makeList();
 
     //arrange

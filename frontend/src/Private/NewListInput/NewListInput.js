@@ -4,7 +4,7 @@ import NewListInputView from './newListinputView';
 import Alert from '../../Alert/Alert';
 import Toast from '../../Toast/Toast';
 
-const NewListInput = ({lists,setLists,token}) => {
+const NewListInput = ({lists,setLists,token,setUser,setParentAlert}) => {
 
     //ref
     const inputRef = useRef();
@@ -38,23 +38,30 @@ const NewListInput = ({lists,setLists,token}) => {
         //const url = 'https://mattallen.tech/list-app/create-list';
         const url = 'http://localhost:8080/list-app/create-list';
 
-        let { listId } = await postData({listTitle: input}, url,token);
-         
+        let data = await postData({listTitle: input}, url,token);
         //after post
-        if (listId) {
+        if (data.listId) {
             setToast({display: 'flex', message: 'List Added'});
 
             //set lists
-            const newList = {id: listId, title: input, items: []};
+            const newList = {id: data.listId, title: input, items: []};
             const newListArr = Array.isArray(lists) ? [...lists,newList] : [newList];
             setLists(newListArr);
 
             //clear input
             inputRef.current.value = '';
             setInput('');
+        } else if (data === 'invalid token') {
+            setUser(null);
+            setParentAlert({display: true, message: 'Login Expired. Please Sign In again.'});
         } else {
-            setAlert({display: true, message: 'System error. Please try again later.'})
+            setAlert({display: true, message: 'System error. Please try again later.'});
         }
+        
+     
+   
+   
+   
 
         setIsLoading(false);
        

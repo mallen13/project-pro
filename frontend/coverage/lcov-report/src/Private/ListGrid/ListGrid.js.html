@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/8</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
@@ -117,7 +117,15 @@
 <a name='L52'></a><a href='#L52'>52</a>
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -125,25 +133,18 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">20x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">20x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">26x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">20x</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -154,7 +155,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -176,7 +192,13 @@ import styles from './ListGrid.module.css';
 import List from '../List/List';
 import Toast from '../../Toast/Toast';
 &nbsp;
-const ListGrid = ({lists,setLists,token}) =&gt; {
+const ListGrid = ({
+    lists,
+    setLists,
+    token,
+    setUser,
+    setParentAlert
+}) =&gt; {
 &nbsp;
     //state
     const [toast,setToast] = useState({display: 'none', message: ''});
@@ -191,6 +213,8 @@ const ListGrid = ({lists,setLists,token}) =&gt; {
                 token={token}
                 key={i}
                 setToast={setToast}
+                setUser={setUser}
+                setParentAlert={setParentAlert}
             /&gt;
         ))
     )
@@ -199,7 +223,7 @@ const ListGrid = ({lists,setLists,token}) =&gt; {
     const listGrid = ()=&gt; (
         &lt;&gt;
             {mapLists()}
-            { lists.length === 1 ? <span class="branch-0 cbranch-no" title="branch not covered" >null </span>: 
+            { lists.length === 1 ? null : 
                 &lt;&gt;
                     &lt;div className={styles.placeholderDiv}&gt;&lt;/div&gt;
                     &lt;div className={styles.placeholderDiv}&gt;&lt;/div&gt;
@@ -215,7 +239,7 @@ const ListGrid = ({lists,setLists,token}) =&gt; {
                 {
                     //show lists or status of fetch
                     lists === 'fetching' ? 'Loading Lists...' : 
-                        lists === 'no lists' ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;div style={{marginTop: '50px'}}&gt;Create a list to get started.&lt;/div&gt; </span>: 
+                        lists === 'no lists' ? &lt;div style={{marginTop: '50px'}}&gt;Create a list to get started.&lt;/div&gt; : 
                         Array.isArray(lists) ? listGrid() :
                         'System error. Please try again later.'
                 }
@@ -232,7 +256,7 @@ export default ListGrid</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue Aug 16 2022 23:01:01 GMT-0400 (Eastern Daylight Time)
+                at Wed Aug 17 2022 14:40:22 GMT-0400 (Eastern Daylight Time)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

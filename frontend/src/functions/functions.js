@@ -9,6 +9,7 @@ export const getData = async (url,token) => {
             }
         }
         const resp = await fetch(url,settings);
+
         if (resp.status === 403) return 'invalid token';
         const data = await resp.json();
         return data
@@ -26,7 +27,7 @@ export const isValidPassword = password => {
     const upperCase = /[A-Z]/.test(password);
     const lowerCase = /[a-z]/.test(password);
     const number = /[0-9]/.test(password);
-    const specialChar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(password);
+    const specialChar = /[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>?~]/.test(password);
     const length = password.length >=5;
 
     if (!upperCase || !lowerCase || !specialChar || !length || !number) return false;
