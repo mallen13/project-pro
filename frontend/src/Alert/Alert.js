@@ -1,10 +1,11 @@
-import styles from './Alert.module.css'
+import styles from './Alert.module.css';
+import { ExclamationTriangle } from 'react-bootstrap-icons';
 
-const Alert = ({display,setDisplay,message,focusRef}) => {
+const Alert = ({display,setDisplay,message,focusRef = null}) => {
 
   const handleClick = () => {
     setDisplay({display: 'none', message: ''}); 
-    focusRef.current.focus();
+    if (focusRef) focusRef.current.focus();
   }
 
   return (
@@ -12,12 +13,14 @@ const Alert = ({display,setDisplay,message,focusRef}) => {
       <div className={styles.alert}>
         {/* Head */}
         <div className={styles.alertHead}>
-            <h3>Alert</h3>
-            <button aria-label='exit button' onClick={handleClick}>x</button>
+            <div className={styles.container}>
+              <ExclamationTriangle size='25' color='gold' />
+              <h3>Alert</h3> 
+            </div>
         </div>
 
         {/* Body */}
-        <p>{message}</p>
+        <p style={{marginBottom: '10px'}}>{message}</p>
         
         {/* Footer/ Close Button */}
         <div className={styles.alertFooter}>

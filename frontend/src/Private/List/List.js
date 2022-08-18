@@ -27,8 +27,9 @@ const List = ({
    const deleteList = async () => {
        
         //post to server
-        //const url = 'https://mattallen.tech/list-app/delete-list';
-        const url = 'http://localhost:8080/list-app/delete-list';
+        const url = 'https://mattallen.tech/list-app/delete-list';
+        
+        //const url = 'http://localhost:8080/list-app/delete-list';
         let post;
 
          //set loading after 1 second
@@ -66,8 +67,8 @@ const List = ({
         },1000);
 
         //post to server
-        //const url = 'https://mattallen.tech/list-app/delete-list-item';
-        const url = 'http://localhost:8080/list-app/delete-list-item';
+        const url = 'https://mattallen.tech/list-app/delete-list-item';
+        //const url = 'http://localhost:8080/list-app/delete-list-item';
         const post = await postData({listID: list.id,listItem: item},url,token);
 
         //after post request 
@@ -111,8 +112,8 @@ const List = ({
     const timer = setTimeout( ()=> setIsAdding(true), 1000);
 
     //post to server
-    //const url = 'https://mattallen.tech/list-app/add-list-item';
-    const url = 'http://localhost:8080/list-app/add-list-item';
+    const url = 'https://mattallen.tech/list-app/add-list-item';
+    //const url = 'http://localhost:8080/list-app/add-list-item';
     const post = await postData({listID: list.id,listItem: inputVal},url,token);
 
     //after post request 

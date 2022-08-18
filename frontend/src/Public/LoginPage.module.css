@@ -4,32 +4,145 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 50px 10px 100px 10px;
+}
+.pageContainer label::after {
+    color: red;
+    content: " *";
 }
 
-h1 {
+.pageContainer input {
+    height: 40px;
+    margin: 5px 0 20px 0;
+    border: 1px solid #c5d0d6;
+    border-radius: 5px;
+}
+
+.pageContainer input:hover, .pageCOntainer input:focus {
+    box-shadow: 0 0 10px #32a2ad;
+}
+
+.pageContainer input::placeholder {
+    color: transparent;
+}
+
+.pageContainer button {
+    height: 40px;
+    margin: 10px 0 10px 0;
+    border-radius: 5px;
+    background-color: #32a2ad;
+    color: white;
+}
+
+.demoBtn {
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+    /* animation: shake 0.5s linear infinite; */
+    animation: shake 1s linear 2s infinite alternate;
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(-5deg);
+    }
+    10% {
+        transform: rotate(5deg);
+    }
+    20% {
+        transform: rotate(0deg);
+    }
+}
+
+.pageContainer button:hover, .pageContainer button:focus {
+    background-color: lightblue;
+}
+
+.pageContainer h1 {
     width: 100%;
     text-align: center;
+}
+
+.pageContainer p {
+    color: rgb(95, 94, 94);
+    margin-top: -5px;
+    margin-bottom: 75px;
 }
 
 .container {
     width: 90%;
     max-width: 1200px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
     align-items: center;
-    flex-wrap: wrap;
+}
+
+@media screen and (min-width: 1025px) {
+    .container {
+        align-items: flex-start;
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }
 
 .formDivider {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
+    height: 100px;
+    padding: 20px;
+    color: rgb(106, 105, 105);
+}
+
+@media screen and (min-width: 1025px ) {
+    .formDivider {
+        height: 400px;
+    }
 }
 
 .formContainer {
-    width: 500px;
+    width: 100%;
+    max-width: 400px;  
     display: flex;
     flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgb(193, 193, 193);
+    padding: 20px; 
+}
+
+.logoContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.formContainer h2 {
+    color: rgb(57,57,57);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.formContainer p {
+    color: rgb(57, 57, 57);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.pwReqContainer {
+    margin-top: -10px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.placeholderBranding {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    background-color: #32a2ad;
+}
+
+.placeholderLogo {
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    background-color: #32a2ad;
 }

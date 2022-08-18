@@ -88,7 +88,7 @@ describe('signout <App />', ()=> {
     userEvent.click(logoutBtn);
 
     //assertion
-    const signInHeader = screen.getByText(/sign in/i);
+    const signInHeader = screen.getByText(/log in to your account/i);
     expect(signInHeader).toBeInTheDocument();
   })
 })

@@ -10,16 +10,4 @@ describe('alert', ()=> {
         expect(screen.getByText('Alert')).toBeInTheDocument();
     });
 
-    it('closes alert after hitting x button', () => {
-
-        const closeAlert = jest.fn();
-
-        render(<Alert display={'block'} message='' setDisplay={closeAlert} focusRef={{current: {focus: (jest.fn())}}}/>);
-
-        const exitBtn = screen.getByText('Okay');
-        userEvent.click(exitBtn);
-
-        expect(closeAlert).toHaveBeenCalled();
-    })
-
 })

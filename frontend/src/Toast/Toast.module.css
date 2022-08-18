@@ -12,13 +12,13 @@
     display: flex;
     flex-direction: column;
     width: 90%;
-    max-width: 300px;
+    max-width: 400px;
     height: 100px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     background-color: lightgreen;
     border-radius: 5px;
     box-shadow: 2px 2px 10px gray;
-    padding: 10px;
+    padding: 15px;
 }
 
 .toast h3 {
@@ -29,11 +29,32 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin: -10px 0 10px 0;
+}
+
+.headContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.headContainer h3 {
+    margin-left: 10px;
 }
 
 .toast button {
     outline: none;
-    width: 30px;
-    font-size: 1.2rem;
+    padding: 0;
+    border-radius: 5px;
+    background-color: transparent;
+    color: black;
+}
+
+.toast button:hover, .toast button:focus {
+    background-color: rgb(221, 220, 220);
+}
+
+.toast p {
+    margin-left: 36px;
 }

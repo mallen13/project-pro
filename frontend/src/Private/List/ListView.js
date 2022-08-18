@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './List.module.css';
+import { X } from 'react-bootstrap-icons';
 
 const ListView = ({
     list,
@@ -15,13 +16,13 @@ const ListView = ({
     <div className={styles.listContainer}>
         {/* Title / Delete Button */}
         <div className={styles.listTitle}>
-            <h3>{list.title}</h3>
+            <h2>{list.title}</h2>
             <button 
                 aria-label='delete list'
                 onClick={deleteList}
                 disabled={isRemovingList ? true : false}
             >
-                {isRemovingList ? 'Removing' : 'x'}
+                {isRemovingList ? 'Removing' :  <X size='35' />}
             </button>
         </div>
 
@@ -33,8 +34,9 @@ const ListView = ({
                     aria-label='delete list item'
                     onClick={ ()=> deleteListItem(listItem,index)}
                     disabled={isRemovingListItems.includes(index)  ? true : false}
+                    style={{paddingTop: '5px'}}
                 >
-                    {isRemovingListItems.includes(index) ? 'Removing' : 'x'}
+                    {isRemovingListItems.includes(index) ? 'Removing' : <X size='30' />}
                 </button>
             </div>
         ))}

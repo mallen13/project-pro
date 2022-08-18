@@ -50,7 +50,7 @@ const ListGrid = ({
                 {
                     //show lists or status of fetch
                     lists === 'fetching' ? 'Loading Lists...' : 
-                        lists === 'no lists' ? <div style={{marginTop: '50px'}}>Create a list to get started.</div> : 
+                        lists === 'no lists' ? <div style={{marginTop: '50px'}}><p>So much empty. Create a list to get started.</p></div> : 
                         Array.isArray(lists) ? listGrid() :
                         'System error. Please try again later.'
                 }

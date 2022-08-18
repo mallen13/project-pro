@@ -35,8 +35,8 @@ const NewListInput = ({lists,setLists,token,setUser,setParentAlert}) => {
         }
 
         //post to server
-        //const url = 'https://mattallen.tech/list-app/create-list';
-        const url = 'http://localhost:8080/list-app/create-list';
+        const url = 'https://mattallen.tech/list-app/create-list';
+        //const url = 'http://localhost:8080/list-app/create-list';
 
         let data = await postData({listTitle: input}, url,token);
         //after post
@@ -53,9 +53,9 @@ const NewListInput = ({lists,setLists,token,setUser,setParentAlert}) => {
             setInput('');
         } else if (data === 'invalid token') {
             setUser(null);
-            setParentAlert({display: true, message: 'Login Expired. Please Sign In again.'});
+            setParentAlert({display: 'flex', message: 'Login Expired. Please Sign In again.'});
         } else {
-            setAlert({display: true, message: 'System error. Please try again later.'});
+            setAlert({display: 'flex', message: 'System error. Please try again later.'});
         }
         
      

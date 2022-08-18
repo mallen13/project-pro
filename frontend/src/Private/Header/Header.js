@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './Header.module.css';
+import { List } from 'react-bootstrap-icons'
 
 
 const Header = ({user,setLists,setUser}) => {
@@ -10,8 +11,10 @@ const Header = ({user,setLists,setUser}) => {
 
   return (
     <header>
-      <button onClick={toggleMenu} aria-label='menu button'>Menu</button>
-      <div className={styles.menuContainer} style={{display: menuIsOpen ? 'flex' : 'none'}}>
+      <button className='menuBtn' onClick={toggleMenu} aria-label='menu button'>
+        <List size='45' />
+      </button>
+      <div className={styles.menuContainer} style={{opacity: menuIsOpen ? 1 : 0}}>
         <p>{user.name}</p>
         <p>{user.email}</p>
         <button onClick={ ()=> {setUser(null); setLists([])} }>Sign Out</button>

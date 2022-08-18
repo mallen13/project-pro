@@ -189,7 +189,7 @@ describe('registers user', ()=> {
         render(<LoginPage setUser={null} />);
 
         //act
-        const registerBtn = screen.getByText('Register');
+        const registerBtn = screen.getAllByText('Register')[0];
         userEvent.click(registerBtn);
 
         //assert
@@ -205,7 +205,7 @@ describe('registers user', ()=> {
         const nameInput = screen.getByPlaceholderText('Full Name');
         userEvent.type(nameInput, 'name');
         
-        const registerBtn = screen.getByText('Register');
+        const registerBtn = screen.getAllByText('Register')[0];
         userEvent.click(registerBtn);
 
         //assert
@@ -224,7 +224,7 @@ describe('registers user', ()=> {
         const emailInput = screen.getAllByPlaceholderText('Email Address')[1];
         userEvent.type(emailInput, 'email');
         
-        const registerBtn = screen.getByText('Register');
+        const registerBtn = screen.getAllByText('Register')[0];
         userEvent.click(registerBtn);
 
         //assert
@@ -243,7 +243,7 @@ describe('registers user', ()=> {
         const emailInput = screen.getAllByPlaceholderText('Email Address')[1];
         userEvent.type(emailInput, 'email@email.com');
         
-        const registerBtn = screen.getByText('Register');
+        const registerBtn = screen.getAllByText('Register')[0];
         userEvent.click(registerBtn);
 
         //assert
@@ -265,7 +265,7 @@ describe('registers user', ()=> {
          const passwordInput = screen.getAllByPlaceholderText('Password')[1];
          userEvent.type(passwordInput, 'password');
          
-         const registerBtn = screen.getByText('Register');
+         const registerBtn = screen.getAllByText('Register')[0];
          userEvent.click(registerBtn);
  
          //assert
@@ -290,7 +290,7 @@ describe('registers user', ()=> {
         const passwordInput = screen.getAllByPlaceholderText('Password')[1];
         userEvent.type(passwordInput, 'Pasword13!');
         
-        const registerBtn = screen.getByText('Register');
+        const registerBtn = screen.getAllByText('Register')[0];
         userEvent.click(registerBtn);
 
         //assert
@@ -315,7 +315,7 @@ describe('registers user', ()=> {
         const passwordInput = screen.getAllByPlaceholderText('Password')[1];
         userEvent.type(passwordInput, 'Pasword13!');
         
-        const registerBtn = screen.getByText('Register');
+        const registerBtn = screen.getAllByText('Register')[0];
         userEvent.click(registerBtn);
 
         //assert
@@ -338,7 +338,7 @@ describe('registers user', ()=> {
         const passwordInput = screen.getAllByPlaceholderText('Password')[1];
         userEvent.type(passwordInput, 'Pasword13!');
         
-        const registerBtn = screen.getByText('Register');
+        const registerBtn = screen.getAllByText('Register')[0];
         userEvent.click(registerBtn);
 
         //assert
@@ -369,7 +369,7 @@ describe('registers user', ()=> {
          const pwInput = screen.getAllByPlaceholderText('Password')[1];
          userEvent.type(pwInput, 'Password45!');
          
-         const registerBtn = screen.getByText('Register');
+         const registerBtn = screen.getAllByText('Register')[0];
          userEvent.click(registerBtn);
  
         //assert

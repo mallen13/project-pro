@@ -30,8 +30,8 @@ const LoginPage = ({setUser}) => {
     const demo = async () => {
       const timer = setTimeout( ()=> setDemoLoggingIn(true),1000);
 
-      const url = 'http://localhost:8080/list-app/login';
-      //const url = 'https://mattallen.tech/list-app/login';
+      //const url = 'http://localhost:8080/list-app/login';
+      const url = 'https://mattallen.tech/list-app/login';
       const data = await postData({email: 'demo@demo.com', password: 'Test12345!'},url);
       clearTimeout(timer);
 
@@ -135,8 +135,8 @@ const LoginPage = ({setUser}) => {
       
      //post
      const timer = setTimeout( ()=>setIsRegistering(true),1000);
-     const url = 'http://localhost:8080/list-app/register';
-     //const url = 'https://mattallen.tech/list-app/register';
+     //const url = 'http://localhost:8080/list-app/register';
+     const url = 'https://mattallen.tech/list-app/register';
      const registerStatus = await postData({user: registerInfo},url);
 
     clearTimeout(timer);

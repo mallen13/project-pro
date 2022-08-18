@@ -2,6 +2,21 @@
     width: 100%;
     max-width: 500px;
     margin: 10px 10px 50px 10px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 1px 5px rgb(193, 193, 193);
+}
+
+.listContainer button {
+    border-radius: 5px;
+    background-color: transparent;
+    color: black;
+}
+
+.listContainer button:hover, .listContainer button:focus {
+    outline: 2px solid #32a2ad;
+    transition: none;
 }
 
 .listTitle {
@@ -9,6 +24,13 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
+}
+
+.listTitle button {
+    margin-left: 3px;
+    margin-top: 2px;
+    padding-top: 2px;
 }
 
 .listItem {
@@ -25,6 +47,8 @@
     display: flex;
     align-items: center;
     padding-left: 10px;
+    color: black;
+    font-size: 1.3rem;
 }
 
 .newItemContainer {

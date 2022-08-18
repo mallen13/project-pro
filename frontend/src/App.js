@@ -10,7 +10,7 @@ import NewListInput from './Private/NewListInput/NewListInput';
 function App() {
 
   //state
-  const [alert, setAlert] = useState({display: false, message: ''})
+  const [alert, setAlert] = useState({display: 'none', message: ''})
   const [lists,setLists] = useState([]);
   const [user,setUser] = useState(null);
 
@@ -24,8 +24,8 @@ function App() {
 
     //fetch lists
     const fetchData = async () => {
-      //const url = 'https://mattallen.tech/list-app/get-lists';
-      const url = 'http://localhost:8080/list-app/get-lists';
+      const url = 'https://mattallen.tech/list-app/get-lists';
+      //const url = 'http://localhost:8080/list-app/get-lists';
       let data;
 
       //show loading after 1 second
@@ -35,7 +35,7 @@ function App() {
 
       //if bad token, remove user
       if (data === 'invalid token') {
-        setAlert({display: true, message: 'Login Expired. Please Sign In again.'})
+        setAlert({display: 'flex', message: 'Login Expired. Please Sign In again.'})
         setUser(null);
       }
 
@@ -68,6 +68,7 @@ function App() {
       : <>
           <Header user={user} setUser={setUser} setLists={setLists} />
           <div className={styles.gridContainer}>
+            <div className={styles.placeholderLogo  }></div>
             <h1 style={{marginBottom: '10px'}}>List App</h1>
             <NewListInput 
               lists={lists} 
