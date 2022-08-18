@@ -68,8 +68,8 @@ const LoginPage = ({setUser}) => {
       
      //post
      const timer = setTimeout( ()=> setIsLoggingIn(true),1000);
-     const url = 'http://localhost:8080/list-app/login';
-     //const url = 'https://mattallen.tech/list-app/login';
+     //const url = 'http://localhost:8080/list-app/login';
+     const url = 'https://mattallen.tech/list-app/login';
 
      const data = await postData(loginCreds,url);
      clearTimeout(timer);
