@@ -17,20 +17,17 @@ const NewListInput = ({lists,setLists,token,setUser,setParentAlert}) => {
 
     //add new list
     const addList = async () => {
-        setIsLoading(true);
 
         //validation
         if (input === '') {
             setAlert({display: true, message: 'Cannot be blank.'})
-            setIsLoading(false);
             inputRef.current.focus();
             return;
         }
 
         //if list title already exists
         if (Array.isArray(lists) && lists.map( list => list.title).includes(input)) {
-            setIsLoading(false);
-            setAlert({display: true, message: 'List already exists'});
+            setAlert({display: true, message: 'Project already exists'});
             return;
         }
 
@@ -38,10 +35,12 @@ const NewListInput = ({lists,setLists,token,setUser,setParentAlert}) => {
         const url = 'https://mattallen.tech/list-app/create-list';
         //const url = 'http://localhost:8080/list-app/create-list';
 
+        const timer = setTimeout( ()=> setIsLoading(true), 1000);
+        
         let data = await postData({listTitle: input}, url,token);
         //after post
         if (data.listId) {
-            setToast({display: 'flex', message: 'List Added'});
+            setToast({display: 'flex', message: 'Project Added'});
 
             //set lists
             const newList = {id: data.listId, title: input, items: []};
@@ -58,11 +57,7 @@ const NewListInput = ({lists,setLists,token,setUser,setParentAlert}) => {
             setAlert({display: 'flex', message: 'System error. Please try again later.'});
         }
         
-     
-   
-   
-   
-
+        clearTimeout(timer);
         setIsLoading(false);
        
       }

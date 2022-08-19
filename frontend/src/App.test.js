@@ -433,7 +433,7 @@ describe('new list input <App />', ()=> {
     await screen.findByText(/to-do list/i);
 
     //create list
-    const input = screen.getByPlaceholderText('List Title');
+    const input = screen.getByPlaceholderText('Project Title');
     const submitBtn = screen.getByText(/new/i);
     userEvent.type(input,'new list');
 

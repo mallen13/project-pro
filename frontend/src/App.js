@@ -6,6 +6,7 @@ import LoginPage from './Public/LoginPage';
 import Header from './Private/Header/Header';
 import ListGrid from './Private/ListGrid/ListGrid';
 import NewListInput from './Private/NewListInput/NewListInput';
+import logo from './logo.png';
 
 function App() {
 
@@ -68,8 +69,12 @@ function App() {
       : <>
           <Header user={user} setUser={setUser} setLists={setLists} />
           <div className={styles.gridContainer}>
-            <div className={styles.placeholderLogo  }></div>
-            <h1 style={{marginBottom: '10px'}}>List App</h1>
+            <div className={styles.logo}>
+              <img src={logo} alt='Project Pro' />
+            </div>
+            <h1 style={{marginBottom: '10px'}}>Project Pro</h1>
+            <p style={{marginBottom: '20px'}}>Create Projects. Add Tasks. Get Organized.</p>
+
             <NewListInput 
               lists={lists} 
               token={user.token} 

@@ -58,9 +58,16 @@ input:hover, input:focus {
     padding: 20px;
 }
 
-.placeholderLogo {
+.logo {
     width: 100px;
     height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 100px;
     background-color: #32a2ad;
+}
+
+.logo img {
+    width: 60px;
 }

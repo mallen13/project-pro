@@ -1,5 +1,6 @@
 import { DoorOpenFill, PencilFill } from 'react-bootstrap-icons';
 import styles from './LoginPage.module.css';
+import logo from '../logo.png';
 
 const LoginPageView = ({
     demo,
@@ -16,9 +17,11 @@ const LoginPageView = ({
     registerNameRef,
     setRegisterInfo}) => (
     <>
-        <div className={styles.placeholderBranding}></div>
-        <h1>Project App</h1>
-        <p>Project Management App</p>
+        <div className={styles.branding}>
+            <img src={logo} alt='Project Pro' />
+        </div>
+        <h1>Project Pro</h1>
+        <p>Create Projects. Add Tasks. Get Organized.</p>
 
         <div className={styles.container}>
             {/* login input */}

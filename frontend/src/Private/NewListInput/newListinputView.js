@@ -12,13 +12,13 @@ const NewListInputView = ({
                 ref={inputRef}
                 id='listInput'
                 aria-label='new list input'
-                placeholder='List Title' 
+                placeholder='Project Title' 
                 onChange={e => setInput(e.target.value)}/>
             <button 
                 onClick={addList}
                 disabled={isLoading ? true : false}
             >
-                {!isLoading ? 'New List' : 'Creating...' }
+                {!isLoading ? 'New' : 'Creating' }
             </button>
         </div>
     </div>

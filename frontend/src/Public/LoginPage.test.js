@@ -126,6 +126,7 @@ describe('login page', ()=> {
  
         //assert
         act( ()=> jest.advanceTimersByTime(1100) );
+        
         const loadingText = await screen.findByText(/Logging In/);
         expect(loadingText).toBeInTheDocument();
 
@@ -140,38 +141,32 @@ describe('login page', ()=> {
 
     it('shows loading on slow login w/ demo user', async ()=> {
           //arrange
-          jest.useFakeTimers();
+        jest.useFakeTimers();
 
-          global.fetch = () => new Promise( resolve => {
-              setTimeout( ()=> {
-                  resolve( {json: ()=> Promise.resolve({status:'error'})});
-              },3000)
-            })
-  
-          render(<LoginPage setUser={jest.fn()} />);
-       
-           //act
-           const emailInput = screen.getAllByPlaceholderText('Email Address')[0];
-           userEvent.type(emailInput, 'email');
-   
-           const pwInput = screen.getAllByPlaceholderText('Password')[0];
-           userEvent.type(pwInput, 'password');
-           
-           const loginBtn = screen.getByText('Login');
-           userEvent.click(loginBtn);
-   
-          //assert
-          act( ()=> jest.advanceTimersByTime(1100) );
-          const loadingText = await screen.findByText(/Demo User/);
-          expect(loadingText).toBeInTheDocument();
-  
-          jest.runAllTimers();
-  
-          await waitFor( ()=> {
-              expect(loginBtn).not.toBeDisabled();
+        global.fetch = () => new Promise( resolve => {
+            setTimeout( ()=> {
+                resolve( {json: ()=> Promise.resolve({status:'error'})});
+            },3000)
           })
-          
-          jest.useRealTimers();
+
+        render(<LoginPage setUser={jest.fn()} />);
+     
+         //act
+         const loginBtn = screen.getByText(/demo user/i);
+         userEvent.click(loginBtn);
+ 
+        //assert
+        act( ()=> jest.advanceTimersByTime(1100) );
+        
+        const loadingText = await screen.findByText(/Logging In/);
+        expect(loadingText).toBeInTheDocument();
+
+        jest.runAllTimers();
+
+        const errMsg = await screen.findByText(/system error/i);
+        expect(errMsg).toBeInTheDocument();
+        
+        jest.useRealTimers();
     });
 
 })
