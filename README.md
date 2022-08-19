@@ -1,4 +1,4 @@
-# Lists App
+#Project Pro
 Create Projects. Add Tasks. Get Organized.  
 
 ## About
