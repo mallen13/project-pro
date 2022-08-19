@@ -11,14 +11,17 @@ const Header = ({user,setLists,setUser}) => {
 
   return (
     <header>
-      <button className='menuBtn' onClick={toggleMenu} aria-label='menu button'>
-        <List size='45' />
-      </button>
-      <div className={styles.menuContainer} style={{opacity: menuIsOpen ? 1 : 0}}>
-        <p>{user.name}</p>
-        <p>{user.email}</p>
-        <button onClick={ ()=> {setUser(null); setLists([])} }>Sign Out</button>
-      </div>
+        {/* Button */}
+        <button className='menuBtn' onClick={toggleMenu} aria-label='menu button'>
+          <List size='45' />
+        </button>
+
+        {/* Menu */}
+        <div className={styles.menuContainer} style={{opacity: menuIsOpen ? 1 : 0}}>
+          <p>{user.name}</p>
+          <p>{user.email}</p>
+          <button onClick={ ()=> {setUser(null); setLists([])} }>Sign Out</button>
+        </div>
     </header>
   )
 }

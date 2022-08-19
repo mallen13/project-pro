@@ -34,7 +34,7 @@ const ListGrid = ({
     const listGrid = ()=> (
         <>
             {mapLists()}
-            { lists.length === 1 ? null : 
+            { lists.length < 3 ? null : 
                 <>
                     <div className={styles.placeholderDiv}></div>
                     <div className={styles.placeholderDiv}></div>
@@ -50,7 +50,7 @@ const ListGrid = ({
                 {
                     //show lists or status of fetch
                     lists === 'fetching' ? 'Loading Lists...' : 
-                        lists === 'no lists' ? <div style={{marginTop: '50px'}}><p>So much empty. Create a list to get started.</p></div> : 
+                        lists === 'no lists' ? <div style={{marginTop: '50px'}}><p>So much empty. Create a list to get started. &#x1F603;</p></div> : 
                         Array.isArray(lists) ? listGrid() :
                         'System error. Please try again later.'
                 }

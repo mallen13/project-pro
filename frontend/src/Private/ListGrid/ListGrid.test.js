@@ -10,7 +10,7 @@ const listArr =  [
   title: 'to-do list',
   items: [
     'go to store',
-    'watch tv'
+    'watch tv '
   ]
   },
   {
@@ -20,7 +20,15 @@ const listArr =  [
     'do something',
     'do something else'
   ]
-  }
+  },
+  {
+    id: 3,
+    title: 'another list again',
+    items: [
+      'do something',
+      'do something else'
+    ]
+    }
 ]
 
 const makeList = () => listArr;

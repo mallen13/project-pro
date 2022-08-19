@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/Private/Header/Header.js</title>
+    <title>Code coverage report for src/Private/NewListInput/newListinputView.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/Private/Header</a> Header.js</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/Private/NewListInput</a> newListinputView.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
@@ -89,65 +89,59 @@
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">31x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">31x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">87x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">48x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useState } from 'react';
-import styles from './Header.module.css';
-import { List } from 'react-bootstrap-icons'
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import styles from './NewListInput.module.css';
 &nbsp;
-&nbsp;
-const Header = ({user,setLists,setUser}) =&gt; {
-  
-  const [menuIsOpen,setMenuIsOpen] = useState(false);
-&nbsp;
-  const toggleMenu = () =&gt; menuIsOpen ? setMenuIsOpen(false) : setMenuIsOpen(true)
-&nbsp;
-  return (
-    &lt;header&gt;
-        {/* Button */}
-        &lt;button className='menuBtn' onClick={toggleMenu} aria-label='menu button'&gt;
-          &lt;List size='45' /&gt;
-        &lt;/button&gt;
-&nbsp;
-        {/* Menu */}
-        &lt;div className={styles.menuContainer} style={{opacity: menuIsOpen ? 1 : 0}}&gt;
-          &lt;p&gt;{user.name}&lt;/p&gt;
-          &lt;p&gt;{user.email}&lt;/p&gt;
-          &lt;button onClick={ ()=&gt; {setUser(null); setLists([])} }&gt;Sign Out&lt;/button&gt;
+const NewListInputView = ({
+    addList,
+    inputRef,
+    isLoading,
+    setInput,
+}) =&gt; (
+    &lt;div className={styles.newListInputContainer}&gt;
+        &lt;div className={styles.subContainer}&gt;
+            &lt;input 
+                ref={inputRef}
+                id='listInput'
+                aria-label='new list input'
+                placeholder='List Title' 
+                onChange={e =&gt; setInput(e.target.value)}/&gt;
+            &lt;button 
+                onClick={addList}
+                disabled={isLoading ? true : false}
+            &gt;
+                {!isLoading ? 'New List' : 'Creating...' }
+            &lt;/button&gt;
         &lt;/div&gt;
-    &lt;/header&gt;
-  )
-}
+    &lt;/div&gt;
+)
 &nbsp;
-export default Header</pre></td></tr></table></pre>
+export default NewListInputView</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

@@ -1,36 +1,43 @@
 .listContainer {
     width: 100%;
     max-width: 500px;
-    margin: 10px 10px 50px 10px;
+    margin: 10px 0 50px 0;
     background-color: white;
     border-radius: 10px;
-    padding: 10px;
     box-shadow: 0 1px 5px rgb(193, 193, 193);
+} 
+
+.listContainer h2 {
+    margin: 0;
 }
 
 .listContainer button {
-    border-radius: 5px;
     background-color: transparent;
-    color: black;
+    border: 2px solid transparent;
+    color: #606060;
+    transition: none;
 }
 
 .listContainer button:hover, .listContainer button:focus {
-    outline: 2px solid #32a2ad;
-    transition: none;
+    transition: 0.2s;
 }
 
 .listTitle {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
+    justify-content: space-between;
+    background-color: rgb(238, 233, 233);
+    padding: 0 5px 0 10px;
 }
 
 .listTitle button {
     margin-left: 3px;
-    margin-top: 2px;
-    padding-top: 2px;
+    padding-top: 7px;
+}
+
+.listTitle button:hover {
+    border: 2px solid #32a2ad;
 }
 
 .listItem {
@@ -39,7 +46,6 @@
     min-height: 35px;
     justify-content: space-between;
     margin-bottom: 5px;
-    background-color: white;
 }
 
 .listItem p {
@@ -51,12 +57,32 @@
     font-size: 1.3rem;
 }
 
+.listItem button:hover {
+    background-color: rgb(238, 233, 233);
+}
+
 .newItemContainer {
     display: flex;
     justify-content: space-between;
+    border-radius: 5px;
     background-color: white;
+    border: 2px solid transparent;
 }
 
-.newItemContainer:focus-within {
-    outline: 2px solid blue;
+.newItemContainer button {
+    border-radius: 0 5px 5px 0;
+}
+
+.newItemContainer:focus-within, .newItemContainer:hover {
+    border: 2px solid #32a2ad;
+}
+
+.newItemContainer input:hover, .newItemContainer input:focus {
+    border: 2px solid transparent;
+    background-color: transparent;
+}
+
+.newItemContainer button:hover, .newItemContainer button:focus {
+    border: 2px solid transparent;
+    background-color: rgb(238, 233, 233);
 }

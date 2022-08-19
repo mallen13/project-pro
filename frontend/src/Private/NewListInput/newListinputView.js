@@ -18,7 +18,7 @@ const NewListInputView = ({
                 onClick={addList}
                 disabled={isLoading ? true : false}
             >
-                {!isLoading ? 'Create List' : 'Creating...' }
+                {!isLoading ? 'New List' : 'Creating...' }
             </button>
         </div>
     </div>

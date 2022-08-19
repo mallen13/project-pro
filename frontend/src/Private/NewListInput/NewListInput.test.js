@@ -16,7 +16,7 @@ describe('new list input', ()=> {
         render(<NewListInput />);
 
         //act
-        const submitBtn = screen.getByText('Create List');
+        const submitBtn = screen.getByText(/new/i);
         userEvent.click(submitBtn)
 
         //assert
@@ -36,7 +36,7 @@ describe('new list input', ()=> {
         
         //act
         const input = screen.getByPlaceholderText('List Title');
-        const submitBtn = screen.getByText('Create List');
+        const submitBtn = screen.getByText(/new/i);
         userEvent.type(input,'to-do list');
         userEvent.click(submitBtn);
 
@@ -52,7 +52,7 @@ describe('new list input', ()=> {
 
         //act
         const input = screen.getByPlaceholderText('List Title');
-        const submitBtn = screen.getByText('Create List');
+        const submitBtn = screen.getByText(/new/i);
         userEvent.type(input,'to-do list');
         userEvent.click(submitBtn);
 
@@ -68,7 +68,7 @@ describe('new list input', ()=> {
 
         //act
         const input = screen.getByPlaceholderText('List Title');
-        const submitBtn = screen.getByText('Create List');
+        const submitBtn = screen.getByText(/new/i);
         userEvent.type(input,'to-do list');
         userEvent.click(submitBtn);
 
@@ -85,7 +85,7 @@ describe('new list input', ()=> {
 
         //act
         const input = screen.getByPlaceholderText('List Title');
-        const submitBtn = screen.getByText('Create List');
+        const submitBtn = screen.getByText(/new/i);
         userEvent.type(input,'to-do list');
         userEvent.click(submitBtn);
 

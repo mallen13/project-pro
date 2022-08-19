@@ -434,7 +434,7 @@ describe('new list input <App />', ()=> {
 
     //create list
     const input = screen.getByPlaceholderText('List Title');
-    const submitBtn = screen.getByText('Create List');
+    const submitBtn = screen.getByText(/new/i);
     userEvent.type(input,'new list');
 
     mockFetch(null,403);

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './List.module.css';
-import { X } from 'react-bootstrap-icons';
+import { Trash3, X } from 'react-bootstrap-icons';
 
 const ListView = ({
     list,
@@ -22,7 +22,7 @@ const ListView = ({
                 onClick={deleteList}
                 disabled={isRemovingList ? true : false}
             >
-                {isRemovingList ? 'Removing' :  <X size='35' />}
+                {isRemovingList ? 'Removing' : <Trash3 size='20' color='#606060' />}
             </button>
         </div>
 

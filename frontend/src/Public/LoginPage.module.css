@@ -18,8 +18,8 @@
     border-radius: 5px;
 }
 
-.pageContainer input:hover, .pageCOntainer input:focus {
-    box-shadow: 0 0 10px #32a2ad;
+.pageContainer input:hover, .pageContainer input:focus {
+    border: 2px solid #32a2ad;
 }
 
 .pageContainer input::placeholder {

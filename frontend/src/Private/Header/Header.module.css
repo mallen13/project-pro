@@ -1,20 +1,26 @@
 header {
+    position: sticky;
+    top: 0;
+    background-color: #32a2ad;
     width: 100%;
     display: flex;
     justify-content: flex-end;
 }
 
 header button {
-    border-radius: 5px;
-    margin: 20px;
+    border-radius: 0;
     height: auto;
     padding: 5px;
+}
+
+.container {
+    background-color: red;
 }
 
 .menuContainer {
     width: 100%;
     max-width: 400px;
-    margin-top: 90px;
+    margin-top: 60px;
     border-radius: 10px;
     box-shadow: 0 1px 5px rgb(193, 193, 193);
     position: absolute;
