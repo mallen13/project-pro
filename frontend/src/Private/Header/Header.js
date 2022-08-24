@@ -17,7 +17,7 @@ const Header = ({user,setLists,setUser}) => {
         </button>
 
         {/* Menu */}
-        <div className={styles.menuContainer} style={{opacity: menuIsOpen ? 1 : 0}}>
+        <div className={styles.menuContainer} style={{display: menuIsOpen ? 'flex' : 'none'}}>
           <p>{user.name}</p>
           <p>{user.email}</p>
           <button onClick={ ()=> {setUser(null); setLists([])} }>Sign Out</button>

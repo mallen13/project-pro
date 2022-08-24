@@ -5,7 +5,6 @@ import Alert from '../../Alert/Alert';
 import Toast from '../../Toast/Toast';
 
 const NewListInput = ({lists,setLists,token,setUser,setParentAlert}) => {
-
     //ref
     const inputRef = useRef();
 
@@ -17,7 +16,6 @@ const NewListInput = ({lists,setLists,token,setUser,setParentAlert}) => {
 
     //add new list
     const addList = async () => {
-
         //validation
         if (input === '') {
             setAlert({display: true, message: 'Cannot be blank.'})
