@@ -3,6 +3,8 @@ require('dotenv').config();
 const app = express();
 const cors = require('cors');
 const mysql = require('mysql2');
+const rateLimit = require('express-rate-limit')
+
 const {
   authenticateToken,
   isValidEmail} = require('./helpers');
@@ -20,6 +22,16 @@ const {
 
 app.use(cors());
 app.use(express.json());
+
+//rate limit
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000, // 60 minutes
+	max: 50, // Limit each IP to 50 requests per 15 mins
+	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+})
+
+app.use(limiter)
 
 //setup DB
 const pool = mysql.createPool({
