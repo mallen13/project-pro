@@ -11,6 +11,28 @@ const findUser = async(promisePool,email) => {
     return user;
 }
 
+//save refresh token
+const saveRefreshToken = async(promisePool,token,id) => {
+    const sql = 'INSERT INTO tokens(token,id) VALUES (?,?)' ;
+    await promisePool.query(sql,[token,id]); 
+    return null;
+}
+
+//get refresh token
+const getRefreshToken = async(promisePool,token) => {
+    const sql = 'SELECT token FROM tokens WHERE token = ?' ;
+    const [ resp ] = await promisePool.query(sql,[token]); 
+    return resp;
+}
+
+//remove refresh token
+const delRefreshToken= async(promisePool,id) => {
+    const sql = 'DELETE FROM tokens WHERE id = ?' ;
+    const [ resp ] = await promisePool.query(sql,[id]); 
+    return resp;
+}
+
+
 //get all lists
 const getLists = async (promisePool,userId) => {
     //create lists
@@ -89,4 +111,7 @@ module.exports = {
     deleteList,
     addListItem,
     deleteListItem,
+    saveRefreshToken,
+    getRefreshToken,
+    delRefreshToken
 };

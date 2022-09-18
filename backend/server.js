@@ -4,7 +4,6 @@ const app = express();
 const cors = require('cors');
 const mysql = require('mysql2');
 const rateLimit = require('express-rate-limit')
-
 const {
   authenticateToken,
   isValidEmail} = require('./helpers');
@@ -17,7 +16,10 @@ const {
   createList, 
   deleteList,
   addListItem,
-  deleteListItem
+  deleteListItem,
+  saveRefreshToken,
+  getRefreshToken,
+  delRefreshToken
 } = require('./dbController');
 
 app.use(cors());
@@ -86,6 +88,7 @@ app.post('/list-app/register', async (req,res) => {
 //authenticate user
 app.post('/list-app/login', async (req,res) => {
   const { email,password } = req.body;
+
   //search for user
   try {
     const user = await findUser(promisePool,email);
@@ -93,10 +96,10 @@ app.post('/list-app/login', async (req,res) => {
     if (user.length === 1) {
 
       //compare password input to hash
-      bcrypt.compare(password, user[0].password, (err,isValid) => {
+      bcrypt.compare(password, user[0].password, async (err,isValid) => {
         if (err) return res.status(500).json({status: 'hash process error'});
 
-        //return token if valid
+        //if valid password
         if (isValid) {
           const userPayload = {
             id: user[0].user_id,
@@ -104,15 +107,32 @@ app.post('/list-app/login', async (req,res) => {
             email: user[0].email
           }
 
-          const token = jwt.sign(
+          //sign access token
+          const accessToken = jwt.sign(
             userPayload,
             process.env.ACCESS_TOKEN_SECRET,
-            {expiresIn: 10000}
+            {expiresIn: '10m'}
           );
+
+          //sign refresh token
+          const refreshToken = jwt.sign(
+            userPayload,
+            process.env.REFRESH_TOKEN_SECRET,
+          );
+
+          //save token to DB
+          try {
+            await saveRefreshToken(promisePool,refreshToken,userPayload.id);
+          } catch(err) {
+            res.status(500).json({status: 'err saving refresh token to DB'});
+          }
+
+          //return user/tokens
           return res.status(200).json({
             user: {name: user[0].name, email: user[0].email},
-            accessToken: token
-          }),3000;
+            accessToken: accessToken,
+            refreshToken: refreshToken
+          });
         }
         
         if (!isValid) return res.status(500).json({status: 'invalid username or password'});
@@ -120,11 +140,75 @@ app.post('/list-app/login', async (req,res) => {
       })
 
     //if no user returned invalid 
-    } else res.status(500).json({status: 'invalid username or password'})
+    } else res.status(500).json({status: 'invalid username or password'});
 
   } catch (err) {
     res.status(500).json({status: err.message});
   }  
+})
+
+app.post('/list-app/get-access-token', async (req,res) => {
+  const refreshToken = req.body.refreshToken;
+
+  //if null
+  if (!refreshToken) return res.status(403).json({status: 'no token recieved'})
+
+  //attemp to get token
+  try {
+    const token = await getRefreshToken(promisePool,refreshToken);
+    //if no token
+    if (token.length === 0) return res.status(500).json({status: "token doesn't exist"})
+
+    //if token
+    jwt.verify(token[0].token,process.env.REFRESH_TOKEN_SECRET,(err,user)=>{
+      //send err
+      if (err) {
+        console.log(err)
+        return res.sendStatus(403);
+      }
+      //sign access token
+      const accessToken = jwt.sign(
+        user,
+        process.env.ACCESS_TOKEN_SECRET,
+        {expiresIn: '10m'}
+      );
+
+      //send access token
+      res.status(201).json({token: accessToken});
+    });
+
+    //if db err
+  } catch (err) {
+    console.error(err.message)
+    res.status(500).json({status: err.message});
+  }  
+})
+
+app.post('/list-app/logout', async (req,res) => {
+  //takes in token
+  const { refreshToken } = req.body
+
+  //if null
+  if (!refreshToken) return res.status(403).json({status: 'no token recieved'})
+
+  //validates token
+  jwt.verify(refreshToken,process.env.REFRESH_TOKEN_SECRET,async (err,data)=>{
+    //err
+    if (err) {
+      console.log(err)
+      return res.status(403).json({status: 'invalid token'});
+    }
+
+    //else del from database
+    try {
+      await delRefreshToken(promisePool,data.id);
+      return res.status(201).json('success');
+    } catch(err) {
+      console.error(err.message);
+      res.status(500).json({status: err.message});
+    }
+  });
+
 })
 
 //get lists

@@ -1,4 +1,4 @@
-# POST https://mattallen.tech/list-app/register HTTP/1.1
+# # POST https://mattallen.tech/list-app/register HTTP/1.1
 # POST http://localhost:8080/list-app/register HTTP/1.1
 # content-type: application/json
 
@@ -11,7 +11,6 @@
 # }
 
 # POST http://localhost:8080/list-app/login HTTP/1.1
-# # POST https://mattallen.tech/list-app/login HTTP/1.1
 # content-type: application/json
 
 # {
@@ -19,20 +18,37 @@
 #     "password": "Test12345!"
 # }
 
-POST http://localhost:8080/list-app/create-list HTTP/1.1
-//POST https://mattallen.tech/list-app/create-list HTTP/1.1
-content-type: application/json
-Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkRlbW8gVXNlciIsImVtYWlsIjoiZGVtb0BkZW1vLmNvbSIsImlhdCI6MTY2MDIyNzE0MywiZXhwIjoxNjYwMjM3MTQzfQ.qp-2ZPekmeLiRALmWw9ZOZclRJpYKvY8RqssmYucYyI
+# POST http://localhost:8080/list-app/token HTTP/1.1
+# content-type: application/json
 
-{
-    "listTitle": "Matt's list"
-}
+# {
+#     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IkRlbW8gVXNlciIsImVtYWlsIjoiZGVtb0BkZW1vLmNvbSIsImlhdCI6MTY2MzUzMTc2OH0.snI2x8Y94KW62aW5T91vnLfL_EnIP56Hmt3IbySkkGk"
+# }
+
+# POST http://localhost:8080/list-app/logout HTTP/1.1
+# content-type: application/json
+
+# {
+#     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IkRlbW8gVXNlciIsImVtYWlsIjoiZGVtb0BkZW1vLmNvbSIsImlhdCI6MTY2MzUzMTc2OH0.snI2x8Y94KW62aW5T91vnLfL_EnIP56Hmt3IbySkkGk"
+# }
+
+
+# POST http://localhost:8080/list-app/create-list HTTP/1.1
+# //POST https://mattallen.tech/list-app/create-list HTTP/1.1
+# content-type: application/json
+# Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkRlbW8gVXNlciIsImVtYWlsIjoiZGVtb0BkZW1vLmNvbSIsImlhdCI6MTY2MDIyNzE0MywiZXhwIjoxNjYwMjM3MTQzfQ.qp-2ZPekmeLiRALmWw9ZOZclRJpYKvY8RqssmYucYyI
+
+# {
+#     "listTitle": "Matt's list"
+# }
 
 # GET http://localhost:8080/list-app/get-lists HTTP/1.1
-# # GET https://mattallen.tech/list-app/get-lists HTTP/1.1
 # content-type: application/json
-# Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksIm5hbWUiOiJtYXR0IiwiZW1haWwiOiJtYXR0QGdtYWlsLmNvbSIsImlhdCI6MTY1OTg5MDg2MiwiZXhwIjoxNjU5OTAwODYyfQ.TedPI2ekHHitOboNH-Zmka7n4k6AyjNxvkjKgGzDbbU
+# Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IkRlbW8gVXNlciIsImVtYWlsIjoiZGVtb0BkZW1vLmNvbSIsImlhdCI6MTY2MzUzMTg5NiwiZXhwIjoxNjYzNTMyNDk2fQ.2sR2nvVpPp1k6J0wAlEv_42QvSNF9mTXi1s_UhuO3Ew
 
+# POST http://lostalhost:8080/list-app/token HTTP/1.1
+# Content-Type: application/json
+# {"token": "12345"}
 
 # POST http://localhost:8080/list-app/add-List-item HTTP/1.1
 # POST https://mattallen.tech/list-app/add-List-item HTTP/1.1

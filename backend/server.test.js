@@ -232,6 +232,16 @@ describe('POST /list-app/login', () => {
     
 })
 
+describe('POST /list-app/get-refresh-token', ()=> {
+
+})
+
+describe('POST /list-app/logout', ()=> {
+    //no token
+    //invalid token
+    //db err
+})
+
 describe('GET /list-app/get-lists', ()=> {
 
     let token;
