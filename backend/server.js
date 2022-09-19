@@ -101,6 +101,7 @@ app.post('/list-app/login', async (req,res) => {
 
         //if valid password
         if (isValid) {
+
           const userPayload = {
             id: user[0].user_id,
             name: user[0].name,
@@ -124,7 +125,7 @@ app.post('/list-app/login', async (req,res) => {
           try {
             await saveRefreshToken(promisePool,refreshToken,userPayload.id);
           } catch(err) {
-            res.status(500).json({status: 'err saving refresh token to DB'});
+            return res.status(500).json({status: 'err saving refresh token to DB'});
           }
 
           //return user/tokens
@@ -134,8 +135,10 @@ app.post('/list-app/login', async (req,res) => {
             refreshToken: refreshToken
           });
         }
-        
-        if (!isValid) return res.status(500).json({status: 'invalid username or password'});
+
+        if (!isValid) {
+          return res.status(500).json({status: 'invalid username or password'});
+        }
 
       })
 
@@ -147,6 +150,7 @@ app.post('/list-app/login', async (req,res) => {
   }  
 })
 
+//get access token
 app.post('/list-app/get-access-token', async (req,res) => {
   const refreshToken = req.body.refreshToken;
 
@@ -163,7 +167,6 @@ app.post('/list-app/get-access-token', async (req,res) => {
     jwt.verify(token[0].token,process.env.REFRESH_TOKEN_SECRET,(err,user)=>{
       //send err
       if (err) {
-        console.log(err)
         return res.sendStatus(403);
       }
       //sign access token
@@ -180,35 +183,26 @@ app.post('/list-app/get-access-token', async (req,res) => {
     //if db err
   } catch (err) {
     console.error(err.message)
-    res.status(500).json({status: err.message});
+    res.status(500).json({status: 'err fetching from db'});
   }  
 })
 
+//delete access token
 app.post('/list-app/logout', async (req,res) => {
   //takes in token
-  const { refreshToken } = req.body
+  const { id } = req.body;
 
   //if null
-  if (!refreshToken) return res.status(403).json({status: 'no token recieved'})
-
-  //validates token
-  jwt.verify(refreshToken,process.env.REFRESH_TOKEN_SECRET,async (err,data)=>{
-    //err
-    if (err) {
-      console.log(err)
-      return res.status(403).json({status: 'invalid token'});
-    }
-
-    //else del from database
-    try {
-      await delRefreshToken(promisePool,data.id);
-      return res.status(201).json('success');
-    } catch(err) {
-      console.error(err.message);
-      res.status(500).json({status: err.message});
-    }
-  });
-
+  if (!id) return res.status(403).json({status: 'no id recieved'})
+  
+  //else del from database
+  try {
+    await delRefreshToken(promisePool,id);
+    return res.status(201).json('success');
+  } catch(err) {
+    console.error(err.message);
+    res.status(500).json({status: err.message});
+  }
 })
 
 //get lists

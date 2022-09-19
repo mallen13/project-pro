@@ -31,6 +31,7 @@ const deleteUser = async () => {
     await promisePool.query('DELETE FROM list_items');
     await promisePool.query('DELETE FROM list_names');
     await promisePool.query('DELETE FROM users');
+    await promisePool.query('DELETE FROM tokens');
     await promisePool.query('ALTER TABLE users AUTO_INCREMENT = 0');
     await promisePool.query('ALTER TABLE list_names AUTO_INCREMENT = 0');
 }
@@ -46,6 +47,7 @@ const promisePool = pool.promise();
 
 jest.spyOn(global.console, 'error').mockImplementation( ()=> null);
 
+afterAll( async () => await deleteUser() )
 
 describe('GET /list-app/status', ()=>{
     it('responds w/ JSON message and 200 code', async ()=> {
@@ -173,7 +175,7 @@ describe('POST /list-app/register', ()=> {
 describe('POST /list-app/login', () => {
 
     //create user
-    beforeAll( async ()=> await createUser());
+    beforeAll( async () => await createUser());
 
     it('returns 200 with valid authentication', async ()=> {
         const resp = await request(server)
@@ -210,7 +212,7 @@ describe('POST /list-app/login', () => {
         expect(resp.body).toEqual({status: 'invalid username or password'});
     });
 
-    it('returns an err w/ sql err', async ()=> {
+    it('returns an err w/ sql err trying to query user', async ()=> {
 
       //change column name to trigger query err
       await promisePool.query('ALTER TABLE users RENAME COLUMN email TO login');
@@ -228,18 +230,129 @@ describe('POST /list-app/login', () => {
         expect(resp.statusCode).toBe(500);
         expect(resp.body).toHaveProperty('status');
     });
+  
+    it('returns an err w/ sql err trying to save refresh token', async ()=> {
 
-    
+        //change column name to trigger query err
+        await promisePool.query('ALTER TABLE tokens RENAME COLUMN token TO tolkien');
+  
+        const resp = await request(server)
+        .post('/list-app/login')
+        .send({
+            email: 'test@test.com',
+            password: 'test12345'
+        })
+  
+        //change back
+        await promisePool.query('ALTER TABLE tokens RENAME COLUMN tolkien TO token');
+
+        expect(resp.statusCode).toBe(500);
+        expect(resp.body).toEqual({status: 'err saving refresh token to DB'});
+      });
 })
 
-describe('POST /list-app/get-refresh-token', ()=> {
+describe('POST /list-app/get-access-token', ()=> {
+    //if null 
+    it('returns 403 without a refresh token', async ()=> {
+        const resp = await request(server)
+            .post('/list-app/get-access-token')
 
+        expect(resp.statusCode).toBe(403)
+        expect(resp.body).toEqual({status: 'no token recieved'})
+    });
+
+    //if not in db
+    it('returns 403 without a refresh token', async ()=> {
+        const resp = await request(server)
+            .post('/list-app/get-access-token')
+            .send({refreshToken: 'abc'})
+
+        expect(resp.statusCode).toBe(500)
+        expect(resp.body).toEqual({status: "token doesn't exist"})
+    });
+
+    //if invalid token -> 403 
+    it('returns 500 if token not in db', async ()=> {
+        const resp = await request(server)
+            .post('/list-app/get-access-token')
+            .send({refreshToken: '12345'})
+
+        expect(resp.statusCode).toBe(500)
+        expect(resp.body).toEqual({status: "token doesn't exist"})
+    });
+
+    //if token verify err
+    it('returns 403 without token verify err', async ()=> {
+        await promisePool.query('INSERT INTO tokens(token,id) VALUES (12345,1)');
+        const resp = await request(server)
+            .post('/list-app/get-access-token')
+            .send({refreshToken: 12345})
+
+        expect(resp.statusCode).toBe(403)
+
+        await promisePool.query('DELETE FROM tokens');
+    });
+
+    //if valid token
+    it('returns 200 with valid token', async ()=> {
+        await promisePool.query('INSERT INTO TOKENS(token,id) VALUES("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IkRlbW8gVXNlciIsImVtYWlsIjoiZGVtb0BkZW1vLmNvbSIsImlhdCI6MTY2MzUzMTc2OH0.snI2x8Y94KW62aW5T91vnLfL_EnIP56Hmt3IbySkkGk",1)');
+        const resp = await request(server)
+            .post('/list-app/get-access-token')
+            .send({refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IkRlbW8gVXNlciIsImVtYWlsIjoiZGVtb0BkZW1vLmNvbSIsImlhdCI6MTY2MzUzMTc2OH0.snI2x8Y94KW62aW5T91vnLfL_EnIP56Hmt3IbySkkGk'})
+
+        expect(resp.statusCode).toBe(201)
+        expect(resp.body).toHaveProperty('token')
+
+        await promisePool.query('DELETE FROM tokens');
+    });
+
+    //if db err -> 500 'err removing from db'
+    it('returns 500 with db err', async ()=> {
+        await promisePool.query('ALTER TABLE tokens RENAME COLUMN token TO tolkien');
+        const resp = await request(server)
+            .post('/list-app/get-access-token')
+            .send({refreshToken: '12345'})
+
+        expect(resp.statusCode).toBe(500)
+        expect(resp.body).toEqual({status: 'err fetching from db'})
+
+        await promisePool.query('ALTER TABLE tokens RENAME COLUMN tolkien TO token');
+    });
 })
 
 describe('POST /list-app/logout', ()=> {
-    //no token
-    //invalid token
+    //no token -> 403 'no token recieved'
+    it('returns 403 with no id', async ()=> {
+        const resp = await request(server)
+            .post('/list-app/logout')
+
+        expect(resp.statusCode).toBe(403)
+        expect(resp.body).toEqual({status: 'no id recieved'})
+    });
+
+    //success
+    it('returns 201 with successful remove', async ()=> {
+        const resp = await request(server)
+            .post('/list-app/logout')
+            .send({id: 1})
+
+        expect(resp.statusCode).toBe(201)
+        expect(resp.body).toEqual('success')
+
+    });
+
     //db err
+    it('returns 500 with DB error', async ()=> {
+        await promisePool.query('ALTER TABLE tokens RENAME TO tolkiens');
+        const resp = await request(server)
+            .post('/list-app/logout')
+            .send({id: 12345})
+
+        expect(resp.statusCode).toBe(500)
+        expect(resp.body).toHaveProperty('status')
+
+        await promisePool.query('ALTER TABLE tolkiens RENAME TO tokens')
+    });
 })
 
 describe('GET /list-app/get-lists', ()=> {

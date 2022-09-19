@@ -18,12 +18,12 @@
 #     "password": "Test12345!"
 # }
 
-# POST http://localhost:8080/list-app/token HTTP/1.1
-# content-type: application/json
+POST http://localhost:8080/list-app/token HTTP/1.1
+content-type: application/json
 
-# {
-#     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IkRlbW8gVXNlciIsImVtYWlsIjoiZGVtb0BkZW1vLmNvbSIsImlhdCI6MTY2MzUzMTc2OH0.snI2x8Y94KW62aW5T91vnLfL_EnIP56Hmt3IbySkkGk"
-# }
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IkRlbW8gVXNlciIsImVtYWlsIjoiZGVtb0BkZW1vLmNvbSIsImlhdCI6MTY2MzUzMTc2OH0.snI2x8Y94KW62aW5T91vnLfL_EnIP56Hmt3IbySkkGk"
+}
 
 # POST http://localhost:8080/list-app/logout HTTP/1.1
 # content-type: application/json
