@@ -28,7 +28,6 @@ const List = ({
        
         //post to server
         const url = 'https://mattallen.tech/list-app/delete-list';
-        
         //const url = 'http://localhost:8080/list-app/delete-list';
         let post;
 

@@ -1,5 +1,5 @@
 import { useEffect,useState } from 'react';
-import { getData } from './functions/functions';
+import { getData,postData } from './functions/functions';
 import styles from './App.module.css';
 import Alert from './Alert/Alert';
 import LoginPage from './Public/LoginPage';
@@ -13,18 +13,29 @@ function App() {
   //state
   const [alert, setAlert] = useState({display: 'none', message: ''})
   const [lists,setLists] = useState([]);
-  const [user,setUser] = useState(null);
+  const [user, setUser] = useState( async ()=> {
+    //get user from local storage
+    const storedUser = JSON.parse(localStorage.getItem('list-app-user'));
+    //exchange refresh token for access token
+    if (storedUser) {
+    const url = 'https://mattallen.tech/list-app/get-access-token'; 
+    const data = await postData({refreshToken: storedUser.rToken},url);
+    if (data.token) setUser({
+      aToken: data.token,
+      id: storedUser.id,
+      name: storedUser.name,
+      email: storedUser.email
+    })
+    return storedUser
+    }
+    
+    return null
+  });
 
   //use effect 
-   //check for jwt, set isAuth
-   //context for user?
-
-
   useEffect( ()=> {
-    //check for token
-
     //fetch lists
-    const fetchData = async () => {
+    const fetchLists = async () => {
       const url = 'https://mattallen.tech/list-app/get-lists';
       //const url = 'http://localhost:8080/list-app/get-lists';
       let data;
@@ -32,10 +43,11 @@ function App() {
       //show loading after 1 second
       setTimeout( ()=> !data  ? setLists('fetching') : null ,1000);
 
-      data = await getData(url,user.token);
+      data = await getData(url,user.aToken);
 
       //if bad token, remove user
       if (data === 'invalid token') {
+        //check for refresh token, get new access token if so
         setAlert({display: 'flex', message: 'Login Expired. Please Sign In again.'})
         setUser(null);
       }
@@ -47,16 +59,16 @@ function App() {
       if (data.lists.length > 0) setLists(data.lists);
       if (data.lists.length === 0) setLists('no lists');
     }
-    
-    //if token, fetch lists
-    if (user)
-      if (lists === 'fetching' || lists.length === 0) fetchData();
+
+    if (user.aToken) {
+      if (lists === 'fetching' || lists.length === 0) fetchLists();
+    }
   
   },[lists,user])
 
   //return
   return (
-    !user
+    !user.aToken
       ? 
         <>
            <Alert 
@@ -77,7 +89,7 @@ function App() {
 
             <NewListInput 
               lists={lists} 
-              token={user.token} 
+              token={user.aToken} 
               setLists={setLists} 
               setUser={setUser}
               setParentAlert={setAlert}
@@ -85,7 +97,7 @@ function App() {
             <ListGrid 
               lists={lists} 
               setLists={setLists} 
-              token={user.token}
+              token={user.aToken}
               setUser={setUser}
               setParentAlert={setAlert} />
           </div>

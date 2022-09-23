@@ -38,8 +38,20 @@ const LoginPage = ({setUser}) => {
       //success
       if (data.accessToken) {
         setDemoLoggingIn(false);
+
+        //store refresh token
+        const storedUser = {
+          rToken: data.refreshToken,
+          id: data.id,
+          name: data.user.name,
+          email: data.user.email
+        }
+      
+        localStorage.setItem('list-app-user',JSON.stringify(storedUser));
+
         setUser({
-          token: data.accessToken,
+          aToken: data.accessToken,
+          id: data.id,
           email: data.user.email,
           name: data.user.name
         });
@@ -81,11 +93,20 @@ const LoginPage = ({setUser}) => {
         loginPasswordRef.current.value = '';
         setLoginCreds({email: '', password: ''});
 
-        //store jwt
+        //store refresh token
+        const storedUser = {
+          rToken: data.refreshToken,
+          id: data.id,
+          name: data.user.name,
+          email: data.user.email
+        }
+      
+        localStorage.setItem('list-app-user',JSON.stringify(storedUser));
 
         setToast({display: 'none', message: ''});
         setUser({
-          token: data.accessToken,
+          aToken: data.accessToken,
+          id: data.id,
           email: data.user.email,
           name: data.user.name
         });

@@ -34,7 +34,7 @@ export const isValidPassword = password => {
     return true;
 }
 
-export const postData = async (body,url,token) => {
+export const postData = async (body,url,token ='') => {
     try {
         const settings = {
             method: 'POST',
@@ -45,11 +45,15 @@ export const postData = async (body,url,token) => {
             body: JSON.stringify(body)
         }
         const resp = await fetch(url, settings);
-
-        if (resp.status === 403) return 'invalid token';
+        if (resp.status === 403) {
+            console.log(await resp.json());
+            return 'invalid token';
+        }
         const data = await resp.json();
+        console.log(data)
         return data;
     } catch (err) {
+        console.log(err)
         return 'error';
     }
 }
