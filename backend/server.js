@@ -119,6 +119,7 @@ app.post('/list-app/login', async (req,res) => {
           const refreshToken = jwt.sign(
             userPayload,
             process.env.REFRESH_TOKEN_SECRET,
+            {expiresIn: '60 days'}
           );
 
           //save token to DB
@@ -131,6 +132,7 @@ app.post('/list-app/login', async (req,res) => {
           //return user/tokens
           return res.status(200).json({
             user: {name: user[0].name, email: user[0].email},
+            id: user[0].user_id,
             accessToken: accessToken,
             refreshToken: refreshToken
           });
@@ -169,9 +171,14 @@ app.post('/list-app/get-access-token', async (req,res) => {
       if (err) {
         return res.sendStatus(403);
       }
+
       //sign access token
       const accessToken = jwt.sign(
-        user,
+        {
+          id: user.id,
+          name: user.name,
+          email: user.email
+        },
         process.env.ACCESS_TOKEN_SECRET,
         {expiresIn: '10m'}
       );
