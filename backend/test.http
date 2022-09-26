@@ -18,11 +18,11 @@
 #     "password": "Test12345!"
 # }
 
-POST http://localhost:8080/list-app/token HTTP/1.1
+POST https://mattallen.tech/list-app/get-access-token HTTP/1.1
 content-type: application/json
 
 {
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IkRlbW8gVXNlciIsImVtYWlsIjoiZGVtb0BkZW1vLmNvbSIsImlhdCI6MTY2MzUzMTc2OH0.snI2x8Y94KW62aW5T91vnLfL_EnIP56Hmt3IbySkkGk"
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6Ik1hdHQgQWxsZW4iLCJlbWFpbCI6ImJyb21hdHRhbGxlbkBnbWFpbC5jb20iLCJpYXQiOjE2NjQxNTg2NDksImV4cCI6MTY2OTM0MjY0OX0.L7kUGFWOaACTlvQYow46R3rcRUCtgBmajtuAytFkuaM"
 }
 
 # POST http://localhost:8080/list-app/logout HTTP/1.1
