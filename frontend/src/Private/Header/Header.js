@@ -13,8 +13,7 @@ const Header = ({user,setLists,setUser}) => {
   const signOut = async () => {
     //remove stored token and tokens delete from DB
     const url = 'https://mattallen.tech/list-app/logout'; 
-    const data = await postData({id: user.id},url);
-    console.log(data);
+    await postData({id: user.id},url);
     localStorage.removeItem('list-app-user');
     setUser({aToken: null});
     setLists([]);

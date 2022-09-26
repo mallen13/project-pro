@@ -18,17 +18,18 @@ function App() {
     const storedUser = JSON.parse(localStorage.getItem('list-app-user'));
     //exchange refresh token for access token
     if (storedUser) {
-    const url = 'https://mattallen.tech/list-app/get-access-token'; 
-    const data = await postData({refreshToken: storedUser.rToken},url);
-    if (data.token) setUser({
-      aToken: data.token,
-      id: storedUser.id,
-      name: storedUser.name,
-      email: storedUser.email
-    })
-    return storedUser
+      const url = 'https://mattallen.tech/list-app/get-access-token'; 
+      //const url = 'http://localhost:8080/list-app/get-access-token';
+      const data = await postData({refreshToken: storedUser.rToken},url);
+      if (data.token) setUser({
+        aToken: data.token,
+        id: storedUser.id,
+        name: storedUser.name,
+        email: storedUser.email
+      })
+      return storedUser
     }
-    
+  
     return null
   });
 
@@ -36,8 +37,8 @@ function App() {
   useEffect( ()=> {
     //fetch lists
     const fetchLists = async () => {
-      const url = 'https://mattallen.tech/list-app/get-lists';
-      //const url = 'http://localhost:8080/list-app/get-lists';
+      //const url = 'https://mattallen.tech/list-app/get-lists';
+      const url = 'http://localhost:8080/list-app/get-lists';
       let data;
 
       //show loading after 1 second

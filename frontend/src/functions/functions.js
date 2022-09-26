@@ -45,12 +45,10 @@ export const postData = async (body,url,token ='') => {
             body: JSON.stringify(body)
         }
         const resp = await fetch(url, settings);
-        if (resp.status === 403) {
-            console.log(await resp.json());
+        if (resp.status === 403)
             return 'invalid token';
-        }
+    
         const data = await resp.json();
-        console.log(data)
         return data;
     } catch (err) {
         console.log(err)
