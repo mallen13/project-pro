@@ -1,5 +1,5 @@
 import { useEffect,useState } from 'react';
-import { getData,postData } from './functions/functions';
+import { getData,getStoredUser } from './functions/functions';
 import styles from './App.module.css';
 import Alert from './Alert/Alert';
 import LoginPage from './Public/LoginPage';
@@ -14,31 +14,18 @@ function App() {
   const [alert, setAlert] = useState({display: 'none', message: ''})
   const [lists,setLists] = useState([]);
   const [user, setUser] = useState( async ()=> {
-    //get user from local storage
-    const storedUser = JSON.parse(localStorage.getItem('list-app-user'));
-    //exchange refresh token for access token
-    if (storedUser) {
-      const url = 'https://mattallen.tech/list-app/get-access-token'; 
-      //const url = 'http://localhost:8080/list-app/get-access-token';
-      const data = await postData({refreshToken: storedUser.rToken},url);
-      if (data.token) setUser({
-        aToken: data.token,
-        id: storedUser.id,
-        name: storedUser.name,
-        email: storedUser.email
-      })
-      return storedUser
-    }
-  
-    return null
+    const storedUser = await getStoredUser();
+    if (storedUser !== 'no user') 
+      setUser(storedUser)
+    return storedUser
   });
 
   //use effect 
   useEffect( ()=> {
     //fetch lists
     const fetchLists = async () => {
-      //const url = 'https://mattallen.tech/list-app/get-lists';
-      const url = 'http://localhost:8080/list-app/get-lists';
+      const url = 'https://mattallen.tech/list-app/get-lists';
+      //const url = 'http://localhost:8080/list-app/get-lists';
       let data;
 
       //show loading after 1 second
@@ -50,7 +37,7 @@ function App() {
       if (data === 'invalid token') {
         //check for refresh token, get new access token if so
         setAlert({display: 'flex', message: 'Login Expired. Please Sign In again.'})
-        setUser(null);
+        setUser({aToken: null});
       }
 
       if (!data.lists) {

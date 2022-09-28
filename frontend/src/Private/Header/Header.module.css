@@ -5,6 +5,7 @@ header {
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    box-shadow: 0px 2px 5px #aaa;
 }
 
 header button {

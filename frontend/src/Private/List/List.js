@@ -1,5 +1,5 @@
 import React, { useRef,useState } from 'react';
-import { postData } from '../../functions/functions';
+import { getStoredUser,postData } from '../../functions/functions';
 import ListView from './ListView';
 import Alert from '../../Alert/Alert';
 
@@ -46,9 +46,17 @@ const List = ({
 
             setLists(listsClone);
             setToast({display: 'flex', message: `Deleted List: ${list.title}`});
+
         } else if (post === 'invalid token') {
+            const storedUser = await getStoredUser();
+            if (storedUser !== 'no user')  {
+                setUser(storedUser);
+                return deleteList();
+            }
+        
             setUser(null);
             setParentAlert({display: true, message: 'Login Expired. Please Sign In again.'});
+
         } else {
             setAlert({display: 'flex', message: 'System error. Please try again later.'})
         }   
@@ -86,6 +94,12 @@ const List = ({
 
             setToast({display: 'flex', message: `Removed item "${item}" from ${list.title}`});
         } else if (post === 'invalid token') {
+            const storedUser = await getStoredUser();
+            if (storedUser !== 'no user')  {
+                setUser(storedUser);
+                return deleteListItem();
+            }
+        
             setUser(null);
             setParentAlert({display: true, message: 'Login Expired. Please Sign In again.'});
         } else {
@@ -131,8 +145,14 @@ const List = ({
         setInputVal('');
         inputRef.current.value = '';
     } else if (post === 'invalid token') {
-        setUser(null);
-        setParentAlert({display: true, message: 'Login Expired. Please Sign In again.'});
+        const storedUser = await getStoredUser();
+            if (storedUser !== 'no user')  {
+                setUser(storedUser);
+                return addItem();
+            }
+        
+            setUser(null);
+            setParentAlert({display: true, message: 'Login Expired. Please Sign In again.'});
     } else {
         setAlert({display: 'flex', message: 'System error. Please try again later.'})
         inputRef.current.focus();

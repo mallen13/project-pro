@@ -242,6 +242,7 @@ app.post('/list-app/delete-list', authenticateToken, async (req,res) => {
   try {
    await deleteList(promisePool,list,req.user.id);
    res.status(200).json('success');
+ 
   } catch (err) {
     console.error(err.message);
     res.status(500).json({status: err.message});

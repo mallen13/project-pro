@@ -93,7 +93,7 @@ describe('signout <App />', ()=> {
   })
 })
 
-describe('lists', ()=> {
+describe.only('lists', ()=> {
 
   const list = {
     title: 'to-do list',
@@ -278,7 +278,7 @@ describe('lists', ()=> {
 
   })
 
-  it('shows an error when bad auth on list removal', async () => {
+  it.only('shows an error when bad auth on list removal', async () => {
     //arrange
     mockFetch({
      accessToken: 'token',
@@ -316,7 +316,7 @@ describe('lists', ()=> {
    expect(errMsg).toBeInTheDocument();
   });
 
-  it('shows an error when bad auth on list item add', async ()=> {
+  it.skip('shows an error when bad auth on list item add', async ()=> {
     //arrange
     mockFetch({
       accessToken: 'token',
@@ -356,7 +356,7 @@ describe('lists', ()=> {
     expect(errMsg).toBeInTheDocument();
   })
 
-  it('shows an error when bad auth on list item removal', async ()=> {
+  it.skip('shows an error when bad auth on list item removal', async ()=> {
      //arrange
      mockFetch({
       accessToken: 'token',

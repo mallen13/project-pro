@@ -1,5 +1,5 @@
 import { useRef,useState } from 'react';
-import { postData } from '../../functions/functions';
+import { getStoredUser,postData } from '../../functions/functions';
 import NewListInputView from './newListinputView';
 import Alert from '../../Alert/Alert';
 import Toast from '../../Toast/Toast';
@@ -48,7 +48,14 @@ const NewListInput = ({lists,setLists,token,setUser,setParentAlert}) => {
             //clear input
             inputRef.current.value = '';
             setInput('');
+            
         } else if (data === 'invalid token') {
+            const storedUser = await getStoredUser();
+            if (storedUser !== 'no user')  {
+                setUser(storedUser);
+                return addList();
+            }
+              
             setUser(null);
             setParentAlert({display: 'flex', message: 'Login Expired. Please Sign In again.'});
         } else {

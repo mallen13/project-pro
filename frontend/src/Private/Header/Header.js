@@ -10,13 +10,14 @@ const Header = ({user,setLists,setUser}) => {
 
   const toggleMenu = () => menuIsOpen ? setMenuIsOpen(false) : setMenuIsOpen(true);
 
-  const signOut = async () => {
+  const signOut = () => {
     //remove stored token and tokens delete from DB
-    const url = 'https://mattallen.tech/list-app/logout'; 
-    await postData({id: user.id},url);
-    localStorage.removeItem('list-app-user');
     setUser({aToken: null});
     setLists([]);
+    localStorage.removeItem('list-app-user');
+
+    const url = 'https://mattallen.tech/list-app/logout'; 
+    postData({id: user.id},url);
   }
 
   return (
