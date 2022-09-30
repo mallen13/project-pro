@@ -5,6 +5,7 @@
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 1px 5px rgb(193, 193, 193);
+    min-height: 100px;
 } 
 
 .listContainer h2 {

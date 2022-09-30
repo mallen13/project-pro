@@ -1,6 +1,6 @@
 import { act, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom'
-import { mockFetch } from '../../functions/testHelpers';
+import { mockFetch,setLocalStorage } from '../../functions/testHelpers';
 import userEvent from '@testing-library/user-event';
 import NewListInput from './NewListInput';
 
@@ -10,6 +10,39 @@ describe('new list input', ()=> {
 
     //reset fetch after each
     afterAll(()=> global.fetch = unmockedFetch);
+
+    it('gets a new access token on unauth login', async () => {
+        //set local storage -> set a user/refresh token
+        setLocalStorage();
+  
+        //mock fetch to invalid token
+        mockFetch(null,403);
+
+        //arrange
+        render(<NewListInput lists={null} setLists={jest.fn()} setUser={jest.fn()}/>);
+        
+        //act
+        const input = screen.getByPlaceholderText('Project Title');
+        const submitBtn = screen.getByText(/new/i);
+        userEvent.type(input,'to-do list');
+        userEvent.click(submitBtn);
+
+        //fetch returns token
+        mockFetch({
+            token: '6789',
+            user: {
+                email: 'email',
+                name: 'name'
+            }
+        })
+
+        //assert
+        const responseMsg = await screen.findByText(/system error/i);
+        expect(responseMsg).toBeInTheDocument();
+
+        //clear local storage
+        window.localStorage.clear();
+    })
 
     it('does not submit without input', () => {
         //arrange

@@ -54,7 +54,7 @@ const List = ({
                 return deleteList();
             }
         
-            setUser(null);
+            setUser({aToken: null});
             setParentAlert({display: true, message: 'Login Expired. Please Sign In again.'});
 
         } else {
@@ -100,7 +100,7 @@ const List = ({
                 return deleteListItem();
             }
         
-            setUser(null);
+            setUser({aToken: null});
             setParentAlert({display: true, message: 'Login Expired. Please Sign In again.'});
         } else {
             setAlert({display: 'flex', message: 'System error. Please try again later.'});
@@ -151,7 +151,7 @@ const List = ({
                 return addItem();
             }
         
-            setUser(null);
+            setUser({aToken: null});
             setParentAlert({display: true, message: 'Login Expired. Please Sign In again.'});
     } else {
         setAlert({display: 'flex', message: 'System error. Please try again later.'})

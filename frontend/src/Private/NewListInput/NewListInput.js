@@ -56,7 +56,7 @@ const NewListInput = ({lists,setLists,token,setUser,setParentAlert}) => {
                 return addList();
             }
               
-            setUser(null);
+            setUser({aToken: null});
             setParentAlert({display: 'flex', message: 'Login Expired. Please Sign In again.'});
         } else {
             setAlert({display: 'flex', message: 'System error. Please try again later.'});

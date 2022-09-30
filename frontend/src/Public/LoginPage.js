@@ -183,7 +183,7 @@ const LoginPage = ({setUser}) => {
     }
 
   return (
-    <div className={styles.pageContainer}>
+    <div className={styles.pageContainer} >
         <Alert 
           display={alert.display} 
           setDisplay={setAlert} 

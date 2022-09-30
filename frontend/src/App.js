@@ -15,10 +15,9 @@ function App() {
   const [lists,setLists] = useState([]);
   const [user, setUser] = useState( async ()=> {
     const storedUser = await getStoredUser();
-    if (storedUser !== 'no user') 
-      setUser(storedUser)
-    return storedUser
-  });
+    if (storedUser !== 'no user')
+      setUser(storedUser);
+  }); 
 
   //use effect 
   useEffect( ()=> {
@@ -56,8 +55,8 @@ function App() {
 
   //return
   return (
-    !user.aToken
-      ? 
+    !JSON.parse(localStorage.getItem('list-app-user')) && !user.aToken
+      ?   
         <>
            <Alert 
             display={alert.display} 

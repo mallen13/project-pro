@@ -25,7 +25,7 @@ const LoginPageView = ({
 
         <div className={styles.container}>
             {/* login input */}
-            <div className={styles.formContainer}>
+            <form className={styles.formContainer} onSubmit={e => e.preventDefault()}>
 
                 <div className={styles.logoContainer}>
                     <DoorOpenFill size='45' color='#32a2ad' />
@@ -36,13 +36,16 @@ const LoginPageView = ({
                 {/* Email */}
                 <label htmlFor='loginEmail'>Email</label>
                 <input  
-                    onChange={ (e)=> setLoginCreds( prevState => ({
+                    onChange={ (e)=> 
+                        setLoginCreds( prevState => ({
                         ...prevState,
                         email: e.target.value
-                    }))}
+                        }))
+                    }
                     ref={loginEmailRef}
                     name='loginEmail'
                     placeholder='Email Address'
+                    autoComplete='email'
                 />
 
                 {/* Password */}
@@ -55,11 +58,12 @@ const LoginPageView = ({
                     }))}
                     ref={loginPasswordRef}
                     name='lognPW'
+                    autoComplete='current-password'
                     placeholder='Password'
                 />
 
                 {/* Login */}
-                <button onClick={login} disabled={isLoggingIn}>
+                <button onClick={login} disabled={isLoggingIn} type='submit'>
                     {isLoggingIn ? 'Logging In' : 'Login'}
                 </button>
 
@@ -71,12 +75,12 @@ const LoginPageView = ({
                 >
                     {demoLoggingIn ? 'Logging In' : 'Demo User (Try me!)'}
                 </button>
-            </div>
+            </form>
             
             <h2 className={styles.formDivider}>or...</h2>
 
             {/* register input */}
-            <div className={styles.formContainer}>
+            <form className={styles.formContainer} onSubmit={ e => e.preventDefault()}>
                 <div className={styles.logoContainer}>
                     <PencilFill size='45' color='#32a2ad' />
                 </div>
@@ -94,6 +98,7 @@ const LoginPageView = ({
                     ref={registerNameRef}
                     name='registerName'
                     placeholder='Full Name'
+                    autoComplete='name'
                 />
 
                 {/* Email */}
@@ -105,6 +110,7 @@ const LoginPageView = ({
                     }))}
                     ref={registerEmailRef}
                     name='registerEmail'
+                    autoComplete='email'
                     placeholder='Email Address'
                 />
 
@@ -116,6 +122,7 @@ const LoginPageView = ({
                         password: e.target.value
                     }))}
                     ref={registerPasswordRef}
+                    autoComplete='new-password'
                     name='registerPW'
                     placeholder='Password'
                 />
@@ -128,7 +135,7 @@ const LoginPageView = ({
                     {isRegistering ? 'Registering' : 'Register'}
                 </button>
        
-            </div>
+            </form>
             
         </div>
     </>

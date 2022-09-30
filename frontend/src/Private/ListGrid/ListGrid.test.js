@@ -1,7 +1,7 @@
 import { render,screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import { mockFetch } from '../../functions/testHelpers';
+import { mockFetch,setLocalStorage } from '../../functions/testHelpers';
 import ListGrid from './ListGrid';
 
 const listArr =  [
@@ -80,6 +80,38 @@ describe('list grid', ()=> {
 })
 
 describe('list', ()=> {
+
+  it('gets a new access token on unauth login when deleting', async () => {
+    //set local storage -> set a user/refresh token
+    setLocalStorage();
+
+    //mock fetch to invalid token
+    mockFetch(null,403);
+
+    //arrange
+    render(<ListGrid lists={listArr} setLists={jest.fn()} setUser={jest.fn()} />);
+    
+    //act
+    const delBtn = screen.getAllByLabelText('delete list')[1];
+    userEvent.click(delBtn);
+
+    //fetch returns token
+    mockFetch({
+      token: '6789',
+      user: {
+          email: 'email',
+          name: 'name'
+      }
+    })
+
+    //assert
+    const responseMsg = await screen.findByText(/system error/i);
+    expect(responseMsg).toBeInTheDocument();
+
+    //clear local storage
+    window.localStorage.clear();
+  })
+
   it('deletes a list', async () => {
    const listArr = makeList();
 
@@ -151,6 +183,37 @@ describe('list', ()=> {
  
   });
 
+  it('gets a new access token on unauth login when adding list item', async () => {
+    //set local storage -> set a user/refresh token
+    setLocalStorage();
+
+    //mock fetch to invalid token
+    mockFetch(null,403);
+
+    //arrange
+    render(<ListGrid lists={listArr} setLists={jest.fn()} setUser={jest.fn()} />);
+    
+    //act
+    const delBtn = screen.getAllByLabelText('delete list item')[0];
+    userEvent.click(delBtn);
+
+    //fetch returns token
+    mockFetch({
+      token: '6789',
+      user: {
+          email: 'email',
+          name: 'name'
+      }
+    })
+
+    //assert
+    const responseMsg = await screen.findByText(/system error/i);
+    expect(responseMsg).toBeInTheDocument();
+
+    //clear local storage
+    window.localStorage.clear();
+  })
+
   it('fetch error adding list item', async ()=> {
     const listArr = makeList();
 
@@ -206,6 +269,39 @@ describe('list', ()=> {
     }, {timeout: 3000})
 
   });
+
+  it('gets a new access token on unauth login when removing list item', async () => {
+    //set local storage -> set a user/refresh token
+    setLocalStorage();
+
+    //mock fetch to invalid token
+    mockFetch(null,403);
+
+    //arrange
+    render(<ListGrid lists={listArr} setLists={jest.fn()} setUser={jest.fn()} />);
+    
+    //act
+    const input = screen.getAllByLabelText('new list item input')[0];
+    const addBtn = screen.getAllByText('Add')[0];
+    userEvent.type(input,'item1');
+    userEvent.click(addBtn);
+
+    //fetch returns token
+    mockFetch({
+      token: '6789',
+      user: {
+          email: 'email',
+          name: 'name'
+      }
+    })
+
+    //assert
+    const responseMsg = await screen.findByText(/system error/i);
+    expect(responseMsg).toBeInTheDocument();
+
+    //clear local storage
+    window.localStorage.clear();
+  })
 
   it('fetch error deleting list item', async ()=> {
     //arrange

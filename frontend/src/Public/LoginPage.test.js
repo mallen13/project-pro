@@ -8,7 +8,7 @@ import { act } from 'react-dom/test-utils';
 describe('login page', ()=> {
 
     //get fetch before mock
-    const unmockedFetch = global.fetch;
+    const unmockedFetch = global.fetch
 
     //reset fetch after each
     afterAll(()=> global.fetch = unmockedFetch);
