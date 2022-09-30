@@ -4,6 +4,8 @@ Create Projects. Add Tasks. Get Organized.
 ## About
    Fullstack CRUD web application built for creating and saving multiple lists of items. The lists can be deleted, and list items can be created or removed as needed. The frontend was created with React and the backend was build using Node/Express and MySQL.
 
+   JWT's are utilized to allow persistent login's using localstorage.
+
    The app can also be added to homescreen to be used as online-only PWA.
 
    View the live application here: https://mallen13.github.io/project-pro/
@@ -28,9 +30,7 @@ Create Projects. Add Tasks. Get Organized.
    Over time, the application will continue to be improved as far as both function and style. Some future goals and ideas are:
    
    -implement lightmode and dark mode
-   -storing of tokens for persistent logins
    -use context or another state management tool to store auth instead of prop drilling
-   -implementing refresh tokens
    -seek user confirmation before deleting lists to avoid accidents  
    -implement frontend caching of lists in browser storage to reduce api calls  
    -allow users to update list names  
