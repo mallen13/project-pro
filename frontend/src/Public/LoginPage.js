@@ -48,13 +48,13 @@ const LoginPage = ({setUser}) => {
         }
       
         localStorage.setItem('list-app-user',JSON.stringify(storedUser));
-
         setUser({
           aToken: data.accessToken,
           id: data.id,
           email: data.user.email,
           name: data.user.name
         });
+
         return;
      }
 

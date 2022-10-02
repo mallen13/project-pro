@@ -50,7 +50,7 @@ const List = ({
         } else if (post === 'invalid token') {
             const storedUser = await getStoredUser();
             if (storedUser !== 'no user')  {
-                setUser(storedUser);
+                await setUser(storedUser);
                 return deleteList();
             }
         
@@ -96,7 +96,7 @@ const List = ({
         } else if (post === 'invalid token') {
             const storedUser = await getStoredUser();
             if (storedUser !== 'no user')  {
-                setUser(storedUser);
+                await setUser(storedUser);
                 return deleteListItem();
             }
         
@@ -147,7 +147,7 @@ const List = ({
     } else if (post === 'invalid token') {
         const storedUser = await getStoredUser();
             if (storedUser !== 'no user')  {
-                setUser(storedUser);
+                await setUser(storedUser);
                 return addItem();
             }
         

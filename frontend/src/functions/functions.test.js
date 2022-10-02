@@ -1,4 +1,3 @@
-import { render, screen, waitFor } from '@testing-library/react';
 import { getData,postData } from './functions';
 import { mockFetch } from './testHelpers';
 
@@ -47,4 +46,3 @@ test('mock fetch works', async () => {
 })
 
 
-//test helper

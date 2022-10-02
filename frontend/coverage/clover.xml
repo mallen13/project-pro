@@ -1,72 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1664508488854" clover="3.2.0">
-  <project timestamp="1664508488854" name="All files">
-    <metrics statements="246" coveredstatements="236" conditionals="103" coveredconditionals="98" methods="50" coveredmethods="50" elements="399" coveredelements="384" complexity="0" loc="246" ncloc="246" packages="6" files="7" classes="7"/>
+<coverage generated="1664745133886" clover="3.2.0">
+  <project timestamp="1664745133886" name="All files">
+    <metrics statements="184" coveredstatements="182" conditionals="81" coveredconditionals="80" methods="31" coveredmethods="31" elements="296" coveredelements="293" complexity="0" loc="184" ncloc="184" packages="4" files="5" classes="5"/>
     <package name="src">
-      <metrics statements="22" coveredstatements="20" conditionals="22" coveredconditionals="21" methods="5" coveredmethods="5"/>
+      <metrics statements="27" coveredstatements="25" conditionals="24" coveredconditionals="23" methods="5" coveredmethods="5"/>
       <file name="App.js" path="/Users/mattallen/Development/list-app/frontend/src/App.js">
-        <metrics statements="22" coveredstatements="20" conditionals="22" coveredconditionals="21" methods="5" coveredmethods="5"/>
-        <line num="14" count="28" type="stmt"/>
-        <line num="15" count="28" type="stmt"/>
-        <line num="16" count="28" type="stmt"/>
-        <line num="17" count="9" type="stmt"/>
-        <line num="18" count="9" type="cond" truecount="2" falsecount="0"/>
+        <metrics statements="27" coveredstatements="25" conditionals="24" coveredconditionals="23" methods="5" coveredmethods="5"/>
+        <line num="14" count="50" type="stmt"/>
+        <line num="15" count="50" type="stmt"/>
+        <line num="16" count="50" type="stmt"/>
+        <line num="17" count="15" type="stmt"/>
+        <line num="18" count="15" type="cond" truecount="2" falsecount="0"/>
         <line num="19" count="1" type="stmt"/>
-        <line num="23" count="28" type="stmt"/>
-        <line num="25" count="28" type="stmt"/>
-        <line num="26" count="10" type="stmt"/>
-        <line num="31" count="10" type="cond" truecount="2" falsecount="0"/>
-        <line num="33" count="10" type="stmt"/>
-        <line num="36" count="8" type="cond" truecount="1" falsecount="1"/>
-        <line num="38" count="0" type="stmt"/>
+        <line num="23" count="50" type="stmt"/>
+        <line num="25" count="50" type="stmt"/>
+        <line num="26" count="16" type="stmt"/>
+        <line num="31" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="16" type="stmt"/>
+        <line num="36" count="14" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="2" type="stmt"/>
+        <line num="38" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="39" count="0" type="stmt"/>
-        <line num="42" count="8" type="cond" truecount="2" falsecount="0"/>
-        <line num="43" count="5" type="stmt"/>
-        <line num="44" count="5" type="stmt"/>
-        <line num="46" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="47" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="50" count="28" type="cond" truecount="2" falsecount="0"/>
-        <line num="51" count="18" type="cond" truecount="4" falsecount="0"/>
-        <line num="57" count="28" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="42" count="2" type="stmt"/>
+        <line num="43" count="2" type="stmt"/>
+        <line num="44" count="2" type="stmt"/>
+        <line num="47" count="14" type="cond" truecount="2" falsecount="0"/>
+        <line num="48" count="7" type="stmt"/>
+        <line num="49" count="7" type="stmt"/>
+        <line num="51" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="52" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="55" count="50" type="cond" truecount="2" falsecount="0"/>
+        <line num="56" count="28" type="cond" truecount="4" falsecount="0"/>
+        <line num="62" count="50" type="stmt"/>
       </file>
     </package>
     <package name="src.Private.List">
-      <metrics statements="78" coveredstatements="72" conditionals="26" coveredconditionals="23" methods="13" coveredmethods="13"/>
+      <metrics statements="78" coveredstatements="78" conditionals="26" coveredconditionals="26" methods="13" coveredmethods="13"/>
       <file name="List.js" path="/Users/mattallen/Development/list-app/frontend/src/Private/List/List.js">
-        <metrics statements="78" coveredstatements="72" conditionals="26" coveredconditionals="23" methods="13" coveredmethods="13"/>
+        <metrics statements="78" coveredstatements="78" conditionals="26" coveredconditionals="26" methods="13" coveredmethods="13"/>
         <line num="6" count="2" type="stmt"/>
-        <line num="17" count="77" type="stmt"/>
-        <line num="20" count="77" type="stmt"/>
-        <line num="21" count="77" type="stmt"/>
-        <line num="22" count="77" type="stmt"/>
-        <line num="23" count="77" type="stmt"/>
-        <line num="24" count="77" type="stmt"/>
-        <line num="27" count="77" type="stmt"/>
-        <line num="30" count="4" type="stmt"/>
-        <line num="35" count="4" type="stmt"/>
-        <line num="36" count="4" type="stmt"/>
-        <line num="39" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="86" type="stmt"/>
+        <line num="20" count="86" type="stmt"/>
+        <line num="21" count="86" type="stmt"/>
+        <line num="22" count="86" type="stmt"/>
+        <line num="23" count="86" type="stmt"/>
+        <line num="24" count="86" type="stmt"/>
+        <line num="27" count="86" type="stmt"/>
+        <line num="30" count="5" type="stmt"/>
+        <line num="35" count="5" type="stmt"/>
+        <line num="36" count="5" type="stmt"/>
+        <line num="39" count="5" type="cond" truecount="2" falsecount="0"/>
         <line num="40" count="1" type="stmt"/>
         <line num="41" count="1" type="stmt"/>
         <line num="43" count="1" type="stmt"/>
         <line num="44" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="47" count="1" type="stmt"/>
         <line num="48" count="1" type="stmt"/>
-        <line num="50" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="51" count="1" type="stmt"/>
-        <line num="52" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="50" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="51" count="2" type="stmt"/>
+        <line num="52" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="53" count="1" type="stmt"/>
         <line num="54" count="1" type="stmt"/>
-        <line num="57" count="0" type="stmt"/>
-        <line num="58" count="0" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
         <line num="61" count="2" type="stmt"/>
-        <line num="65" count="3" type="stmt"/>
-        <line num="70" count="77" type="stmt"/>
-        <line num="72" count="5" type="stmt"/>
+        <line num="65" count="4" type="stmt"/>
+        <line num="70" count="86" type="stmt"/>
+        <line num="72" count="6" type="stmt"/>
         <line num="73" count="3" type="stmt"/>
-        <line num="77" count="5" type="stmt"/>
-        <line num="79" count="5" type="stmt"/>
-        <line num="82" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="77" count="6" type="stmt"/>
+        <line num="79" count="6" type="stmt"/>
+        <line num="82" count="6" type="cond" truecount="2" falsecount="0"/>
         <line num="83" count="2" type="stmt"/>
         <line num="85" count="2" type="stmt"/>
         <line num="88" count="2" type="stmt"/>
@@ -74,25 +79,25 @@
         <line num="90" count="2" type="stmt"/>
         <line num="93" count="2" type="stmt"/>
         <line num="95" count="2" type="stmt"/>
-        <line num="96" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="97" count="1" type="stmt"/>
-        <line num="98" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="96" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="97" count="2" type="stmt"/>
+        <line num="98" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="99" count="1" type="stmt"/>
         <line num="100" count="1" type="stmt"/>
-        <line num="103" count="0" type="stmt"/>
-        <line num="104" count="0" type="stmt"/>
+        <line num="103" count="1" type="stmt"/>
+        <line num="104" count="1" type="stmt"/>
         <line num="106" count="2" type="stmt"/>
         <line num="107" count="2" type="stmt"/>
-        <line num="111" count="4" type="stmt"/>
-        <line num="115" count="77" type="stmt"/>
-        <line num="118" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="111" count="5" type="stmt"/>
+        <line num="115" count="86" type="stmt"/>
+        <line num="118" count="6" type="cond" truecount="2" falsecount="0"/>
         <line num="119" count="1" type="stmt"/>
         <line num="120" count="1" type="stmt"/>
         <line num="121" count="1" type="stmt"/>
-        <line num="125" count="4" type="stmt"/>
-        <line num="128" count="4" type="stmt"/>
-        <line num="130" count="4" type="stmt"/>
-        <line num="133" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="125" count="5" type="stmt"/>
+        <line num="128" count="5" type="stmt"/>
+        <line num="130" count="5" type="stmt"/>
+        <line num="133" count="5" type="cond" truecount="2" falsecount="0"/>
         <line num="134" count="1" type="stmt"/>
         <line num="135" count="1" type="stmt"/>
         <line num="138" count="1" type="stmt"/>
@@ -101,187 +106,108 @@
         <line num="142" count="1" type="stmt"/>
         <line num="145" count="1" type="stmt"/>
         <line num="146" count="1" type="stmt"/>
-        <line num="147" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="148" count="1" type="stmt"/>
-        <line num="149" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="147" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="148" count="2" type="stmt"/>
+        <line num="149" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="150" count="1" type="stmt"/>
         <line num="151" count="1" type="stmt"/>
-        <line num="154" count="0" type="stmt"/>
-        <line num="155" count="0" type="stmt"/>
+        <line num="154" count="1" type="stmt"/>
+        <line num="155" count="1" type="stmt"/>
         <line num="157" count="2" type="stmt"/>
         <line num="158" count="2" type="stmt"/>
-        <line num="162" count="3" type="stmt"/>
-        <line num="165" count="77" type="stmt"/>
-      </file>
-    </package>
-    <package name="src.Private.ListGrid">
-      <metrics statements="8" coveredstatements="8" conditionals="8" coveredconditionals="8" methods="4" coveredmethods="4"/>
-      <file name="ListGrid.js" path="/Users/mattallen/Development/list-app/frontend/src/Private/ListGrid/ListGrid.js">
-        <metrics statements="8" coveredstatements="8" conditionals="8" coveredconditionals="8" methods="4" coveredmethods="4"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="15" count="36" type="stmt"/>
-        <line num="18" count="36" type="stmt"/>
-        <line num="19" count="27" type="stmt"/>
-        <line num="20" count="48" type="stmt"/>
-        <line num="34" count="36" type="stmt"/>
-        <line num="35" count="27" type="stmt"/>
-        <line num="46" count="36" type="stmt"/>
+        <line num="162" count="4" type="stmt"/>
+        <line num="165" count="86" type="stmt"/>
       </file>
     </package>
     <package name="src.Private.NewListInput">
-      <metrics statements="35" coveredstatements="33" conditionals="14" coveredconditionals="13" methods="4" coveredmethods="4"/>
+      <metrics statements="35" coveredstatements="35" conditionals="14" coveredconditionals="14" methods="4" coveredmethods="4"/>
       <file name="NewListInput.js" path="/Users/mattallen/Development/list-app/frontend/src/Private/NewListInput/NewListInput.js">
-        <metrics statements="35" coveredstatements="33" conditionals="14" coveredconditionals="13" methods="4" coveredmethods="4"/>
+        <metrics statements="35" coveredstatements="35" conditionals="14" coveredconditionals="14" methods="4" coveredmethods="4"/>
         <line num="7" count="2" type="stmt"/>
-        <line num="9" count="93" type="stmt"/>
-        <line num="12" count="93" type="stmt"/>
-        <line num="13" count="93" type="stmt"/>
-        <line num="14" count="93" type="stmt"/>
-        <line num="15" count="93" type="stmt"/>
-        <line num="18" count="93" type="stmt"/>
-        <line num="20" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="111" type="stmt"/>
+        <line num="12" count="111" type="stmt"/>
+        <line num="13" count="111" type="stmt"/>
+        <line num="14" count="111" type="stmt"/>
+        <line num="15" count="111" type="stmt"/>
+        <line num="18" count="111" type="stmt"/>
+        <line num="20" count="9" type="cond" truecount="2" falsecount="0"/>
         <line num="21" count="1" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
-        <line num="27" count="7" type="cond" truecount="4" falsecount="0"/>
+        <line num="27" count="8" type="cond" truecount="4" falsecount="0"/>
         <line num="28" count="1" type="stmt"/>
         <line num="29" count="1" type="stmt"/>
-        <line num="33" count="6" type="stmt"/>
-        <line num="36" count="6" type="stmt"/>
-        <line num="38" count="6" type="stmt"/>
-        <line num="40" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="7" type="stmt"/>
+        <line num="36" count="7" type="stmt"/>
+        <line num="38" count="7" type="stmt"/>
+        <line num="40" count="6" type="cond" truecount="2" falsecount="0"/>
         <line num="41" count="2" type="stmt"/>
         <line num="44" count="2" type="stmt"/>
         <line num="45" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="46" count="2" type="stmt"/>
         <line num="49" count="2" type="stmt"/>
         <line num="50" count="2" type="stmt"/>
-        <line num="52" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="53" count="1" type="stmt"/>
-        <line num="54" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="52" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="53" count="2" type="stmt"/>
+        <line num="54" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="55" count="1" type="stmt"/>
         <line num="56" count="1" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="60" count="0" type="stmt"/>
-        <line num="62" count="2" type="stmt"/>
-        <line num="65" count="4" type="stmt"/>
-        <line num="66" count="4" type="stmt"/>
-        <line num="70" count="93" type="stmt"/>
-      </file>
-    </package>
-    <package name="src.Public">
-      <metrics statements="96" coveredstatements="96" conditionals="32" coveredconditionals="32" methods="20" coveredmethods="20"/>
-      <file name="LoginPage.js" path="/Users/mattallen/Development/list-app/frontend/src/Public/LoginPage.js">
-        <metrics statements="87" coveredstatements="87" conditionals="26" coveredconditionals="26" methods="7" coveredmethods="7"/>
-        <line num="8" count="2" type="stmt"/>
-        <line num="10" count="285" type="stmt"/>
-        <line num="11" count="285" type="stmt"/>
-        <line num="12" count="285" type="stmt"/>
-        <line num="13" count="285" type="stmt"/>
-        <line num="14" count="285" type="stmt"/>
-        <line num="17" count="285" type="stmt"/>
-        <line num="18" count="285" type="stmt"/>
-        <line num="19" count="285" type="stmt"/>
-        <line num="20" count="285" type="stmt"/>
-        <line num="21" count="285" type="stmt"/>
-        <line num="22" count="285" type="stmt"/>
-        <line num="23" count="285" type="stmt"/>
-        <line num="24" count="285" type="stmt"/>
-        <line num="30" count="285" type="stmt"/>
-        <line num="31" count="9" type="stmt"/>
-        <line num="34" count="9" type="stmt"/>
-        <line num="35" count="9" type="stmt"/>
-        <line num="36" count="9" type="stmt"/>
-        <line num="39" count="9" type="cond" truecount="2" falsecount="0"/>
-        <line num="40" count="7" type="stmt"/>
-        <line num="43" count="7" type="stmt"/>
-        <line num="50" count="7" type="stmt"/>
-        <line num="52" count="7" type="stmt"/>
-        <line num="58" count="7" type="stmt"/>
-        <line num="62" count="2" type="stmt"/>
-        <line num="63" count="2" type="stmt"/>
-        <line num="68" count="285" type="stmt"/>
-        <line num="71" count="6" type="cond" truecount="2" falsecount="0"/>
-        <line num="72" count="1" type="stmt"/>
-        <line num="73" count="1" type="stmt"/>
-        <line num="76" count="5" type="cond" truecount="2" falsecount="0"/>
-        <line num="77" count="1" type="stmt"/>
-        <line num="78" count="1" type="stmt"/>
-        <line num="82" count="4" type="stmt"/>
-        <line num="84" count="4" type="stmt"/>
-        <line num="86" count="4" type="stmt"/>
-        <line num="87" count="4" type="stmt"/>
-        <line num="88" count="4" type="stmt"/>
-        <line num="91" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="92" count="1" type="stmt"/>
-        <line num="93" count="1" type="stmt"/>
-        <line num="94" count="1" type="stmt"/>
-        <line num="97" count="1" type="stmt"/>
-        <line num="104" count="1" type="stmt"/>
-        <line num="106" count="1" type="stmt"/>
-        <line num="107" count="1" type="stmt"/>
-        <line num="113" count="1" type="stmt"/>
-        <line num="117" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="118" count="1" type="stmt"/>
-        <line num="119" count="1" type="stmt"/>
-        <line num="120" count="1" type="stmt"/>
-        <line num="124" count="2" type="stmt"/>
-        <line num="125" count="2" type="stmt"/>
-        <line num="130" count="285" type="stmt"/>
-        <line num="132" count="9" type="cond" truecount="2" falsecount="0"/>
-        <line num="133" count="1" type="stmt"/>
-        <line num="134" count="1" type="stmt"/>
-        <line num="137" count="8" type="cond" truecount="2" falsecount="0"/>
-        <line num="138" count="1" type="stmt"/>
-        <line num="139" count="1" type="stmt"/>
-        <line num="142" count="7" type="cond" truecount="2" falsecount="0"/>
-        <line num="143" count="1" type="stmt"/>
-        <line num="144" count="1" type="stmt"/>
-        <line num="147" count="6" type="cond" truecount="2" falsecount="0"/>
-        <line num="148" count="1" type="stmt"/>
-        <line num="149" count="1" type="stmt"/>
-        <line num="152" count="5" type="cond" truecount="2" falsecount="0"/>
-        <line num="153" count="1" type="stmt"/>
-        <line num="154" count="1" type="stmt"/>
-        <line num="158" count="4" type="stmt"/>
-        <line num="160" count="4" type="stmt"/>
-        <line num="161" count="4" type="stmt"/>
-        <line num="163" count="4" type="stmt"/>
-        <line num="164" count="4" type="stmt"/>
-        <line num="167" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="168" count="1" type="stmt"/>
-        <line num="169" count="1" type="stmt"/>
-        <line num="170" count="1" type="stmt"/>
-        <line num="171" count="1" type="stmt"/>
-        <line num="172" count="1" type="stmt"/>
-        <line num="173" count="1" type="stmt"/>
-        <line num="177" count="3" type="cond" truecount="4" falsecount="0"/>
-        <line num="178" count="1" type="stmt"/>
-        <line num="179" count="1" type="stmt"/>
-        <line num="181" count="2" type="stmt"/>
-        <line num="185" count="285" type="stmt"/>
-      </file>
-      <file name="LoginPageView.js" path="/Users/mattallen/Development/list-app/frontend/src/Public/LoginPageView.js">
-        <metrics statements="9" coveredstatements="9" conditionals="6" coveredconditionals="6" methods="13" coveredmethods="13"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="19" count="285" type="stmt"/>
-        <line num="28" count="15" type="stmt"/>
-        <line num="40" count="25" type="stmt"/>
-        <line num="55" count="40" type="stmt"/>
-        <line num="83" count="9" type="stmt"/>
-        <line num="94" count="32" type="stmt"/>
-        <line num="107" count="95" type="stmt"/>
-        <line num="120" count="49" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="61" count="2" type="stmt"/>
+        <line num="64" count="5" type="stmt"/>
+        <line num="65" count="5" type="stmt"/>
+        <line num="69" count="111" type="stmt"/>
       </file>
     </package>
     <package name="src.functions">
-      <metrics statements="7" coveredstatements="7" conditionals="1" coveredconditionals="1" methods="4" coveredmethods="4"/>
+      <metrics statements="44" coveredstatements="44" conditionals="17" coveredconditionals="17" methods="9" coveredmethods="9"/>
+      <file name="functions.js" path="/Users/mattallen/Development/list-app/frontend/src/functions/functions.js">
+        <metrics statements="37" coveredstatements="37" conditionals="16" coveredconditionals="16" methods="5" coveredmethods="5"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="3" count="18" type="stmt"/>
+        <line num="4" count="18" type="stmt"/>
+        <line num="11" count="18" type="stmt"/>
+        <line num="13" count="15" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="13" type="stmt"/>
+        <line num="15" count="13" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="21" count="6" type="cond" truecount="1" falsecount="0"/>
+        <line num="22" count="56" type="stmt"/>
+        <line num="23" count="56" type="stmt"/>
+        <line num="31" count="56" type="stmt"/>
+        <line num="32" count="54" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="10" type="stmt"/>
+        <line num="35" count="44" type="stmt"/>
+        <line num="36" count="44" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="42" count="6" type="stmt"/>
+        <line num="43" count="7" type="stmt"/>
+        <line num="44" count="7" type="stmt"/>
+        <line num="47" count="6" type="stmt"/>
+        <line num="48" count="5" type="stmt"/>
+        <line num="49" count="5" type="stmt"/>
+        <line num="50" count="5" type="stmt"/>
+        <line num="51" count="5" type="stmt"/>
+        <line num="52" count="5" type="stmt"/>
+        <line num="54" count="5" type="cond" truecount="7" falsecount="0"/>
+        <line num="55" count="4" type="stmt"/>
+        <line num="58" count="6" type="stmt"/>
+        <line num="60" count="25" type="stmt"/>
+        <line num="63" count="25" type="cond" truecount="2" falsecount="0"/>
+        <line num="64" count="7" type="stmt"/>
+        <line num="66" count="7" type="stmt"/>
+        <line num="67" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="68" count="5" type="stmt"/>
+        <line num="69" count="5" type="stmt"/>
+        <line num="73" count="20" type="stmt"/>
+      </file>
       <file name="testHelpers.js" path="/Users/mattallen/Development/list-app/frontend/src/functions/testHelpers.js">
         <metrics statements="7" coveredstatements="7" conditionals="1" coveredconditionals="1" methods="4" coveredmethods="4"/>
         <line num="1" count="5" type="cond" truecount="1" falsecount="0"/>
-        <line num="2" count="39" type="stmt"/>
-        <line num="3" count="48" type="stmt"/>
-        <line num="4" count="44" type="stmt"/>
+        <line num="2" count="55" type="stmt"/>
+        <line num="3" count="66" type="stmt"/>
+        <line num="4" count="54" type="stmt"/>
         <line num="9" count="5" type="stmt"/>
         <line num="11" count="5" type="stmt"/>
         <line num="17" count="5" type="stmt"/>

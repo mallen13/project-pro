@@ -52,10 +52,9 @@ const NewListInput = ({lists,setLists,token,setUser,setParentAlert}) => {
         } else if (data === 'invalid token') {
             const storedUser = await getStoredUser();
             if (storedUser !== 'no user')  {
-                setUser(storedUser);
+                await setUser(storedUser);
                 return addList();
             }
-              
             setUser({aToken: null});
             setParentAlert({display: 'flex', message: 'Login Expired. Please Sign In again.'});
         } else {

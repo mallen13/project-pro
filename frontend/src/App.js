@@ -34,9 +34,14 @@ function App() {
 
       //if bad token, remove user
       if (data === 'invalid token') {
-        //check for refresh token, get new access token if so
-        setAlert({display: 'flex', message: 'Login Expired. Please Sign In again.'})
+        const storedUser = await getStoredUser();
+        if (storedUser !== 'no user')  {
+            setUser(storedUser);
+            return fetchLists();
+        }
+        localStorage.removeItem('list-app-user');
         setUser({aToken: null});
+        setAlert({display: 'flex', message: 'Login Expired. Please Sign In again.'});
       }
 
       if (!data.lists) {

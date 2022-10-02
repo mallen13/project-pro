@@ -196,13 +196,13 @@ describe('lists', ()=> {
     expect(list).toBeInTheDocument();
   });
 
-  it.skip('displays alert if bad auth on list fetch', async ()=> {
+  it('displays alert if bad auth on list fetch', async ()=> {
     //mock fetch
     mockFetch({
      accessToken: 'token1',
      user: {
-         email: 'email',
-         name: 'name'
+         email: 'my email',
+         name: 'my name'
      }
     })
 
@@ -213,13 +213,40 @@ describe('lists', ()=> {
    const loginBtn = screen.getByText(/demo user/i);
    userEvent.click(loginBtn);
 
-   window.localStorage.clear();
-   
+   mockFetch(null,403);
+
 
    //expect
    const alert = await screen.findByText(/login expired/i);
    expect(alert).toBeInTheDocument();
  });
+
+ it('fetches refresh token on bad auth', async ()=> {
+    //mock fetch to return login success
+    mockFetch({
+    accessToken: 'token1',
+    user: {
+        email: 'my email',
+        name: 'my name'
+    }
+    })
+
+  //render
+  render(<App />);
+
+  //login
+  const loginBtn = screen.getByText(/demo user/i);
+  userEvent.click(loginBtn);
+
+  //get unauth from fetch lists
+  mockFetch(null,403);
+
+  //shows unauth...would need fetch to change a few times (return unauth then fetch new token then fetch lists)
+
+  //expect
+  const list = await screen.findByText(/to-do list/i);
+  expect(list).toBeInTheDocument();
+});
 
   it('sets an error on server error', async ()=> {
      //mock fetch
@@ -307,7 +334,7 @@ describe('lists', ()=> {
 
   })
 
-  it.skip('shows an error when bad auth on list removal', async () => {
+  it('shows an error when bad auth on list removal', async () => {
     //arrange
     mockFetch({
      accessToken: 'token',
@@ -334,6 +361,7 @@ describe('lists', ()=> {
 
    //assert (err fetching lists)
    await screen.findByText(/to-do list/i);
+  localStorage.removeItem('list-app-user');
 
   //delete list
   mockFetch(null,403);
@@ -346,7 +374,7 @@ describe('lists', ()=> {
 
   });
 
-  it.skip('shows an error when bad auth on list item add', async ()=> {
+  it('shows an error when bad auth on list item add', async ()=> {
     //arrange
     mockFetch({
       accessToken: 'token',
@@ -373,6 +401,7 @@ describe('lists', ()=> {
  
     //assert (err fetching lists)
     await screen.findByText(/to-do list/i);
+    localStorage.removeItem('list-app-user');
  
     //add list item
     mockFetch(null,403);
@@ -386,7 +415,7 @@ describe('lists', ()=> {
     expect(errMsg).toBeInTheDocument();
   })
 
-  it.skip('shows an error when bad auth on list item removal', async ()=> {
+  it('shows an error when bad auth on list item removal', async ()=> {
      //arrange
      mockFetch({
       accessToken: 'token',
@@ -413,6 +442,7 @@ describe('lists', ()=> {
  
     //assert (err fetching lists)
     await screen.findByText(/to-do list/i);
+    localStorage.removeItem('list-app-user');
  
     //delete list item
    mockFetch(null,403)
@@ -432,13 +462,13 @@ describe('new list input <App />', ()=> {
   //reset fetch after each
   afterAll(()=> global.fetch = unmockedFetch);
 
-  it.skip('shows an error when bad auth', async () => {
+  it('shows an error when bad auth', async () => {
      //arrange
      mockFetch({
       accessToken: 'token',
       user: {
-          email: 'email',
-          name: 'name'
+          email: 'f_name',
+          name: 'l_name'
       }
     })
 
@@ -451,7 +481,7 @@ describe('new list input <App />', ()=> {
     mockFetch({
       lists: [{
         id: 1,
-        title: 'to-do list',
+        title: 'my list',
         items: [
           'go to store',
           'watch tv'
@@ -460,7 +490,8 @@ describe('new list input <App />', ()=> {
     })
 
     //assert (err fetching lists)
-    await screen.findByText(/to-do list/i);
+    await screen.findByText(/my list/i);
+    localStorage.removeItem('list-app-user');
 
     //create list
     const input = screen.getByPlaceholderText('Project Title');
