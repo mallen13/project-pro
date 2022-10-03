@@ -32,17 +32,16 @@ function App() {
 
       data = await getData(url,user.aToken);
 
-      //if bad token, remove user
-      if (data === 'invalid token') {
-        const storedUser = await getStoredUser();
-        if (storedUser !== 'no user')  {
-            setUser(storedUser);
-            return fetchLists();
-        }
-        localStorage.removeItem('list-app-user');
-        setUser({aToken: null});
-        setAlert({display: 'flex', message: 'Login Expired. Please Sign In again.'});
-      }
+      //if bad token, remove user. not accessable currently
+      // if (data === 'invalid token') {
+      //   const storedUser = await getStoredUser();
+      //   if (storedUser !== 'no user')  {
+      //       setUser(storedUser);
+      //       return fetchLists();
+      //   }
+      //   setUser({aToken: null});
+      //   setAlert({display: 'flex', message: 'Login Expired. Please Sign In again.'});
+      // }
 
       if (!data.lists) {
         setLists('error');

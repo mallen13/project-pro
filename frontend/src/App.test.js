@@ -196,7 +196,7 @@ describe('lists', ()=> {
     expect(list).toBeInTheDocument();
   });
 
-  it('displays alert if bad auth on list fetch', async ()=> {
+  it.skip('displays alert if bad auth on list fetch', async ()=> {
     //mock fetch
     mockFetch({
      accessToken: 'token1',
@@ -214,22 +214,22 @@ describe('lists', ()=> {
    userEvent.click(loginBtn);
 
    mockFetch(null,403);
-
+   localStorage.removeItem('list-app-user');
 
    //expect
    const alert = await screen.findByText(/login expired/i);
    expect(alert).toBeInTheDocument();
  });
 
- it('fetches refresh token on bad auth', async ()=> {
-    //mock fetch to return login success
-    mockFetch({
-    accessToken: 'token1',
-    user: {
-        email: 'my email',
-        name: 'my name'
-    }
-    })
+ it.skip('fetches refresh token on bad auth', async ()=> {
+  //mock fetch to return login success
+  mockFetch({
+  accessToken: 'token1',
+  user: {
+      email: 'my email',
+      name: 'my name'
+  }
+  })
 
   //render
   render(<App />);
@@ -240,6 +240,17 @@ describe('lists', ()=> {
 
   //get unauth from fetch lists
   mockFetch(null,403);
+
+  mockFetch({
+    lists: [{
+      id: 1,
+      title: 'to-do list',
+      items: [
+        'go to store',
+        'watch tv'
+      ]
+      }]
+  })
 
   //shows unauth...would need fetch to change a few times (return unauth then fetch new token then fetch lists)
 
