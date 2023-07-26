@@ -10,6 +10,10 @@ Create Projects. Add Tasks. Get Organized.
 
    View the live application here: https://mallen13.github.io/project-pro/
 
+![login-page](https://github.com/mallen13/project-pro/blob/master/project-pro-login.PNG)
+
+![home-page](https://github.com/mallen13/project-pro/blob/master/project-pro-home.PNG)
+
 ## Development
    The development lifecycle started with a simple mockup done in Figma along with a brainstorming session of app requirements and the technologies that would be needed to accomplish the application goals. 
 
