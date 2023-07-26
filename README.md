@@ -8,11 +8,9 @@ Create Projects. Add Tasks. Get Organized.
 
    The app can also be added to homescreen to be used as online-only PWA.
 
-   View the live application here: https://mallen13.github.io/project-pro/
+![home-page](https://github.com/mallen13/project-pro/blob/e9f8345993a7fb4773c2d5189555664df65137b6/project-pro-login.png)
 
-![login-page](https://github.com/mallen13/project-pro/blob/master/project-pro-login.PNG)
-
-![home-page](https://github.com/mallen13/project-pro/blob/master/project-pro-home.PNG)
+![home-page](https://github.com/mallen13/project-pro/blob/e9f8345993a7fb4773c2d5189555664df65137b6/project-pro-home.png)
 
 ## Development
    The development lifecycle started with a simple mockup done in Figma along with a brainstorming session of app requirements and the technologies that would be needed to accomplish the application goals. 
